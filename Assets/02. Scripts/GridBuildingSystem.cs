@@ -67,9 +67,24 @@ public class GridBuildingSystem : MonoBehaviour
                     // 오프셋 추가하여 건물 스프라이트가 그리드 셀 중앙에 오도록 함
                     temp.transform.localPosition = gridLayout.CellToLocalInterpolated(cellPos
                         + new Vector3(.5f, .5f, 0f));
-                    prevPos = cellPos; // 이전 위치 재설정 
+                    prevPos = cellPos; // 이전 위치 재설정
+                    FollowBuilding();
                 }
             }
+        }
+        // 건물 배치 (Space)
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (temp.CanBePlaced()) // 건물 배치 가능 시
+            {
+                temp.Place(); // 건물 배치
+            }
+        }
+        // 건물 배치 취소 (Esc)
+        else if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ClearArea();
+            Destroy(temp.gameObject);
         }
     }
 
@@ -168,6 +183,26 @@ public class GridBuildingSystem : MonoBehaviour
         //임시 타일맵에 타일을 설정하고 이전 영역 다시 할당
         tempTilemap.SetTilesBlock(buildingArea, tileArray);
         prevArea = buildingArea;
+    }
+
+    public bool CanTakeArea(BoundsInt area)
+    {
+        TileBase[] baseArray = GetTilesBlock(area, mainTilemap);
+        foreach (var b in baseArray)
+        {
+            if (b != tileBases[TileType.White])
+            {
+                Debug.Log("여기 배치 불가임");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void TakeArea(BoundsInt area)
+    {
+        SetTilesBlock(area, TileType.Empty, tempTilemap); // 임시 타일맵의 타일을 비움
+        SetTilesBlock(area, TileType.Green, mainTilemap); // 메인 타일맵의 타일을 초록색으로
     }
 
     #endregion
