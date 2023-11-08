@@ -48,5 +48,5 @@ public class CurrencySystem : MonoBehaviour
     }
 }
 
-// 코인, 크리스탈 두 가지 화폐 타입
-public enum CurrencyType { Coins, Crystals }
+// 코인, 크리스탈, 스테미나 세 가지 화폐 타입
+public enum CurrencyType { Coins, Crystals, Stamina }
