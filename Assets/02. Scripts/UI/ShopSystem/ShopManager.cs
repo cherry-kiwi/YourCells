@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class ShopManager : MonoBehaviour
 {
     public static ShopManager instance; // 싱글톤
+
     // 금액 표시할 때 사용
     public static Dictionary<CurrencyType, Sprite> currencySprites = new Dictionary<CurrencyType, Sprite>();
 
@@ -26,6 +28,7 @@ public class ShopManager : MonoBehaviour
     private void Awake()
     {
         instance = this; // 현재 필드 초기화
+     
         rt = GetComponent<RectTransform>();
         prt = transform.parent.GetComponent<RectTransform>();
 
@@ -34,11 +37,32 @@ public class ShopManager : MonoBehaviour
 
     private void Start()
     {
-        currencySprites.Add(CurrencyType.Coins, sprites[0]);
-        currencySprites.Add(CurrencyType.Crystals, sprites[1]);
+        //currencySprites.Add(CurrencyType.Coins, sprites[0]);
+        //currencySprites.Add(CurrencyType.Crystals, sprites[1]);
+
+        gameObject.SetActive(false);
 
         Load();
         Initialize();
+    }
+
+    public void ShopButton_Click()
+    {
+        float time = 0.2f;
+        if (!opened)
+        {
+            LeanTween.moveY(prt, prt.anchoredPosition.y + rt.sizeDelta.y, time);
+            opened = true;
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            LeanTween.moveY(prt, prt.anchoredPosition.y - rt.sizeDelta.y, time).setOnComplete(delegate ()
+            {
+                gameObject.SetActive(false);
+            });
+            opened = false;
+        }
     }
 
     /// <summary>
