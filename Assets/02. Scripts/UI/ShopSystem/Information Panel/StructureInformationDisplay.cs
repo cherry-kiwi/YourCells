@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class StructureInformationDisplay : MonoBehaviour
 {
     public StructureInformationPanel structureInformationPanel;
+    public List<ScriptableObject> structureSlots = new List<ScriptableObject>();
 
     public Text nameText; // 건물의 이름
     public Text descriptionText; // 건물의 설명

@@ -124,9 +124,9 @@ public class BuildingSystem : MonoBehaviour
     }
 
      
-    public void TakeArea(BoundsInt ara)
+    public void TakeArea(BoundsInt area)
     {
-
+        SetTilesBlock(area, takenTile, mainTilemap);
     }
 
     #endregion

@@ -7,6 +7,7 @@ public class ButtonManager : MonoBehaviour
 {
     #region 패널 담을 변수들
     public GameObject userProfilePopUpPanel;
+    public GameObject storagePanel;
     public GameObject subContentsPopUpPanel;
     public GameObject cellGatchaPanel;
     public GameObject shopPanel;
@@ -26,6 +27,8 @@ public class ButtonManager : MonoBehaviour
 
     //#endregion
 
+    //public GameObject shopSystem;
+
     #region User Profile PopUp Panel
     public void Active_UserProfilePopUpPanel()
     {
@@ -35,6 +38,18 @@ public class ButtonManager : MonoBehaviour
     public void Inactive_UserProfilePopUpPanel()
     {
         userProfilePopUpPanel.SetActive(false);
+    }
+    #endregion
+
+    #region Storage Panel
+    public void Active_StoragePanel()
+    {
+        storagePanel.SetActive(true);
+    }
+
+    public void Inactive_StoragePanel()
+    {
+        storagePanel.SetActive(false);
     }
     #endregion
 
@@ -77,11 +92,13 @@ public class ButtonManager : MonoBehaviour
     public void Active_InformationPanel()
     {
         informationPanel.SetActive(true);
+        //여기다가 현재 오브젝트의 값을 받아오게 하면 됩니다 아시겠어요?
     }
 
     public void Inactive_InformationPanel()
     {
         informationPanel.SetActive(false);
+        StorageSystem.instance.myBuildings.Add(ShopSystem.instance.itemList[0].itemPrefab);
     }
 
     //public void ClickSlot1()

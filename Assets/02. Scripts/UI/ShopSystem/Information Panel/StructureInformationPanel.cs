@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class StructureInformationPanel : ScriptableObject
 {
-    //public StructureInfoArray[] TestInt;
     public new string name;
     public string description;
     public int price;

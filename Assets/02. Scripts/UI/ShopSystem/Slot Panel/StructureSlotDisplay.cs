@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class StructureSlotDisplay : MonoBehaviour
 {
     public StructureSlotPanel structureSlotPanel;
+    public static StructureSlotDisplay structureSlotDisplay;
 
     public Text nameText; // 건물의 이름
     public Text priceText; // 건물의 가격
     public Image structureImage; // 건물의 이미지
+    public GameObject prefab; // 건물의 프리팹
 
     /// <summary>
     /// Description Panel에 건물의 세부 정보를 표시해줌

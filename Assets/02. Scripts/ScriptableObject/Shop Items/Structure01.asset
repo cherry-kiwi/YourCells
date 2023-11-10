@@ -19,4 +19,4 @@ MonoBehaviour:
   currency: 0
   type: 0
   Icon: {fileID: 0}
-  prefab: {fileID: 0}
+  prefab: {fileID: 7033273336571999263, guid: ec483dd2e24b0b04ea2cf1d4f0c6d005, type: 3}

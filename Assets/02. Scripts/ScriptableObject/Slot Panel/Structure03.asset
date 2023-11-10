@@ -15,3 +15,5 @@ MonoBehaviour:
   name: "\uAC74\uBB3C 3"
   price: 1500
   image: {fileID: 21300000, guid: 0070ab90669002e4894a664d65d67779, type: 3}
+  type: 0
+  itemPrefab: {fileID: 4430336780981663780, guid: 32369edefdf2eb041bf725907acafc17, type: 3}
