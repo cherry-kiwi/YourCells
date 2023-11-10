@@ -27,7 +27,7 @@ public class ButtonManager : MonoBehaviour
 
     //#endregion
 
-    //public GameObject shopSystem;
+    public GameObject structureInforDisplay;
 
     #region User Profile PopUp Panel
     public void Active_UserProfilePopUpPanel()
@@ -89,10 +89,12 @@ public class ButtonManager : MonoBehaviour
     #endregion
 
     #region Information Panel
-    public void Active_InformationPanel()
+    public void Active_InformationPanel(int index)
     {
         informationPanel.SetActive(true);
         //여기다가 현재 오브젝트의 값을 받아오게 하면 됩니다 아시겠어요?
+
+        structureInforDisplay.GetComponent<StructureInformationDisplay>().structureInformationPanel = structureInforDisplay.GetComponent<StructureInformationDisplay>().structureSlots[index];
     }
 
     public void Inactive_InformationPanel()
