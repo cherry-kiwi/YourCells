@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
+
 public class CameraMovement : MonoBehaviour
 {
     public float Speed = 1.0f; // 카메라 이동 속도
@@ -10,6 +12,11 @@ public class CameraMovement : MonoBehaviour
     {
         if (Input.touchCount == 1) // 손가락 1개가 눌렸을 때
         {
+            if (EventSystem.current.IsPointerOverGameObject(0))
+            {
+                return;
+            }
+
             Touch touch = Input.GetTouch(0); // 첫번째 손가락 터치를 저장
             if (touch.phase == TouchPhase.Began) // 손가락이 화면에 터치됐을 때
             {

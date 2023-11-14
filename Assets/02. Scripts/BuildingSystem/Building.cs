@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Building : MonoBehaviour
@@ -12,24 +13,21 @@ public class Building : MonoBehaviour
 
     private void Update()
     {
-        Vector3Int positionInt = BuildingSystem.instance.gridLayout.LocalToCell(transform.position);
-        BoundsInt areaTemp = area;
-        areaTemp.position = positionInt;
-
+        // Change Layer
         for (int i = 0; i < BuildingSystem.instance.myInstalledBuildings.Count; i++)
         {
             if (BuildingSystem.instance.myInstalledBuildings[i].gameObject == gameObject)
             {
                 BuildingSystem.instance.myInstalledBuildings[i].transform.GetComponent<SpriteRenderer>().sortingOrder =
-                    BuildingSystem.instance.myInstalledBuildings.Count + 1 - (int)Mathf.Round(gameObject.transform.position.y);
+                    3000 + (int)(Camera.main.WorldToScreenPoint(this.transform.position).y * -1);
+                //BuildingSystem.instance.myInstalledBuildings.Count + 20 - Mathf.RoundToInt(gameObject.transform.position.y);
             }
         }
     }
 
     /// <summary>
-    /// 영역을 초기화하여 BuildingSystem에 전달
+    /// Functions to check if they are installable
     /// </summary>
-    /// <returns></returns>
     public bool CanBePlaced()
     {
         Vector3Int positionInt = BuildingSystem.instance.gridLayout.LocalToCell(transform.position);
@@ -53,5 +51,5 @@ public class Building : MonoBehaviour
         BuildingSystem.instance.TakeArea(areaTemp);
     }
 
-    #endregion
+#endregion
 }

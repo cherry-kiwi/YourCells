@@ -9,14 +9,14 @@ public class StorageSystem : MonoBehaviour
 {
     public static StorageSystem instance;
 
-    public List<Sprite> myBuildings;
+    public List<Sprite> myBuildingsSprites;
+    public List<GameObject> myBuildings;
     public List<GameObject> Content;
 
     private void Awake()
     {
         instance = this;
     }
-
 }
 
 public enum BuildingType
