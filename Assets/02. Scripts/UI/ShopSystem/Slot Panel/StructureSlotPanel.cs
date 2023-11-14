@@ -9,7 +9,6 @@ public class StructureSlotPanel : ScriptableObject
     public new string name;
     public int price;
     public Sprite image;
-    public ObjectType type;
     public GameObject itemPrefab;
 
     public void Print()

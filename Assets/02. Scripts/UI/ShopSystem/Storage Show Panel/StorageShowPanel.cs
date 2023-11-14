@@ -8,7 +8,6 @@ public class StorageShowPanel : ScriptableObject
 {
     public new string name;
     public int price;
-    public ObjectType type;
     public GameObject prefab;
 
 }
