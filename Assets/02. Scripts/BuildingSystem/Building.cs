@@ -21,7 +21,7 @@ public class Building : MonoBehaviour
             if (BuildingSystem.instance.myInstalledBuildings[i].gameObject == gameObject)
             {
                 BuildingSystem.instance.myInstalledBuildings[i].transform.GetComponent<SpriteRenderer>().sortingOrder =
-                    BuildingSystem.instance.myInstalledBuildings.Count + 1 - (int)Mathf.Round(gameObject.transform.position.y) * 2;
+                    BuildingSystem.instance.myInstalledBuildings.Count + 1 - (int)Mathf.Round(gameObject.transform.position.y);
             }
         }
     }
