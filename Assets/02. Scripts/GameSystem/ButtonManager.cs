@@ -1,23 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
-    #region 패널 담을 변수들
+    #region gameObjects
     public GameObject userProfilePopUpPanel;
     public GameObject storagePanel;
     public GameObject subContentsPopUpPanel;
     public GameObject cellGatchaPanel;
     public GameObject shopPanel;
     public GameObject informationPanel;
+    public GameObject BuildingDisplayPanel;
     #endregion
 
     public GameObject structureInforDisplay;
+    
     public int nowIndex = 0;
+    public int StorageIndex = 0;
 
     #region User Profile PopUp Panel
     public void Active_UserProfilePopUpPanel()
@@ -36,14 +41,45 @@ public class ButtonManager : MonoBehaviour
     {
         storagePanel.SetActive(true);
 
-        for (int i = 0; i < StorageSystem.instance.myBuildings.Count; i++)
+        for (int i = 0; i < StorageSystem.instance.myBuildingsSprites.Count; i++)
         {
-            StorageSystem.instance.Content[i].GetComponent<Image>().sprite = StorageSystem.instance.myBuildings[i];
+            StorageSystem.instance.Content[i].GetComponent<Image>().sprite = StorageSystem.instance.myBuildingsSprites[i];
         }
+    }
+
+    public void Select_StorageItem(int index)
+    {
+        if(StorageSystem.instance.myBuildings[index] == null)
+        {
+            return;
+        }
+        StorageIndex = index;
+
+        GameManager.instance.isEditing = true;
+
+        BuildingSystem.instance.InitializeBuilding(StorageSystem.instance.myBuildings[index]);
+
+        for (int i = 0; i < StorageSystem.instance.Content.Count; i++)
+        {
+            StorageSystem.instance.Content[i].GetComponent<Image>().sprite = null;
+        }
+
+        storagePanel.SetActive(false);
+    }
+
+    public void Delete_StorageItem()
+    {
+        StorageSystem.instance.myBuildings.Remove(StorageSystem.instance.myBuildings[StorageIndex]);
+        StorageSystem.instance.myBuildingsSprites.Remove(StorageSystem.instance.myBuildingsSprites[StorageIndex]);
     }
 
     public void Inactive_StoragePanel()
     {
+        for (int i = 0; i < StorageSystem.instance.Content.Count; i++)
+        {
+            StorageSystem.instance.Content[i].GetComponent<Image>().sprite = null;
+        }
+
         storagePanel.SetActive(false);
     }
     #endregion
@@ -92,14 +128,11 @@ public class ButtonManager : MonoBehaviour
         structureInforDisplay.GetComponent<StructureInformationDisplay>().structureInformationPanel = structureInforDisplay.GetComponent<StructureInformationDisplay>().structureSlots[index];
     }
 
-    /// <summary>
-    /// 건물을 샀을때 보관함에 건물이 담김
-    /// </summary>
     public void Buy_Structure()
     {
         //StorageSystem.instance.myBuildings.Add(ShopSystem.instance.itemList[nowIndex].image);
 
-        GameManager.instance.isEditing = true;
+        GameManager.instance.isBuying = true;
 
         BuildingSystem.instance.InitializeBuilding(ShopSystem.instance.itemList[nowIndex].itemPrefab);
     }
@@ -115,24 +148,29 @@ public class ButtonManager : MonoBehaviour
 
     #region Editing Panel
 
-    /// <summary>
-    /// 편집 모드가 취소됐을 때
-    /// </summary>
+    public void Editing_Storage()
+    {
+        GameManager.instance.isBuying = false;
+        BuildingSystem.instance.cancleBuilding();
+        StorageSystem.instance.myBuildingsSprites.Add(ShopSystem.instance.itemList[nowIndex].image);
+        StorageSystem.instance.myBuildings.Add(ShopSystem.instance.itemList[nowIndex].itemPrefab);
+        BuildingSystem.instance.myInstalledBuildings.Remove(BuildingSystem.instance.temp.gameObject);
+    }
+
     public void Editing_Cancel()
     {
         GameManager.instance.isEditing = false;
+        GameManager.instance.isBuying = false;
         BuildingSystem.instance.cancleBuilding();
         BuildingSystem.instance.myInstalledBuildings.Remove(BuildingSystem.instance.temp.gameObject);
     }
 
-    /// <summary>
-    /// 편집 모드가 완료됐을 때
-    /// </summary>
     public void Editing_Confirm()
     {
         if (BuildingSystem.instance.temp.CanBePlaced())
         {
             GameManager.instance.isEditing = false;
+            GameManager.instance.isBuying = false;
             BuildingSystem.instance.placeBuilding();
             //BuildingSystem.instance.myInstalledBuildings.Add(BuildingSystem.instance.temp.gameObject);
         }
@@ -140,5 +178,12 @@ public class ButtonManager : MonoBehaviour
 
     #endregion
 
-    //---여기까지 패널 할당 완료됨--//
+    #region Building Display
+
+    public void Inactive_BuildingDisplay()
+    {
+        BuildingDisplayPanel.SetActive(false);
+    }
+
+    #endregion
 }
