@@ -71,7 +71,7 @@ public class ButtonManager : MonoBehaviour
         subContentsPopUpPanel.SetActive(true);
     }
 
-    public void Inctive_SubContentsPopUpPanel()
+    public void Inactive_SubContentsPopUpPanel()
     {
         subContentsPopUpPanel.SetActive(false);
     }
@@ -83,7 +83,7 @@ public class ButtonManager : MonoBehaviour
         cellGatchaPanel.SetActive(true); // 세포뽑기 패널 띄움
     }
 
-    public void Inctive_CellGatchaPanel()
+    public void Inactive_CellGatchaPanel()
     {
         cellGatchaPanel.SetActive(false);
     }
@@ -117,7 +117,6 @@ public class ButtonManager : MonoBehaviour
     {
         gachaResultPanel.SetActive(false);
     }
-
 
     public void Common_Button()
     {
