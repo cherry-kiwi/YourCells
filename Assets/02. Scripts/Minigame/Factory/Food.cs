@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    public List<string> FoodList = new List<string>( new string[] { "½Ò", "µþ±â", "¶±²¿Ä¡" });
+    public List<string> FoodList = new List<string>( new string[] { "ìŒ€", "ë”¸ê¸°", "ë–¡ê¼¬ì¹˜" });
     public List<Sprite> FoodSprites = new List<Sprite>();
     public string Tag;
 
@@ -12,15 +12,15 @@ public class Food : MonoBehaviour
     {
         Tag = FoodList[Random.Range(0, 3)];
 
-        if (Tag == "½Ò")
+        if (Tag == "ìŒ€")
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = FoodSprites[0];
         }
-        else if (Tag == "µþ±â")
+        else if (Tag == "ë”¸ê¸°")
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = FoodSprites[1];
         }
-        else if (Tag == "¶±²¿Ä¡")
+        else if (Tag == "ë–¡ê¼¬ì¹˜")
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = FoodSprites[2];
         }

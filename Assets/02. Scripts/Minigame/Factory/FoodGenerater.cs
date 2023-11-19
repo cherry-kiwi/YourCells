@@ -62,7 +62,7 @@ public class FoodGenerater : MonoBehaviour
 
     public void LeftBtn()
     {
-        if(Foods[0].GetComponent<Food>().Tag == "µþ±â")
+        if(Foods[0].GetComponent<Food>().Tag == "ë”¸ê¸°")
         {
             Foods[0].GetComponent<BoxCollider2D>().enabled = false;
             Foods[0].GetComponent<Rigidbody2D>().AddForce(Vector2.left * 1000);
@@ -78,7 +78,7 @@ public class FoodGenerater : MonoBehaviour
 
     public void DownBtn()
     {
-        if (Foods[0].GetComponent<Food>().Tag == "½Ò")
+        if (Foods[0].GetComponent<Food>().Tag == "ìŒ€")
         {
             Foods[0].GetComponent<BoxCollider2D>().enabled = false;
             Foods[0].GetComponent<Rigidbody2D>().AddForce(Vector2.down * 1000);
@@ -94,7 +94,7 @@ public class FoodGenerater : MonoBehaviour
 
     public void RightBtn()
     {
-        if (Foods[0].GetComponent<Food>().Tag == "¶±²¿Ä¡")
+        if (Foods[0].GetComponent<Food>().Tag == "ë–¡ê¼¬ì¹˜")
         {
             Foods[0].GetComponent<BoxCollider2D>().enabled = false;
             Foods[0].GetComponent<Rigidbody2D>().AddForce(Vector2.right * 1000);

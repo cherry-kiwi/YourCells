@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 using UnityEngine.UI;
@@ -22,14 +22,10 @@ public class Scroll : MonoBehaviour
     {
         pos = List.localPosition.x;
         movepos = List.rect.xMax - List.rect.xMax / count;
-        Debug.Log("List.rect.xMax: " + List.rect.xMax);
-        Debug.Log("List.rect.xMin: " + List.rect.xMin);
-        Debug.Log("List.rect.xMax - List.rect.xMax / count: " + (List.rect.xMax - List.rect.xMax / count));
-        Debug.Log("pos: " + pos);
-    }
-
-    private void Update()
-    {
+        //Debug.Log("List.rect.xMax: " + List.rect.xMax); //440
+        //Debug.Log("List.rect.xMin: " + List.rect.xMin); //-440
+        //Debug.Log("List.rect.xMax - List.rect.xMax / count: " + (List.rect.xMax - List.rect.xMax / count)); //220
+        //Debug.Log("pos: " + pos); //220
     }
 
     public void Right()
