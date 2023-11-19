@@ -9,19 +9,22 @@ using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
+    #region 싱글톤
     public static ButtonManager instance;
 
     private void Awake()
     {
         instance = this;
     }
-
+    #endregion
     #region 패널 담을 변수들
 
     public GameObject userProfilePopUpPanel;
     public GameObject storagePanel;
     public GameObject subContentsPopUpPanel;
     public GameObject cellGatchaPanel;
+    public GameObject cellManagementPanel;
+    public GameObject cellInfoPanel;
     public GameObject gachaPopupPanel;
     public GameObject gachaResultPanel;
     public GameObject shopPanel;
@@ -113,6 +116,33 @@ public class ButtonManager : MonoBehaviour
     {
         subContentsPopUpPanel.SetActive(false);
     }
+    #endregion
+
+    #region Cell Management Panel
+
+    public void Active_CellManagementPanel()
+    {
+        cellManagementPanel.SetActive(true);
+    }
+
+    public void Inactive_CellManagementPanel()
+    {
+        cellManagementPanel.SetActive(false);
+    }
+
+    #endregion
+
+    #region Cell Info Panel
+
+    public void Active_CellInfoPanel()
+    {
+        cellInfoPanel.SetActive(true);
+    }
+    public void Inactive_CellInfoPanel()
+    {
+        cellInfoPanel.SetActive(false);
+    }
+
     #endregion
 
     #region Cell Gatcha Panel
