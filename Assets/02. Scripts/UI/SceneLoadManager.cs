@@ -9,4 +9,19 @@ public class SceneLoadManager : MonoBehaviour
     {
         SceneManager.LoadScene("02. MainLobbyScene");
     }
+
+    public void MiniGameScene_Eulerian_Trail()
+    {
+        SceneManager.LoadScene("02. MiniGameScene_Eulerian Trail");
+    }
+
+    public void MiniGameScene_Factory()
+    {
+        SceneManager.LoadScene("02. MiniGameScene_Factory");
+    }
+
+    public void MiniGameScene_Millstone()
+    {
+        SceneManager.LoadScene("02. MiniGameScene_Millstone");
+    }
 }

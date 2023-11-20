@@ -25,7 +25,7 @@ public class Main_ScoreSystem : MonoBehaviour
 
         if (_Time <= 0)
         {
-            UnityEditor.EditorApplication.isPaused = true;
+            //UnityEditor.EditorApplication.isPaused = true;
         }
 
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
