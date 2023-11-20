@@ -17,6 +17,7 @@ public class ButtonManager : MonoBehaviour
         instance = this;
     }
     #endregion
+
     #region 패널 담을 변수들
 
     public GameObject userProfilePopUpPanel;
@@ -30,6 +31,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject shopPanel;
     public GameObject informationPanel;
     public GameObject BuildingDisplayPanel;
+    public GameObject storyModePanel;
     
     #endregion
 
@@ -41,6 +43,10 @@ public class ButtonManager : MonoBehaviour
     public Sprite[] eventGachaButtonSprites = new Sprite[2];
 
     public GameObject structureInforDisplay;
+    public GameObject myCellButtonPrefab;
+    public GameObject myCellContents;
+
+    public List<GameObject> myCellButtonList;
     
     public int nowIndex = 0;
     public int myCost;
@@ -71,7 +77,7 @@ public class ButtonManager : MonoBehaviour
 
     public void Select_StorageItem(int index)
     {
-        if(StorageSystem.instance.myBuildings[index] == null)
+        if (StorageSystem.instance.myBuildings[index] == null)
         {
             return;
         }
@@ -123,6 +129,14 @@ public class ButtonManager : MonoBehaviour
     public void Active_CellManagementPanel()
     {
         cellManagementPanel.SetActive(true);
+
+        for (int i = 0; i < CellManager.instance.myCells.Count; i++)
+        {
+            myCellButtonList.Add(Instantiate(myCellButtonPrefab, myCellContents.transform.position, Quaternion.identity));
+            myCellButtonList[i].gameObject.GetComponent<Image>().sprite = CellManager.instance.myCells[i].cellImage;
+            myCellButtonList[i].transform.SetParent(myCellContents.transform);
+            myCellButtonList[i].transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 
     public void Inactive_CellManagementPanel()
@@ -287,6 +301,19 @@ public class ButtonManager : MonoBehaviour
     public void Inactive_BuildingDisplay()
     {
         BuildingDisplayPanel.SetActive(false);
+    }
+
+    #endregion
+
+    #region Story Mode Panel
+
+    public void Active_StoryModePanel()
+    {
+        storyModePanel.SetActive(true);
+    }
+    public void Inactive_StoryModePanel()
+    {
+        storyModePanel.SetActive(false);
     }
 
     #endregion

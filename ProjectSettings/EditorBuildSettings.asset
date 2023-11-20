@@ -14,4 +14,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/01. Scenes/02. MainLobbyScene.unity
     guid: 2d50ef353bd3fc146b139f59e7c1dad6
+  - enabled: 1
+    path: Assets/01. Scenes/02. MiniGameScene.unity
+    guid: f38fb840fdf640e448d8bd9089c58884
+  - enabled: 1
+    path: Assets/01. Scenes/02. MiniGameScene_Eulerian Trail.unity
+    guid: d4cbc2a209708704a95de3bf87d154ea
+  - enabled: 1
+    path: Assets/01. Scenes/02. MiniGameScene_Factory.unity
+    guid: e6126470eb8fa0e41a117211e1eccc72
+  - enabled: 1
+    path: Assets/01. Scenes/02. MiniGameScene_Millstone.unity
+    guid: c54838aa1aa4ac54db53690cc17ddbb0
   m_configObjects: {}

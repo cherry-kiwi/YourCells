@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d7e1d1a36b7dc4e80d5a7a52939d52, type: 3}
+  m_Name: "3101. \uC6B0\uC6B8\uCC98\uB9AC\uBC18"
+  m_EditorClassIdentifier: 
+  grade: N
+  name: "3101. \uC6B0\uC6B8\uCC98\uB9AC\uBC18"
+  hP: 85
+  power: 20
+  upgradeCost: 5
+  description: "\uC0AC\uB791\uC73C\uB85C \uC720\uBBF8\uC758 \uC6B0\uC6B8\uD568\uC744
+    \v\uD76C\uC11D\uD558\uACE0 \uD574\uC18C\uD558\uB294 \uC5ED\uD560\uC744 \uD55C\uB2E4!
+    25\uCD08\uB9C8\uB2E4 \uC0AC\uB791\uC73C\uB85C \uCCB4\uB825\uC744 \uD68C\uBCF5(P*0.07)\uD55C\uB2E4! "
+  image: {fileID: 21300000, guid: d3fd465b270896342bdb1e32651d4bba, type: 3}

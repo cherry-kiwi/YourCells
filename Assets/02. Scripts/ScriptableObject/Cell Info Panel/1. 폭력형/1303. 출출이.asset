@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d7e1d1a36b7dc4e80d5a7a52939d52, type: 3}
+  m_Name: "1303. \uCD9C\uCD9C\uC774"
+  m_EditorClassIdentifier: 
+  grade: E
+  name: "1303. \uCD9C\uCD9C\uC774"
+  hP: 130
+  power: 300
+  upgradeCost: 5
+  description: "\uC720\uBBF8\uC758 \uC555\uB3C4\uC801\uC778 \uC2DD\uC695\uC5D0 \uBE44\uB840\uD574
+    \uAC15\uB825\uD55C \uD798\uC744 \uAC16\uAC8C \uB41C \uCD9C\uCD9C \uC138\uD3EC!
+    \uC0AC\uC2E4\uC0C1 \uCD5C\uAC15\uC790\uC774\uB2E4. \uC2DC\uAC04\uC774 \uC2DD\uC695\uC774
+    \uAC15\uD574\uC9C0\uB294 \v6\uC2DC, 12\uC2DC, 18\uC2DC, 22\uC2DC \uC5D0 \v\uB3C4\uB2EC\uD558\uBA74
+    5\uCD08\uAC04 \uBB34\uC801\uC774 \uB418\uACE0\v\uB09C\uB3D9\uC744 \uBD80\uB824
+    \uB09C\uB3D9 \uC810\uC218(P * 10)\uB97C \uD68D\uB4DD\uD55C\uB2E4! "
+  image: {fileID: 21300000, guid: 291170120e2f03d4ba1acf1acab98fb3, type: 3}

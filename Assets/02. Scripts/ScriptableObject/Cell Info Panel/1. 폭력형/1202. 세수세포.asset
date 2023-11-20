@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d7e1d1a36b7dc4e80d5a7a52939d52, type: 3}
+  m_Name: "1202. \uC138\uC218\uC138\uD3EC"
+  m_EditorClassIdentifier: 
+  grade: R
+  name: "1202. \uC138\uC218\uC138\uD3EC"
+  hP: 85
+  power: 30
+  upgradeCost: 5
+  description: "\uC720\uBBF8\uC758 \uD53C\uBD80\uAD00\uB9AC\uB97C \uB2F4\uB2F9\uD558\uB294
+    \v5\uB300 \uD3ED\uB825\uC138\uD3EC! 70%\uC758 \uD655\uB960\uB85C \uC138\uC218\uB97C
+    \uBABB\uD55C \v\uB0A0\uC740 \uC138\uC218\uB97C \uD558\uAC8C \uD558\uAE30 \uC704\uD574
+    \v\uBD80\uD65C(\uBD80\uD65C \uCCB4\uB825=P * 0.5)\uD55C\uB2E4!"
+  image: {fileID: 21300000, guid: d6ac9c6567d1b384193d897847347db7, type: 3}

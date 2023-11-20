@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d7e1d1a36b7dc4e80d5a7a52939d52, type: 3}
+  m_Name: "4302. \uC751\uD07C\uC774"
+  m_EditorClassIdentifier: 
+  grade: R
+  name: "4302. \uC751\uD07C\uC774"
+  hP: 105
+  power: 23
+  upgradeCost: 5
+  description: "\uC751\uD07C\uD55C \uC9D3\uC744 \uC88B\uC544\uD558\uB294 \uC138\uD3EC!
+    20\uCD08\uB9C8\uB2E4 \uB3CC\uBC1C\uD589\uB3D9\uC744 \uD558\uC5EC \uB2E4\uC74C
+    \uC911 \uB79C\uB364 \uD6A8\uACFC\uB97C \uBC1C\uB3D9\uD55C\uB2E4! [\uC7A5\uC560\uBB3C
+    \uD30C\uAD34 \uC810\uC218(P*50), \v10\uCD08\uAC04 \uCF64\uBCF4 \uC810\uC218 or
+    \v\uD68D\uB4DD \uC810\uC218 \uB450\uBC30 \uCD94\uAC00, \v\uC74C\uD07C\uD55C \uD589\uB3D9\uC744
+    \uD558\uC5EC \v\uC751\uD07C \uC810\uC218(P*40) \uD68D\uB4DD] "
+  image: {fileID: 21300000, guid: 5b8a7fd98f01ed44d8ea1ee7a1cdb3b4, type: 3}

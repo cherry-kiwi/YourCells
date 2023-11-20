@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using static UnityEditor.PlayerSettings;
 
 public class MainPanel : MonoBehaviour
 {
@@ -23,7 +22,7 @@ public class MainPanel : MonoBehaviour
     {
         cam = GetComponent<Camera>();
 
-        #region º® Á¦¿Ü ¸ðµç Å¸ÀÏ°ª ¹Þ¾Æ¿À±â in : Transfrom _Square
+        #region ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Å¸ï¿½Ï°ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½ in : Transfrom _Square
         foreach (Transform rowTransform in Row)
         {
             int childCount = rowTransform.childCount;
@@ -47,7 +46,7 @@ public class MainPanel : MonoBehaviour
         {
             Touch toto = Input.GetTouch(0);
 
-            #region ÇöÀç Å¬¸¯µÈ ¿ÀºêÁ§Æ® in : Collider2D clickCol
+            #region ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® in : Collider2D clickCol
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 clickPos = new Vector2(worldPos.x, worldPos.y);
             Collider2D clickCol = Physics2D.OverlapPoint(clickPos);
@@ -60,11 +59,11 @@ public class MainPanel : MonoBehaviour
                     clickCol.gameObject.GetComponent<SpriteRenderer>().material.color = Color.red;
                     
                     clickCol.TryGetComponent(out ImPanel wall);
-                    _Able = wall.Fidn_Route(); //_able¿¡ ÇöÀç Å¬¸¯µÈ ³à¼® ±âÁØ »óÇÏÁÂ¿ì °¡Á®¿À±â
+                    _Able = wall.Fidn_Route(); //_ableï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½à¼® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     Fail_Reset.Push(clickCol.gameObject);
                 } else
                 {
-                    Debug.Log("´Ù¸¥ °÷¿¡¼­ ½ÃÀÛ");
+                    Debug.Log("ï¿½Ù¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
                 }
             }
 
@@ -76,7 +75,7 @@ public class MainPanel : MonoBehaviour
                     clickCol.gameObject.GetComponent<SpriteRenderer>().material.color = Color.red;
                     
                     clickCol.TryGetComponent(out ImPanel wall);
-                    _Able = wall.Fidn_Route(); //_able¿¡ ÇöÀç Å¬¸¯µÈ ³à¼® ±âÁØ »óÇÏÁÂ¿ì °¡Á®¿À±â
+                    _Able = wall.Fidn_Route(); //_ableï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½à¼® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
                     Fail_Reset.Push(clickCol.gameObject);
                     Debug.Log(clickCol.tag);
