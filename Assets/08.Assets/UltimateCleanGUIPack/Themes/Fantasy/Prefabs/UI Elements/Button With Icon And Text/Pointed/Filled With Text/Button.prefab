@@ -618,7 +618,7 @@ GameObject:
   - component: {fileID: 7878688462744345402}
   - component: {fileID: 7878688462744345401}
   m_Layer: 5
-  m_Name: Button - Filled With Text (Outline Rollover) - 100ppu
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
