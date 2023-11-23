@@ -22,10 +22,10 @@ public class LoadingSceneManager : MonoBehaviour
 
         while (!operation.isDone)
         {
-            time = +Time.time;
-            slider.value = time / 10f;
+            time += Time.deltaTime;
+            slider.value = time / 1f;
 
-            if (time > 10)
+            if (time > 1f)
             {
                 operation.allowSceneActivation = true;
             }

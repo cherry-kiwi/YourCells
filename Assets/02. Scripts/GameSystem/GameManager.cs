@@ -141,10 +141,4 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
-    public void TakeMoney()
-    {
-        MoneySystem.instance.yumi += MoneySystem.instance.tempYumi;
-        MoneySystem.instance.tempYumi = 0;
-    }
 }
