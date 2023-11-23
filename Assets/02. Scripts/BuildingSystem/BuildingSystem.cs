@@ -8,6 +8,8 @@ public class BuildingSystem : MonoBehaviour
 {
     public static BuildingSystem instance; // 싱글톤 형식
 
+    public GameObject buildings;
+
     public GridLayout gridLayout;
     public Tilemap mainTilemap;
     public Tilemap tempTilemap;
@@ -177,6 +179,8 @@ public class BuildingSystem : MonoBehaviour
         temp = Instantiate(building, prevPos + offset, Quaternion.identity).GetComponent<Building>();
         FollowBuilding();
         myInstalledBuildings.Add(temp.gameObject);
+
+        temp.transform.SetParent(buildings.transform);
     }
 
     /// <summary>

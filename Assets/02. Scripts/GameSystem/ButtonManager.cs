@@ -105,7 +105,10 @@ public class ButtonManager : MonoBehaviour
     {
         for (int i = 0; i < StorageSystem.instance.Content.Count; i++)
         {
-            StorageSystem.instance.Content[i].GetComponent<Image>().sprite = null;
+            if (StorageSystem.instance.Content[i] != null)
+            {
+                StorageSystem.instance.Content[i].GetComponent<Image>().sprite = null;
+            }
         }
 
         storagePanel.SetActive(false);
@@ -249,10 +252,16 @@ public class ButtonManager : MonoBehaviour
     public void Buy_Structure()
     {
         //StorageSystem.instance.myBuildings.Add(ShopSystem.instance.itemList[nowIndex].image);
+        if (MoneySystem.instance.yumi >= structureInforDisplay.GetComponent<StructureInformationDisplay>().structureSlots[nowIndex].price)
+        {
+            GameManager.instance.isBuying = true;
 
-        GameManager.instance.isBuying = true;
-
-        BuildingSystem.instance.InitializeBuilding(ShopSystem.instance.itemList[nowIndex].itemPrefab);
+            BuildingSystem.instance.InitializeBuilding(ShopSystem.instance.itemList[nowIndex].itemPrefab);
+        }
+        else
+        {
+            AndroidToast.I.ShowToastMessage("유미가 부족합니다!");
+        }
     }
 
     public void Inactive_InformationPanel()

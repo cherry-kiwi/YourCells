@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "Building Data", menuName = "Scriptable Object/Building Data")]
 
-public class BuildindData : ScriptableObject
+public class BuildingData : ScriptableObject
 {
     [SerializeField]
     private string buildingName;
@@ -37,4 +37,16 @@ public class BuildindData : ScriptableObject
     [SerializeField]
     private int upgradeCost;
     public int UpgradeCost { get { return upgradeCost; } }
+
+    [SerializeField]
+    private string abiltyType;
+    public string AbiltyType { get { return abiltyType; } }
+
+    [SerializeField]
+    private string abiltyInfor;
+    public string AbiltyInfor { get { return abiltyInfor; } }
+
+    [SerializeField]
+    private int abiltyPower;
+    public int AbiltyPower { get { return abiltyPower; } }
 }
