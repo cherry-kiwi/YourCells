@@ -102,6 +102,9 @@ MonoBehaviour:
   area:
     m_Position: {x: -1, y: -1, z: 0}
     m_Size: {x: 2, y: 2, z: 1}
+  buildingData: {fileID: 11400000, guid: 918b73c0ce7f0ed48905c407a3eab021, type: 2}
+  buildngAbiltyPower: 0
+  Timer: 60
 --- !u!61 &3228811303024987677
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -159,3 +162,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 236975af3e360fa449f4984df04f2164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  takeButton: {fileID: 0}
+  img_Abilty: {fileID: 0}

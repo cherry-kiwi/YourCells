@@ -28,11 +28,6 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
-    void Start()
-    {
-        
-    }
-
 
     void Update()
     {
@@ -145,5 +140,11 @@ public class GameManager : MonoBehaviour
                 BuyModeUI[i].SetActive(false);
             }
         }
+    }
+
+    public void TakeMoney()
+    {
+        MoneySystem.instance.yumi += MoneySystem.instance.tempYumi;
+        MoneySystem.instance.tempYumi = 0;
     }
 }

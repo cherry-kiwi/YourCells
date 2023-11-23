@@ -101,6 +101,9 @@ MonoBehaviour:
   area:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 1, y: 1, z: 1}
+  buildingData: {fileID: 11400000, guid: c6a406d6de6ef754090cf57d2925069a, type: 2}
+  buildngAbiltyPower: 0
+  Timer: 60
 --- !u!61 &-778602672574976182
 BoxCollider2D:
   m_ObjectHideFlags: 0

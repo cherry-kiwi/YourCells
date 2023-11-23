@@ -20,3 +20,6 @@ MonoBehaviour:
   information: "\uAC74\uBB3C 1\uC785\uB2C8\uB2E4"
   upgradeInfor: "\uD68D\uB4DD \uC7AC\uD654 \uC99D\uAC00"
   upgradeCost: 5000
+  abiltyType: yumi
+  abiltyInfor: "\uC720\uBBF8\uB97C \uBD84\uB2F9 100 \uC0DD\uC0B0\uD569\uB2C8\uB2E4."
+  abiltyPower: 100

@@ -3,16 +3,37 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Building : MonoBehaviour
 {
     public bool Placed { get; private set; }
     public BoundsInt area;
 
+    public BuildingData buildingData;
+    public int buildngAbiltyPower;
+    public float Timer = 60;
+
     #region Build Methods
+
+    private void Start()
+    {
+        buildngAbiltyPower = buildingData.AbiltyPower;
+    }
 
     private void Update()
     {
+        //수급
+        if (Timer > 0f)
+        {
+            Timer -= Time.deltaTime * 1f;
+        }
+        else
+        {
+            MoneySystem.instance.tempYumi += buildngAbiltyPower;
+            Timer = 60f;
+        }
+
         // Change Layer
         for (int i = 0; i < BuildingSystem.instance.myInstalledBuildings.Count; i++)
         {

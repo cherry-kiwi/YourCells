@@ -14,7 +14,14 @@ public class MoneySystem : MonoBehaviour
     public int stamina;
     public int yumi;
     public int zem;
-    
+
+    public int tempYumi;
+    public int tempZem;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Update()
     {
