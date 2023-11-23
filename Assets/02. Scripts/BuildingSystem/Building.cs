@@ -12,28 +12,19 @@ public class Building : MonoBehaviour
 
     public BuildingData buildingData;
     public int buildngAbiltyPower;
-    public float Timer = 60;
 
     #region Build Methods
 
     private void Start()
     {
         buildngAbiltyPower = buildingData.AbiltyPower;
+
+        //수급 파워
+        MoneySystem.instance.yumiPower += buildngAbiltyPower;
     }
 
     private void Update()
     {
-        //수급
-        if (Timer > 0f)
-        {
-            Timer -= Time.deltaTime * 1f;
-        }
-        else
-        {
-            MoneySystem.instance.tempYumi += buildngAbiltyPower;
-            Timer = 60f;
-        }
-
         // Change Layer
         for (int i = 0; i < BuildingSystem.instance.myInstalledBuildings.Count; i++)
         {
@@ -44,6 +35,12 @@ public class Building : MonoBehaviour
                 //BuildingSystem.instance.myInstalledBuildings.Count + 20 - Mathf.RoundToInt(gameObject.transform.position.y);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        //수급 파워
+        MoneySystem.instance.yumiPower -= buildngAbiltyPower;
     }
 
     /// <summary>

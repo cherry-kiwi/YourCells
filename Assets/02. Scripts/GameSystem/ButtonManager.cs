@@ -254,6 +254,8 @@ public class ButtonManager : MonoBehaviour
         //StorageSystem.instance.myBuildings.Add(ShopSystem.instance.itemList[nowIndex].image);
         if (MoneySystem.instance.yumi >= structureInforDisplay.GetComponent<StructureInformationDisplay>().structureSlots[nowIndex].price)
         {
+            MoneySystem.instance.yumi -= structureInforDisplay.GetComponent<StructureInformationDisplay>().structureSlots[nowIndex].price;
+
             GameManager.instance.isBuying = true;
 
             BuildingSystem.instance.InitializeBuilding(ShopSystem.instance.itemList[nowIndex].itemPrefab);
@@ -292,6 +294,16 @@ public class ButtonManager : MonoBehaviour
         BuildingSystem.instance.myInstalledBuildings.Remove(BuildingSystem.instance.temp.gameObject);
     }
 
+    public void Editing_Cancel2()
+    {
+        MoneySystem.instance.yumi += structureInforDisplay.GetComponent<StructureInformationDisplay>().structureSlots[nowIndex].price;
+        
+        GameManager.instance.isEditing = false;
+        GameManager.instance.isBuying = false;
+        BuildingSystem.instance.cancleBuilding();
+        BuildingSystem.instance.myInstalledBuildings.Remove(BuildingSystem.instance.temp.gameObject);
+    }
+
     public void Editing_Confirm()
     {
         if (BuildingSystem.instance.temp.CanBePlaced())
@@ -323,6 +335,16 @@ public class ButtonManager : MonoBehaviour
     public void Inactive_StoryModePanel()
     {
         storyModePanel.SetActive(false);
+    }
+
+    #endregion
+
+    #region Money System
+
+    public void TakeMoney()
+    {
+        MoneySystem.instance.yumi += MoneySystem.instance.tempYumi;
+        MoneySystem.instance.tempYumi = 0;
     }
 
     #endregion
