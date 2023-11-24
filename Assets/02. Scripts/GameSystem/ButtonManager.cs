@@ -345,6 +345,7 @@ public class ButtonManager : MonoBehaviour
     {
         MoneySystem.instance.yumi += MoneySystem.instance.tempYumi;
         MoneySystem.instance.tempYumi = 0;
+        MoneySystem.instance.Timer = 10f;
     }
 
     #endregion

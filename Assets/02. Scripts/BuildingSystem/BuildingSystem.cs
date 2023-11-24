@@ -13,7 +13,7 @@ public class BuildingSystem : MonoBehaviour
     public GridLayout gridLayout;
     public Tilemap mainTilemap;
     public Tilemap tempTilemap;
-    public Vector3 offset = new Vector3(.9f, .9f, 0f);
+    public Vector3 offset;
     //public TileBase takenTile;
 
     public List<GameObject> myInstalledBuildings;
@@ -242,6 +242,7 @@ public class BuildingSystem : MonoBehaviour
             if (b != tileBases[TileType.White])
             {
                 // 해당 지역 사용 불가
+                AndroidToast.I.ShowToastMessage("배치가 불가능한 구역입니다!");
                 Debug.Log("여긴 배치 불가 구역임");
                 return false;
             }
