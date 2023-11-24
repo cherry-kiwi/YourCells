@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518acdb4cd408d241b810d048d830655, type: 3}
+  m_Name: StressPump
+  m_EditorClassIdentifier: 
+  name: "\uC2A4\uD2B8\uB808\uC2A4 \uD38C\uD504"
+  description: "\uC720\uBBF8\uC758 \uC2A4\uD2B8\uB808\uC2A4\uAC00 \uC0DD\uC0B0\uB418\uB294
+    \uD38C\uD504\uC785\uB2C8\uB2E4."
+  price: 1500
+  image: {fileID: 21300000, guid: 26992e2abb81b417183da58b3e28599c, type: 3}

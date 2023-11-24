@@ -275,6 +275,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 0.2
+  center: {x: 0, y: 0}
+  mapSize: {x: 9, y: 9}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0

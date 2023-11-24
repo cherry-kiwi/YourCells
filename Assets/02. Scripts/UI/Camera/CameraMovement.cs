@@ -8,6 +8,11 @@ public class CameraMovement : MonoBehaviour
     private Vector2 nowPos, prePos;
     private Vector3 movePos;
 
+    [SerializeField]
+    Vector2 center;
+    [SerializeField]
+    Vector2 mapSize;
+
     void Update()
     {
         if (Input.touchCount == 1) // 손가락 1개가 눌렸을 때
@@ -30,5 +35,29 @@ public class CameraMovement : MonoBehaviour
                 prePos = touch.position - touch.deltaPosition;
             }
         }
+    }
+    void FixedUpdate()
+    {
+        LimitCameraArea();
+    }
+
+    void LimitCameraArea()
+    {
+        transform.position = Vector3.Lerp(transform.position,
+                                          movePos,
+                                          Time.deltaTime * Speed);
+        float lx = mapSize.x;
+        float clampX = Mathf.Clamp(transform.position.x, -lx + center.x, lx + center.x);
+
+        float ly = mapSize.y;
+        float clampY = Mathf.Clamp(transform.position.y, -ly + center.y, ly + center.y);
+
+        transform.position = new Vector3(clampX, clampY, -10f);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(center, mapSize * 2);
     }
 }

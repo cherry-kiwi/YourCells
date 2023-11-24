@@ -11,7 +11,7 @@ public class MoneySystem : MonoBehaviour
     public Text[] yumiText;
     public Text[] zemText;
 
-    public float Timer = 60;
+    public float Timer;
 
     public int stamina;
     public int yumi;
@@ -44,7 +44,7 @@ public class MoneySystem : MonoBehaviour
         else
         {
             tempYumi += yumiPower;
-            Timer = 60f;
+            Timer = 10f;
         }
     }
 }
