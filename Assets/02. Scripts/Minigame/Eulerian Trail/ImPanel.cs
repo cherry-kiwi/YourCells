@@ -18,9 +18,9 @@ public class ImPanel : MonoBehaviour
 
     private void Start()
     {
-        self = GetComponent<Collider2D>(); //³ª ÀÚ½Å ¾Ë±â
+        self = GetComponent<Collider2D>(); //know myself
 
-        #region ³» »óÇÏÁÂ¿ì ¹Ú½º Ã£±â
+        #region ë‚´ ìƒí•˜ì¢Œìš° ë°•ìŠ¤ ì°¾ê¸° Find R,L,D,U box
         boxCenter = transform.position;
         H_colliders = Physics2D.OverlapBoxAll(boxCenter, boxSize, 0.0f);
         V_colliders = Physics2D.OverlapBoxAll(boxCenter, boxSize2, 0.0f);
@@ -30,9 +30,9 @@ public class ImPanel : MonoBehaviour
 
     public List<Transform> Fidn_Route()
     {
-        List<Transform> _All = new List<Transform>(); //º¸³»±â¿ë ¸®½ºÆ® »ı¼º
+        List<Transform> _All = new List<Transform>(); //createing Send list 
 
-        #region Ã£Àº »óÇÏÁÂ¿ì ¹Ú½ºµé Á¤º¸ º¸³»±â / self·Î Ã£Àº ³ª ÀÚ½ÅÀº •û±â
+        #region ì°¾ì€ ìƒí•˜ì¢Œìš° ë°•ìŠ¤ë“¤ ì •ë³´ ë³´ë‚´ê¸° send R,L,D,U box info / selfë¡œ ì°¾ì€ ë‚˜ ìì‹ ì€ ëº´ê¸° expect this.self
         for (int l = 0; l < H_colliders.Length; l++)
         {
             if (H_colliders[l].gameObject != gameObject
@@ -56,7 +56,7 @@ public class ImPanel : MonoBehaviour
 
         if (gameObject.tag == "Square")
         {
-            self.tag = "selected"; //³ª ÀÚ½ÅÀº »©¼­ ¿Â ±æ µÇµ¹¾Æ°¡´Â°Í ¸·±â
+            self.tag = "selected"; //expect this.self for prevent the return
         }
         return _All;
     }
