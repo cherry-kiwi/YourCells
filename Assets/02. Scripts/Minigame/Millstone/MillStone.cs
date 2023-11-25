@@ -11,8 +11,9 @@ public class MillStone : MonoBehaviour
     {
         if(collision.tag == "Obs")
         {
-            collision.gameObject.SetActive(false);
+            Destroy(collision.gameObject);
             ScoreSystem._Time -= 10;
+            
         }
     }
 }
