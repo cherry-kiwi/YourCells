@@ -101,8 +101,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Whatisthis: 0
   Mill_: {fileID: 8098517517439557649, guid: b435da57905e9db4593d0d129d1e986c, type: 3}
-  Spawn_: {fileID: 0}
-  m_HeightArc: 1
 --- !u!61 &5476391977333869485
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -163,7 +161,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.7
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2

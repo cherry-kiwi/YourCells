@@ -22,7 +22,7 @@ public class MainPanel : MonoBehaviour
     {
         cam = GetComponent<Camera>();
 
-        #region Receive all tiles except walls in : Transfrom _Square
+        #region �� ���� ��� Ÿ�ϰ� �޾ƿ��� in : Transfrom _Square
         foreach (Transform rowTransform in Row)
         {
             int childCount = rowTransform.childCount;
@@ -42,11 +42,11 @@ public class MainPanel : MonoBehaviour
 
     private void Update()
     {
-        if (Input.touchCount > 0 && GameStart.GamePlaying == true) 
+        if (Input.touchCount > 0) 
         {
             Touch toto = Input.GetTouch(0);
 
-            #region Currently Clicked Obj in : Collider2D clickCol
+            #region ���� Ŭ���� ������Ʈ in : Collider2D clickCol
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 clickPos = new Vector2(worldPos.x, worldPos.y);
             Collider2D clickCol = Physics2D.OverlapPoint(clickPos);
@@ -59,11 +59,11 @@ public class MainPanel : MonoBehaviour
                     clickCol.gameObject.GetComponent<SpriteRenderer>().material.color = Color.red;
                     
                     clickCol.TryGetComponent(out ImPanel wall);
-                    _Able = wall.Fidn_Route(); //Import up R,L,U,D based on currently clicked obj in _Able
+                    _Able = wall.Fidn_Route(); //_able�� ���� Ŭ���� �༮ ���� �����¿� ��������
                     Fail_Reset.Push(clickCol.gameObject);
                 } else
                 {
-                    Debug.Log("Start Somewhere else");
+                    Debug.Log("�ٸ� ������ ����");
                 }
             }
 
@@ -75,7 +75,7 @@ public class MainPanel : MonoBehaviour
                     clickCol.gameObject.GetComponent<SpriteRenderer>().material.color = Color.red;
                     
                     clickCol.TryGetComponent(out ImPanel wall);
-                    _Able = wall.Fidn_Route(); //Import up R,L,U,D based on currently clicked obj in _Able
+                    _Able = wall.Fidn_Route(); //_able�� ���� Ŭ���� �༮ ���� �����¿� ��������
 
                     Fail_Reset.Push(clickCol.gameObject);
                     Debug.Log(clickCol.tag);
@@ -118,7 +118,5 @@ public class MainPanel : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
     }
-
-    
 
 }
