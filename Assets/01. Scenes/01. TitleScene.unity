@@ -18763,7 +18763,7 @@ MonoBehaviour:
   gridLayout: {fileID: 623091199}
   mainTilemap: {fileID: 221141289}
   tempTilemap: {fileID: 1969317985}
-  offset: {x: 0.3, y: 0.3, z: 0}
+  offset: {x: 0.5, y: 0.5, z: 0}
   myInstalledBuildings: []
   whiteTile: {fileID: 11400000, guid: c77e5d59761d1204b89609f129958a59, type: 2}
   greenTile: {fileID: 11400000, guid: 03d716157b3dbf04db63480669f99b29, type: 2}

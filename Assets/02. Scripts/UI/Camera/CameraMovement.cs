@@ -38,7 +38,10 @@ public class CameraMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        LimitCameraArea();
+        if (GameManager.instance.isEditing == false && GameManager.instance.isBuying == false)
+        {
+            LimitCameraArea();
+        }
     }
 
     void LimitCameraArea()
