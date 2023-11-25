@@ -17,7 +17,12 @@ public class CameraMovement : MonoBehaviour
     {
         if (Input.touchCount == 1) // 손가락 1개가 눌렸을 때
         {
-            if (EventSystem.current.IsPointerOverGameObject(0))
+            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) || EventSystem.current.IsPointerOverGameObject(0))
+            {
+                return;
+            }
+
+            if (GameManager.instance.IsPointerOverUIObject(Input.mousePosition) || GameManager.instance.IsPointerOverUIObject(Input.GetTouch(0).position))
             {
                 return;
             }

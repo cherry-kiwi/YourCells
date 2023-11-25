@@ -372,10 +372,15 @@ public class ButtonManager : MonoBehaviour
 
     #region Building Display
 
+    public void Active_BuildingDisplay()
+    {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+        BuildingDisplayPanel.SetActive(true);
+    }
+
     public void Inactive_BuildingDisplay()
     {
         Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
-
         BuildingDisplayPanel.SetActive(false);
     }
 
