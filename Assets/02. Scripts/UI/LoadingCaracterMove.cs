@@ -10,12 +10,12 @@ public class LoadingCaracterMove : MonoBehaviour
 
     private void Start()
     {
-        Caracter.GetComponent<Animator>().Play("run");
+        Caracter.GetComponent<Animator>().Play("Run");
     }
 
     private void Update()
     {
-        Caracter.GetComponent<Animator>().Play("run");
-        gameObject.transform.position = Handle.transform.position + new Vector3(0,0.2f,10);
+        Caracter.GetComponent<Animator>().Play("Run");
+        gameObject.transform.position = Handle.transform.position + new Vector3(0,0.5f,10);
     }
 }

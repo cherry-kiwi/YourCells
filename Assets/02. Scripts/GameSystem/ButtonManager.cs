@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using UltimateClean;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -32,8 +33,11 @@ public class ButtonManager : MonoBehaviour
     public GameObject informationPanel;
     public GameObject BuildingDisplayPanel;
     public GameObject storyModePanel;
-    
+
     #endregion
+
+    [Header("요소들")]
+    public GameObject Sounds;
 
     public Text gachaPopupText;
     public Button commonGachaButton;
@@ -56,11 +60,13 @@ public class ButtonManager : MonoBehaviour
     public void Active_UserProfilePopUpPanel()
     {
         userProfilePopUpPanel.SetActive(true);
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
     }
 
     public void Inactive_UserProfilePopUpPanel()
     {
         userProfilePopUpPanel.SetActive(false);
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
     }
     #endregion
 
@@ -68,6 +74,7 @@ public class ButtonManager : MonoBehaviour
     public void Active_StoragePanel()
     {
         storagePanel.SetActive(true);
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
 
         for (int i = 0; i < StorageSystem.instance.myBuildingsSprites.Count; i++)
         {
@@ -77,6 +84,8 @@ public class ButtonManager : MonoBehaviour
 
     public void Select_StorageItem(int index)
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         if (StorageSystem.instance.myBuildings[index] == null)
         {
             return;
@@ -103,6 +112,8 @@ public class ButtonManager : MonoBehaviour
 
     public void Inactive_StoragePanel()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         for (int i = 0; i < StorageSystem.instance.Content.Count; i++)
         {
             if (StorageSystem.instance.Content[i] != null)
@@ -119,11 +130,15 @@ public class ButtonManager : MonoBehaviour
     public void Active_SubContentsPopUpPanel()
     {
         subContentsPopUpPanel.SetActive(true);
+
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
     }
 
     public void Inactive_SubContentsPopUpPanel()
     {
         subContentsPopUpPanel.SetActive(false);
+
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
     }
     #endregion
 
@@ -131,6 +146,8 @@ public class ButtonManager : MonoBehaviour
 
     public void Active_CellManagementPanel()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         cellManagementPanel.SetActive(true);
 
         for (int i = 0; i < CellManager.instance.myCells.Count; i++)
@@ -144,6 +161,8 @@ public class ButtonManager : MonoBehaviour
 
     public void Inactive_CellManagementPanel()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         cellManagementPanel.SetActive(false);
     }
 
@@ -153,10 +172,14 @@ public class ButtonManager : MonoBehaviour
 
     public void Active_CellInfoPanel()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         cellInfoPanel.SetActive(true);
     }
     public void Inactive_CellInfoPanel()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         cellInfoPanel.SetActive(false);
     }
 
@@ -165,16 +188,22 @@ public class ButtonManager : MonoBehaviour
     #region Cell Gatcha Panel
     public void Active_CellGatchaPanel()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         cellGatchaPanel.SetActive(true); // 세포뽑기 패널 띄움
     }
 
     public void Inactive_CellGatchaPanel()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         cellGatchaPanel.SetActive(false);
     }
 
     public void Active_GachaPopupPanel(int cost)
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         myCost = cost;
         gachaPopupPanel.SetActive(true);
 
@@ -190,16 +219,22 @@ public class ButtonManager : MonoBehaviour
 
     public void Inactive_GachaPopupPanel()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         gachaPopupPanel.SetActive(false);
     }
 
     public void Active_GachaResultPanel()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         gachaResultPanel.SetActive(true);
     }
 
     public void Inactive_GachaResultPanel()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         gachaResultPanel.SetActive(false);
     }
 
@@ -232,10 +267,14 @@ public class ButtonManager : MonoBehaviour
     #region Shop Panel
     public void Active_ShopPanel()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         shopPanel.SetActive(true);
     }
     public void Inactive_ShopPanel()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         shopPanel.SetActive(false);
     }
     #endregion
@@ -243,6 +282,8 @@ public class ButtonManager : MonoBehaviour
     #region Information Panel
     public void Active_InformationPanel(int index)
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         informationPanel.SetActive(true);
 
         nowIndex = index;
@@ -251,6 +292,8 @@ public class ButtonManager : MonoBehaviour
 
     public void Buy_Structure()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         //StorageSystem.instance.myBuildings.Add(ShopSystem.instance.itemList[nowIndex].image);
         if (MoneySystem.instance.yumi >= structureInforDisplay.GetComponent<StructureInformationDisplay>().structureSlots[nowIndex].price)
         {
@@ -268,6 +311,8 @@ public class ButtonManager : MonoBehaviour
 
     public void Inactive_InformationPanel()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         informationPanel.SetActive(false);
     }
 
@@ -279,6 +324,8 @@ public class ButtonManager : MonoBehaviour
 
     public void Editing_Storage()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         GameManager.instance.isBuying = false;
         BuildingSystem.instance.cancleBuilding();
         StorageSystem.instance.myBuildingsSprites.Add(ShopSystem.instance.itemList[nowIndex].image);
@@ -288,6 +335,8 @@ public class ButtonManager : MonoBehaviour
 
     public void Editing_Cancel()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         GameManager.instance.isEditing = false;
         GameManager.instance.isBuying = false;
         BuildingSystem.instance.cancleBuilding();
@@ -296,6 +345,8 @@ public class ButtonManager : MonoBehaviour
 
     public void Editing_Cancel2()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         MoneySystem.instance.yumi += structureInforDisplay.GetComponent<StructureInformationDisplay>().structureSlots[nowIndex].price;
         
         GameManager.instance.isEditing = false;
@@ -306,6 +357,8 @@ public class ButtonManager : MonoBehaviour
 
     public void Editing_Confirm()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         if (BuildingSystem.instance.temp.CanBePlaced())
         {
             GameManager.instance.isEditing = false;
@@ -321,6 +374,8 @@ public class ButtonManager : MonoBehaviour
 
     public void Inactive_BuildingDisplay()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         BuildingDisplayPanel.SetActive(false);
     }
 
@@ -330,10 +385,14 @@ public class ButtonManager : MonoBehaviour
 
     public void Active_StoryModePanel()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         storyModePanel.SetActive(true);
     }
     public void Inactive_StoryModePanel()
     {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
         storyModePanel.SetActive(false);
     }
 
@@ -343,9 +402,14 @@ public class ButtonManager : MonoBehaviour
 
     public void TakeMoney()
     {
-        MoneySystem.instance.yumi += MoneySystem.instance.tempYumi;
-        MoneySystem.instance.tempYumi = 0;
-        MoneySystem.instance.Timer = 10f;
+        if (GameManager.instance.isEditing == false && GameManager.instance.isBuying == false)
+        {
+            Sounds.GetComponent<ButtonSounds>().PlayTakeSound();
+
+            MoneySystem.instance.yumi += MoneySystem.instance.tempYumi;
+            MoneySystem.instance.tempYumi = 0;
+            MoneySystem.instance.Timer = 10f;
+        }
     }
 
     #endregion

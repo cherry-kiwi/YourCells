@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public ParticleSystem touchEffect;
+
     public GameObject BuildingDisplayPanel;
 
     public GameObject buildingDisplay;
@@ -44,6 +46,12 @@ public class GameManager : MonoBehaviour
         if (Input.touchCount > 0)
         {
             touchPos = Input.GetTouch(0).position;
+
+            if (Input.GetTouch(0).phase == TouchPhase.Began)
+            {
+                touchEffect.transform.position = Camera.main.ScreenToWorldPoint(touchPos) + new Vector3(0, 0, 627);
+                touchEffect.Play();
+            }
 
             if (Input.GetTouch(0).phase != TouchPhase.Began)
                 return;
