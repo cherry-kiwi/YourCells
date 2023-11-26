@@ -49,31 +49,43 @@ public class GachaSystem : MonoBehaviour
 
     public void Result()
     {
-        List<string> cellsName = new List<string>();
-
-        for (int j = 0; j < CellManager.instance.myCells.Count; j++)
+        if (MoneySystem.instance.zem >= ButtonManager.instance.myCost * 30)
         {
-            cellsName.Add(CellManager.instance.myCells[j].cellName);
+            ButtonManager.instance.Active_GachaResultPanel();
+            ButtonManager.instance.Inactive_GachaPopupPanel();
+
+            List<string> cellsName = new List<string>();
+
+            for (int j = 0; j < CellManager.instance.myCells.Count; j++)
+            {
+                cellsName.Add(CellManager.instance.myCells[j].cellName);
+            }
+
+            for (int i = 0; i < ButtonManager.instance.myCost; i++)
+            {
+                myResults.Add(RandomCard());
+
+                if (cellsName.Contains(myResults[i].cellName))
+                {
+                    CellCardUI cellCardUI = Instantiate(cellCardPrefab, gachaResultPanel).GetComponent<CellCardUI>();
+                    cellCardUI.CardSetting(myResults[i]);
+                    Debug.Log("중복 세포 뽑기 결과: " + myResults[i].cellName);
+                }
+                else
+                {
+                    cellsName.Add(myResults[i].cellName);
+                    CellManager.instance.myCells.Add(myResults[i]);
+                    CellCardUI cellCardUI = Instantiate(cellCardPrefab, gachaResultPanel).GetComponent<CellCardUI>();
+                    cellCardUI.CardSetting(myResults[i]);
+                    Debug.Log("세포 뽑기 결과: " + myResults[i].cellName);
+                }
+            }
+
+            MoneySystem.instance.zem -= ButtonManager.instance.myCost * 30;
         }
-
-        for (int i = 0; i < ButtonManager.instance.myCost; i++)
+        else
         {
-            myResults.Add(RandomCard());
-
-            if (cellsName.Contains(myResults[i].cellName))
-            {
-                CellCardUI cellCardUI = Instantiate(cellCardPrefab, gachaResultPanel).GetComponent<CellCardUI>();
-                cellCardUI.CardSetting(myResults[i]);
-                Debug.Log("중복 세포 뽑기 결과: " + myResults[i].cellName);
-            }
-            else
-            {
-                cellsName.Add(myResults[i].cellName);
-                CellManager.instance.myCells.Add(myResults[i]);
-                CellCardUI cellCardUI = Instantiate(cellCardPrefab, gachaResultPanel).GetComponent<CellCardUI>();
-                cellCardUI.CardSetting(myResults[i]);
-                Debug.Log("세포 뽑기 결과: " + myResults[i].cellName);
-            }
+            AndroidToast.I.ShowToastMessage("보석이 모자랍니다!");
         }
     }
 
