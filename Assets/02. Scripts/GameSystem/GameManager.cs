@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     public Vector3 touchPos;
 
+    public bool isDrag = false;
+
     private void Awake()
     {
         instance = this;
@@ -34,15 +36,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //Touch
-
-        //if (Input.touchCount > 0)
-        //{
-        //    Touch touch = Input.GetTouch(0);
-
-        //    //if(OnTriggerEnter2D == Camera.main.ScreenToWorldPoint(touch.position));
-
-        //}
-
         if (Input.touchCount > 0)
         {
             touchPos = Input.GetTouch(0).position;
@@ -53,10 +46,18 @@ public class GameManager : MonoBehaviour
                 touchEffect.Play();
             }
 
-            if (Input.GetTouch(0).phase != TouchPhase.Began)
+            if (Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(0).phase == TouchPhase.Stationary)
+            {
+                Invoke("OnDrag", 0.15f);
                 return;
+            }
 
-            if (EventSystem.current.IsPointerOverGameObject(0))
+            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) || EventSystem.current.IsPointerOverGameObject(0))
+            {
+                return;
+            }
+
+            if(IsPointerOverUIObject(Input.mousePosition) || IsPointerOverUIObject(Input.GetTouch(0).position))
             {
                 return;
             }
@@ -71,12 +72,16 @@ public class GameManager : MonoBehaviour
 
                 if (hit.collider.gameObject.CompareTag("Building"))
                 {
-                    if(isEditing || isBuying)
+                    if (isEditing || isBuying)
                     {
                         return;
                     }
 
-                    BuildingDisplayPanel.SetActive(true);
+                    if (Input.GetTouch(0).phase == TouchPhase.Ended && isDrag == false)
+                    {
+                        BuildingDisplayPanel.SetActive(true);
+                        isDrag = false;
+                    }
 
                     string[] SplitResult = hit.collider.name.Split("(Clone)");
 
@@ -100,6 +105,11 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
+        }
+        else
+        {
+            CancelInvoke("OnDrag");
+            isDrag = false;
         }
 
 
@@ -148,5 +158,26 @@ public class GameManager : MonoBehaviour
                 BuyModeUI[i].SetActive(false);
             }
         }
+    }
+
+    private void OnDrag()
+    {
+        isDrag = true;
+    }
+
+    public bool IsPointerOverUIObject(Vector2 touchPos)
+    {
+        PointerEventData eventDataCurrentPosition
+            = new PointerEventData(EventSystem.current);
+
+        eventDataCurrentPosition.position = touchPos;
+
+        List<RaycastResult> results = new List<RaycastResult>();
+
+
+        EventSystem.current
+        .RaycastAll(eventDataCurrentPosition, results);
+
+        return results.Count > 0;
     }
 }

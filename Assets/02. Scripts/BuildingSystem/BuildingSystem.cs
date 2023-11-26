@@ -28,6 +28,8 @@ public class BuildingSystem : MonoBehaviour
     private Vector3 prevPos;
     private BoundsInt prevArea;
 
+    public bool isDrag = false;
+
     #region Unity Methods
 
     private void Awake()
@@ -59,41 +61,45 @@ public class BuildingSystem : MonoBehaviour
 
         if (Input.touchCount > 0)
         {
-            if (Input.GetTouch(0).phase != TouchPhase.Began)
-                return;
 
-            if (EventSystem.current.IsPointerOverGameObject(0))
+            if (Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(0).phase == TouchPhase.Stationary)
+            {
+                Invoke("OnDrag", 0.15f);
+                return;
+            }
+
+            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) || EventSystem.current.IsPointerOverGameObject(0))
             {
                 return;
             }
 
-            if (!temp.Placed)
+            if (GameManager.instance.IsPointerOverUIObject(Input.mousePosition) || GameManager.instance.IsPointerOverUIObject(Input.GetTouch(0).position))
             {
-                Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector3Int cellPos = gridLayout.LocalToCell(touchPos);
+                return;
+            }
 
-                if (prevPos != cellPos)
+            if (Input.GetTouch(0).phase == TouchPhase.Ended && isDrag == false)
+            {
+                isDrag = false;
+                if (!temp.Placed)
                 {
-                    temp.transform.localPosition = gridLayout.CellToLocalInterpolated(cellPos + offset);
-                    prevPos = cellPos;
-                    FollowBuilding();
+                    Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Vector3Int cellPos = gridLayout.LocalToCell(touchPos);
+
+                    if (prevPos != cellPos)
+                    {
+                        temp.transform.localPosition = gridLayout.CellToLocalInterpolated(cellPos + offset);
+                        prevPos = cellPos;
+                        FollowBuilding();
+                    }
                 }
             }
         }
-        //// 스페이스 버튼 눌러 배치
-        //else if (Input.GetMouseButtonDown(1))
-        //{
-        //    if (temp.CanBePlaced())
-        //    {
-        //        temp.Place();
-        //    }
-        //}
-        //// Esc 버튼 눌러 배치 취소
-        //else if (Input.GetMouseButtonDown(2))
-        //{
-        //    ClearArea();
-        //    Destroy(temp.gameObject);
-        //}
+        else
+        {
+            CancelInvoke("OnDrag");
+            isDrag = false;
+        }
     }
 
     #endregion
@@ -256,6 +262,11 @@ public class BuildingSystem : MonoBehaviour
     {
         SetTilesBlock(area, TileType.Empty, tempTilemap);
         SetTilesBlock(area, TileType.Green, mainTilemap);
+    }
+
+    private void OnDrag()
+    {
+        isDrag = true;
     }
 
     #endregion
