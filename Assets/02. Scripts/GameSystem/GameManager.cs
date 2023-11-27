@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     public bool isBuying = false;
 
     public Vector3 touchPos;
+    public Vector3 touchBuilding;
 
     public bool isDrag = false;
 
@@ -103,14 +105,22 @@ public class GameManager : MonoBehaviour
                             buildingDisplay.GetComponent<BuildingDataDisplay>().buildingData = buildingDisplay.GetComponent<BuildingDataDisplay>().buildingSlot[i];
                         }
                     }
+
+                    touchBuilding = hit.collider.gameObject.transform.position + new Vector3(0, -(0.2f + (hit.collider.gameObject.GetComponent<Building>().area.size.y / 2f)), 0);
                 }
             }
+            else
+            {
+                BuildingDisplayPanel.SetActive(false);
+            }    
         }
         else
         {
             CancelInvoke("OnDrag");
             isDrag = false;
         }
+
+        BuildingDisplayPanel.transform.position = Camera.main.WorldToScreenPoint(touchBuilding);
 
 
         //Mod Change
@@ -157,6 +167,14 @@ public class GameManager : MonoBehaviour
             {
                 BuyModeUI[i].SetActive(false);
             }
+        }
+    }
+
+    private void OnApplicationQuit()
+    {
+        for (int i = 0; i < GachaSystem.instance.allCells.Count; i++)
+        {
+            GachaSystem.instance.allCells[i].cellData.primeEnergy = 0;
         }
     }
 

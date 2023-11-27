@@ -13,6 +13,7 @@ public class ActiveCellInfoPanel : MonoBehaviour
     public Text CellHP;
     public Text CellPower;
     public Text CellDescription;
+    public Slider CellPrimeEnergy;
 
     private void Start()
     {
@@ -36,6 +37,7 @@ public class ActiveCellInfoPanel : MonoBehaviour
                 CellHP.text = CellManager.instance.myCells[i].cellData.hP.ToString();
                 CellPower.text = CellManager.instance.myCells[i].cellData.power.ToString();
                 CellDescription.text = CellManager.instance.myCells[i].cellData.description;
+                CellPrimeEnergy.value = CellManager.instance.myCells[i].cellData.primeEnergy / 100f;
             }
         }
     }
