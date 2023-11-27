@@ -92,7 +92,7 @@ public class Main_ScoreSystem : MonoBehaviour
 
     public void textpUpdate()
     {
-        _Score.text = "Score : " + scoreInt;
+        _Score.text = scoreInt + "";
 
         if (comboInt > 1)
         {
