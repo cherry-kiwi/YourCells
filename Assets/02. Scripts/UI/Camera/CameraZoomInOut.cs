@@ -29,5 +29,14 @@ public class CameraZoomInOut : MonoBehaviour
                 Camera.main.orthographicSize = Mathf.Max(Camera.main.orthographicSize, 0.1f);
             }
         }
+
+        if (Camera.main.orthographicSize <= 2)
+        {
+            Camera.main.orthographicSize = 2.1f;
+        }
+        else if (Camera.main.orthographicSize >= 11.8f)
+        {
+            Camera.main.orthographicSize = 11.7f;
+        }
     }
 }

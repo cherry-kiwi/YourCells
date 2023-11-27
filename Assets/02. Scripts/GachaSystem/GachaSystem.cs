@@ -69,6 +69,14 @@ public class GachaSystem : MonoBehaviour
                 {
                     CellCardUI cellCardUI = Instantiate(cellCardPrefab, gachaResultPanel).GetComponent<CellCardUI>();
                     cellCardUI.CardSetting(myResults[i]);
+
+                    for (int k = 0; k < CellManager.instance.myCells.Count; k++)
+                    {
+                        if (myResults[i].cellName == CellManager.instance.myCells[k].cellName)
+                        {
+                            CellManager.instance.myCells[k].cellData.primeEnergy += 1;
+                        }
+                    }
                     Debug.Log("중복 세포 뽑기 결과: " + myResults[i].cellName);
                 }
                 else

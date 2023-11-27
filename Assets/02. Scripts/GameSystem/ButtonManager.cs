@@ -207,11 +207,11 @@ public class ButtonManager : MonoBehaviour
         myCost = cost;
         gachaPopupPanel.SetActive(true);
 
-        if (Scroll.instance.pos == 220) // Common Gacha 
+        if (Scroll.instance.pos >= 220) // Common Gacha 
         {
             gachaPopupText.text = "보석 " + cost + "개를 이용하여\r\n일반 뽑기를\r\n진행합니다.";
         }
-        else if (Scroll.instance.pos == -220) // Event Gacha
+        else if (Scroll.instance.pos <= -220) // Event Gacha
         {
             gachaPopupText.text = "보석 " + cost + "개를 이용하여\r\n이벤트 뽑기를\r\n진행합니다.";
         }
