@@ -42,8 +42,8 @@ public class ScreenShot : MonoBehaviour
 #if UNITY_EDITOR || UNITY_STANDALONE
             return Application.dataPath;
 #elif UNITY_ANDROID
-            return $"/storage/emulated/0/DCIM/{Application.productName}/";
-            //return Application.persistentDataPath;
+            //return $"/storage/emulated/0/DCIM/{Application.productName}/";
+            return Application.persistentDataPath;
 #endif
         }
     }
