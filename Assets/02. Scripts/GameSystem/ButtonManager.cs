@@ -418,4 +418,18 @@ public class ButtonManager : MonoBehaviour
     }
 
     #endregion
+
+    #region Capture Panel
+
+    public void CaptureOn()
+    {
+        GameManager.instance.isCapturing = true;
+    }
+
+    public void CaptureOff()
+    {
+        GameManager.instance.isCapturing = false;
+    }
+
+    #endregion
 }

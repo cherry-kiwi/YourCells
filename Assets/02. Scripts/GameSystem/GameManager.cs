@@ -20,9 +20,12 @@ public class GameManager : MonoBehaviour
     public List<GameObject> generalModeUI;
     public List<GameObject> BuyModeUI;
     public List<GameObject> editModeUI;
+    public List<GameObject> CaptureModeUI;
 
     public bool isEditing = false;
     public bool isBuying = false;
+    public bool isfixing = false;
+    public bool isCapturing = false;
 
     public Vector3 touchPos;
     public Vector3 touchBuilding;
@@ -150,6 +153,18 @@ public class GameManager : MonoBehaviour
                 BuyModeUI[i].SetActive(true);
             }
         }
+        else if (isCapturing)
+        {
+            for (int i = 0; i < generalModeUI.Count; i++)
+            {
+                mainUI[i].SetActive(false);
+            }
+
+            for (int i = 0; i < CaptureModeUI.Count; i++)
+            {
+                CaptureModeUI[i].SetActive(true);
+            }
+        }
         else
         {
 
@@ -166,6 +181,11 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < BuyModeUI.Count; i++)
             {
                 BuyModeUI[i].SetActive(false);
+            }
+
+            for (int i = 0; i < CaptureModeUI.Count; i++)
+            {
+                    CaptureModeUI[i].SetActive(false);
             }
         }
     }

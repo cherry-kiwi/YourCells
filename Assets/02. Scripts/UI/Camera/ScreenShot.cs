@@ -61,8 +61,8 @@ public class ScreenShot : MonoBehaviour
     private void Awake()
     {
         screenShotButton.onClick.AddListener(TakeScreenShotFull);
-        //screenShotWithoutUIButton.onClick.AddListener(TakeScreenShotWithoutUI);
-        //readAndShowButton.onClick.AddListener(ReadScreenShotAndShow);
+        screenShotWithoutUIButton.onClick.AddListener(TakeScreenShotWithoutUI);
+        readAndShowButton.onClick.AddListener(ReadScreenShotAndShow);
     }
     #endregion
     /***********************************************************************
@@ -87,11 +87,6 @@ public class ScreenShot : MonoBehaviour
 #else
         _willTakeScreenShot = true;
 #endif
-    }
-
-    public void Delay(float delay)
-    {
-        Invoke("ReadScreenShotAndShow", delay);
     }
 
     private void ReadScreenShotAndShow()
