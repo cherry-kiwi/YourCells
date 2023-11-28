@@ -44247,8 +44247,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7615297d494e4414da9d4cba591a6e52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screenShotButton: {fileID: 917754603}
-  screenShotWithoutUIButton: {fileID: 1113943416}
+  screenShotButton: {fileID: 1113943416}
+  screenShotWithoutUIButton: {fileID: 917754603}
   readAndShowButton: {fileID: 584870419}
   imageToShow: {fileID: 1585095515}
   PImage: {fileID: 1055405862}
