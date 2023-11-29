@@ -76,9 +76,22 @@ public class ButtonManager : MonoBehaviour
         storagePanel.SetActive(true);
         Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
 
+        for (int k = 0; k < StorageSystem.instance.Content.Count; k++)
+        {
+            StorageSystem.instance.Content[k].SetActive(true);
+        }
+
         for (int i = 0; i < StorageSystem.instance.myBuildingsSprites.Count; i++)
         {
             StorageSystem.instance.Content[i].GetComponent<Image>().sprite = StorageSystem.instance.myBuildingsSprites[i];
+        }
+
+        for (int j = 0; j < StorageSystem.instance.Content.Count; j++)
+        {
+            if (StorageSystem.instance.Content[j].GetComponent<Image>().sprite == null)
+            {
+                StorageSystem.instance.Content[j].SetActive(false);
+            }
         }
     }
 
