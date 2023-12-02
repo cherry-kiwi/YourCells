@@ -8,10 +8,19 @@ public class CameraMovement : MonoBehaviour
     private Vector2 nowPos, prePos;
     private Vector3 movePos;
 
+    float height;
+    float width;
+
     [SerializeField]
     Vector2 center;
     [SerializeField]
     Vector2 mapSize;
+
+    private void Start()
+    {
+        height = Camera.main.orthographicSize;
+        width = height * Screen.width / Screen.height;
+    }
 
     void Update()
     {
@@ -43,21 +52,24 @@ public class CameraMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (GameManager.instance.isEditing == false && GameManager.instance.isBuying == false && GameManager.instance.isfixing == false)
-        {
-            LimitCameraArea();
-        }
+        LimitCameraArea();
     }
 
     void LimitCameraArea()
     {
-        transform.position = Vector3.Lerp(transform.position,
-                                          movePos,
-                                          Time.deltaTime * Speed);
-        float lx = mapSize.x;
+        if (GameManager.instance.isEditing == false && GameManager.instance.isBuying == false && GameManager.instance.isfixing == false)
+        {
+            if (transform.position.x > 4.5f || transform.position.x < -4.5f || transform.position.y > 4.5f || transform.position.y < -4.5f)
+            {
+                transform.position = Vector3.Lerp(transform.position,
+                                              movePos,
+                                              Time.deltaTime * Speed);
+            }
+        }
+        float lx = mapSize.x - width/2;
         float clampX = Mathf.Clamp(transform.position.x, -lx + center.x, lx + center.x);
 
-        float ly = mapSize.y;
+        float ly = mapSize.y - height/2;
         float clampY = Mathf.Clamp(transform.position.y, -ly + center.y, ly + center.y);
 
         transform.position = new Vector3(clampX, clampY, -10f);

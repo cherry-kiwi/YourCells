@@ -420,7 +420,7 @@ public class ButtonManager : MonoBehaviour
 
     public void TakeMoney()
     {
-        if (GameManager.instance.isEditing == false && GameManager.instance.isBuying == false && GameManager.instance.isCapturing && GameManager.instance.isfixing)
+        if (GameManager.instance.isEditing == false && GameManager.instance.isBuying == false && GameManager.instance.isCapturing == false && GameManager.instance.isfixing == false)
         {
             Sounds.GetComponent<ButtonSounds>().PlayTakeSound();
 
@@ -429,7 +429,8 @@ public class ButtonManager : MonoBehaviour
             MoneySystem.instance.cellSnack1 += MoneySystem.instance.tempCellSnack1;
             MoneySystem.instance.tempCellSnack1 = 0;
 
-            MoneySystem.instance.Timer = 10f;
+            MoneySystem.instance.Timer = 60f;
+            MoneySystem.instance.MaxRoutine = 0;
         }
     }
 

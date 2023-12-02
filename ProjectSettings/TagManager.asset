@@ -11,6 +11,7 @@ TagManager:
   - Square
   - EndPoint
   - selected
+  - Cell
   layers:
   - Default
   - TransparentFX
