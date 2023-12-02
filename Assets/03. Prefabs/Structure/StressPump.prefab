@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1212878581362654283}
   - component: {fileID: 2731774234797304304}
   - component: {fileID: -9172362888795907695}
-  - component: {fileID: -778602672574976182}
+  - component: {fileID: 4073549673525531236}
+  - component: {fileID: 7464487787164181754}
   m_Layer: 0
   m_Name: StressPump
   m_TagString: Building
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1727008333
-  m_SortingLayer: -1
+  m_SortingLayer: -6
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: e6a4cbe737f94ce48914b31766b88d46, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -102,9 +103,11 @@ MonoBehaviour:
     m_Position: {x: 0, y: 0, z: 0}
     m_Size: {x: 1, y: 1, z: 1}
   buildingData: {fileID: 11400000, guid: c6a406d6de6ef754090cf57d2925069a, type: 2}
+  buildngAbiltyType: 
   buildngAbiltyPower: 0
---- !u!61 &-778602672574976182
-BoxCollider2D:
+  animator: {fileID: 0}
+--- !u!68 &4073549673525531236
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -132,19 +135,41 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.35}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: -0.05}
-    oldSize: {x: 1, y: 0.6533333}
-    newSize: {x: 4.31, y: 3.2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.65}
+  m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.0028205165, y: 0.25009018}
+  - {x: -0.0029276442, y: 0.24692407}
+  - {x: -0.18472429, y: 0.1392284}
+  - {x: 0.00052182376, y: 0.032452703}
+  - {x: 0.1843976, y: 0.1397581}
+  - {x: -0.0004724171, y: 0.24703923}
+  - {x: -0.00440325, y: 0.24930917}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!95 &7464487787164181754
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4430336780981663780}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7260221b1cda4bb49ac12ac1bb134e47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

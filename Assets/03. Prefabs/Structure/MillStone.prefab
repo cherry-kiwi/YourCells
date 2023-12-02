@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8430507196503651918}
   - component: {fileID: 7743070323477601098}
   - component: {fileID: 5251175724512753708}
-  - component: {fileID: 3228811303024987677}
   - component: {fileID: 1528549523792178244}
+  - component: {fileID: 1941203568477538138}
   m_Layer: 0
   m_Name: MillStone
   m_TagString: Building
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1727008333
-  m_SortingLayer: -1
+  m_SortingLayer: -6
   m_SortingOrder: 1807
   m_Sprite: {fileID: 21300000, guid: 899f0c65a9f884aa6a88cd96b95b891d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -103,9 +103,32 @@ MonoBehaviour:
     m_Position: {x: -1, y: -1, z: 0}
     m_Size: {x: 3, y: 3, z: 1}
   buildingData: {fileID: 11400000, guid: 918b73c0ce7f0ed48905c407a3eab021, type: 2}
+  buildngAbiltyType: 
   buildngAbiltyPower: 0
---- !u!61 &3228811303024987677
-BoxCollider2D:
+--- !u!114 &1528549523792178244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3942838080116180478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236975af3e360fa449f4984df04f2164, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  takeButton: {fileID: 0}
+  UIimages:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!68 &1941203568477538138
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -133,33 +156,25 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5033333, y: 2.2666667}
-    newSize: {x: 4.31, y: 2.53}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
---- !u!114 &1528549523792178244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3942838080116180478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 236975af3e360fa449f4984df04f2164, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  takeButton: {fileID: 0}
-  img_Abilty: {fileID: 0}
+  m_Points:
+  - {x: 1.2577186, y: -0.42153385}
+  - {x: 1.2577186, y: -0.42153385}
+  - {x: 1.257717, y: -0.42006648}
+  - {x: 1.2577088, y: -0.41220886}
+  - {x: 1.2574787, y: -0.1911454}
+  - {x: 0.016770586, y: 0.5560584}
+  - {x: -1.2571341, y: -0.18700884}
+  - {x: -1.2578398, y: -0.41030246}
+  - {x: -0.005547151, y: -1.14}
+  - {x: 1.2572243, y: -0.42167768}
+  - {x: 1.2594639, y: -0.42100477}
+  - {x: 1.2594639, y: -0.42100477}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0

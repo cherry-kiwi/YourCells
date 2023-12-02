@@ -24,6 +24,8 @@ public class MoneySystem : MonoBehaviour
     public float Timer;
     public int MaxRoutine;
     public Text MaxRoutineT;
+    public Text MaxRoutineT2;
+    public GameObject MaxRoutineS;
 
     [Header("재화")]
     public int stamina;
@@ -55,25 +57,38 @@ public class MoneySystem : MonoBehaviour
             zemText[i].text = zem.ToString();
         }
 
+        MaxRoutineT2.text = MaxRoutine.ToString() + "분";
+
         MaxRoutineT.text = MaxRoutine + "분 / 180분";
+        MaxRoutineS.GetComponent<Slider>().value = (float)MaxRoutine / 180f;
 
         yumiM.text = (yumiPower * 6).ToString();
-        cellSnack1M.text = (cellSnack1 * 6).ToString();
+        cellSnack1M.text = (cellSnack1Power * 6).ToString();
 
         yumiN.text = tempYumi.ToString();
         cellSnack1N.text = tempCellSnack1.ToString();
 
         //수급
-        if (Timer > 0f)
+        if (MaxRoutine < 180)
         {
-            Timer -= Time.deltaTime * 1f;
+            if (Timer > 0f)
+            {
+                Timer -= Time.deltaTime * 1f;
+            }
+            else
+            {
+                MaxRoutine += 1;
+                tempCellSnack1 += cellSnack1Power;
+                tempYumi += yumiPower;
+                Timer = 60f;
+            }
         }
-        else
-        {
-            MaxRoutine += 1;
-            tempCellSnack1 += cellSnack1Power;
-            tempYumi += yumiPower;
-            Timer = 10f;
-        }
+    }
+
+    public void Cheat()
+    {
+        yumi += 5000;
+        cellSnack1 += 10;
+        zem += 500;
     }
 }

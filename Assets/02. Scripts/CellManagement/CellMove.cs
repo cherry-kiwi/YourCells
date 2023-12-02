@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class CellMove : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
+    public int m;
     void Update()
     {
-        
+        transform.GetComponent<SpriteRenderer>().sortingOrder =
+                    3000 + (int)(m * 10 / Camera.main.orthographicSize) + (int)(Camera.main.WorldToScreenPoint(this.transform.position).y * -1);
     }
 }

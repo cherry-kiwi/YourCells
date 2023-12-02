@@ -16,10 +16,14 @@ public class Building : MonoBehaviour
     public string buildngAbiltyType;
     public int buildngAbiltyPower;
 
+    public Animator animator;
+
     #region Build Methods
 
     private void Start()
     {
+        animator = GetComponent<Animator>();
+
         buildngAbiltyType = buildingData.AbiltyType;
         buildngAbiltyPower = buildingData.AbiltyPower;
 
@@ -39,12 +43,24 @@ public class Building : MonoBehaviour
         // Change Layer
         for (int i = 0; i < BuildingSystem.instance.myInstalledBuildings.Count; i++)
         {
-            if (BuildingSystem.instance.myInstalledBuildings[i].gameObject == gameObject)
-            {
-                BuildingSystem.instance.myInstalledBuildings[i].transform.GetComponent<SpriteRenderer>().sortingOrder =
+            //if (BuildingSystem.instance.myInstalledBuildings[i].gameObject == gameObject)
+            //{
+            //    BuildingSystem.instance.myInstalledBuildings[i].transform.GetComponent<SpriteRenderer>().sortingOrder =
+            //        3000 + (int)(Camera.main.WorldToScreenPoint(this.transform.position).y * -1);
+            //    //BuildingSystem.instance.myInstalledBuildings.Count + 20 - Mathf.RoundToInt(gameObject.transform.position.y);
+            //}
+            transform.GetComponent<SpriteRenderer>().sortingOrder =
                     3000 + (int)(Camera.main.WorldToScreenPoint(this.transform.position).y * -1);
-                //BuildingSystem.instance.myInstalledBuildings.Count + 20 - Mathf.RoundToInt(gameObject.transform.position.y);
-            }
+        }
+
+        //Animation
+        if (MoneySystem.instance.MaxRoutine < 180)
+        {
+            animator.Play("BuildingMove");
+        }
+        else
+        {
+            animator.Play("Idle");
         }
     }
 

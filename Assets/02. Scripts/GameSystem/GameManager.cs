@@ -117,6 +117,12 @@ public class GameManager : MonoBehaviour
 
                         touchBuilding = hit.collider.gameObject.transform.position + new Vector3(0, -(0.2f + (hit.collider.gameObject.GetComponent<Building>().area.size.y / 2f)), 0);
                     }
+                    else if (hit.collider.gameObject.CompareTag("Cell"))
+                    {
+                        hit.collider.gameObject.GetComponent<CellAi>().dir = 6;
+                        hit.collider.gameObject.GetComponent<CellAi>().Timer = 0.7f;
+                        hit.collider.gameObject.GetComponent<Animator>().Play("Game_Clear");
+                    }
                 }
                 else
                 {
