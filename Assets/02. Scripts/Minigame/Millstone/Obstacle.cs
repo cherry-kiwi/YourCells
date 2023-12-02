@@ -14,11 +14,11 @@ public class Obstacle : MonoBehaviour
     Vector2 To_;
 
     float speed_FatMan;
-    float speed_Bomb;
+    float Force_Bomb;
+    float Speed_Bomb;
 
     public float m_HeightArc = 30;
     private Vector2 m_StartPosition;
-    
 
     public enum kindd
     {
@@ -26,11 +26,12 @@ public class Obstacle : MonoBehaviour
         Bomb
     }
 
-    void Start()
+    void OnEnable()
     {
-        To_ = Mill_.transform.position;
-        m_StartPosition = transform.position;
-        Spawn_ = transform.parent.parent.GetComponent<Spawner>();
+        To_ = Mill_.transform.position; // 맷돌 위치 받아오기
+        m_StartPosition = transform.position; //해당 장애물 시작위치 받아오기
+        Spawn_ = transform.parent.parent.GetComponent<Spawner>(); //날 만든 스포너 정보 받아오기
+
 
         if (this.name.StartsWith("FatMan"))
         {
@@ -48,39 +49,46 @@ public class Obstacle : MonoBehaviour
     private void ImBomb()
     {
         #region
-        speed_Bomb = Random.Range(3, 5);
-        if ((transform.position.x - Mill_.transform.position.x) > 0)
-        {
+        TryGetComponent(out Rigidbody2D ri);
+        Force_Bomb = Random.Range(1, 3);
+        Speed_Bomb= Random.Range(0.7f, 1.5f);
 
-            if (TryGetComponent(out Rigidbody2D ri))
-            {
-                Debug.Log("Right");
-                ri.AddForce(Vector2.left * speed_Bomb, ForceMode2D.Impulse);
-                ri.AddForce(Vector2.up * 3, ForceMode2D.Impulse);
-            }
+        ri.AddTorque(Random.Range(-200,200));
+
+        if ((transform.position.x - Mill_.transform.position.x) > 0) // 맵 기준 우측에서 생성
+        {
+            ri.AddForce(Vector2.left * Force_Bomb, ForceMode2D.Impulse);
+            ri.AddForce(Vector2.up * 4, ForceMode2D.Impulse);
+            ri.gravityScale = Speed_Bomb;
         }
-        else if ((transform.position.x - Mill_.transform.position.x) < 0)
+        else if ((transform.position.x - Mill_.transform.position.x) < 0) // 맵 기준 좌측에서 생성
         {
-
-            if (TryGetComponent(out Rigidbody2D ri))
-            {
-                Debug.Log("Left");
-                ri.AddForce(Vector2.right * speed_Bomb , ForceMode2D.Impulse);
-                ri.AddForce(Vector2.up * 3, ForceMode2D.Impulse);
-
-            }
+            ri.AddForce(Vector2.right * Force_Bomb , ForceMode2D.Impulse);
+            ri.AddForce(Vector2.up * 4, ForceMode2D.Impulse);
+            ri.gravityScale = Speed_Bomb;
         }
         #endregion
     }
+
 
 
     private IEnumerator ImFatMan()
     {
         while (true)
         {
-            transform.position = Vector2.MoveTowards(transform.position, To_, speed_FatMan);
+            transform.position = Vector2.MoveTowards(transform.position, To_, speed_FatMan * Time.deltaTime);
             yield return null;
         }
+    }
+
+    public void Bomb_obs_Click()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void FatMan_obs_Click()
+    {
+        transform.Translate(new Vector2(0,0.2f));  
     }
 }
 

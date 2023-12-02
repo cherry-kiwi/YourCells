@@ -9,7 +9,7 @@ public class BounceAnim : MonoBehaviour
     public float _size = 5;
     public float _upSizeTime = 0.2f;
 
-    [SerializeField] Main_ScoreSystem ScoreSys; 
+    [SerializeField] private Main_ScoreSystem ScoreSys; 
    
 
     // Start is called before the first frame update

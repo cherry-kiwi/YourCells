@@ -45,8 +45,23 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
+  - name: 0_Background
     uniqueID: 1727008333
+    locked: 0
+  - name: 1_Map
+    uniqueID: 2128538729
+    locked: 0
+  - name: 2_Obj
+    uniqueID: 2957072915
+    locked: 0
+  - name: 3_ETC
+    uniqueID: 1220691293
+    locked: 0
+  - name: 4_Effect
+    uniqueID: 2522874581
+    locked: 0
+  - name: 5_UI
+    uniqueID: 3489704721
     locked: 0
   - name: Default
     uniqueID: 0
