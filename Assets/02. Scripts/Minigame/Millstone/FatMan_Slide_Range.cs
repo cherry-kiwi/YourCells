@@ -19,6 +19,7 @@ public class FatMan_Slide_Range : MonoBehaviour
         {
             gameObject.SetActive(false);
             FatMan_obs.gameObject.SetActive(false);
+            FatMan_obs.root.GetComponent<Spawner>().Fatman_reset();
             Swipe= 0;
         }
     }

@@ -1,14 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class Spawner : MonoBehaviour
 {
     public GameObject prefab_FM;
     public GameObject prefab_BM;
     public GameObject FM_Range;
+    public GameObject Millstone_obj;
+    [SerializeField] private GameObject FootShadow;
+
+    private float FatmanStart_x; 
+    private float FatmanStart_y;
+
 
     public float spd_Fatman;
     public float spd_Bomb;
@@ -22,6 +26,8 @@ public class Spawner : MonoBehaviour
     float FatMan_Spawn_Time = 0; // 출출이 타이머
     int FatMan_is_Coming = 0; // 출출이 연출 시작시간
 
+    private GameObject II;
+
     bool BombSpawn_Stop = false;
 
     int All_SpawnPoint;
@@ -32,10 +38,11 @@ public class Spawner : MonoBehaviour
     { 
         All_SpawnPoint = transform.childCount;
         
-
         Bomb_Spawn_Time = FirstSpawn_Time;
         FatMan_is_Coming = Random.Range(10, 15);
 
+        FatmanStart_x = FootShadow.transform.localScale.x;
+        FatmanStart_y = FootShadow.transform.lossyScale.y;
     }
 
     private void Update()
@@ -63,7 +70,7 @@ public class Spawner : MonoBehaviour
 
     private void Bomb_Spawn()
     {
-        GameObject II = Instantiate(prefab_BM, transform.GetChild(Bomb_SpawnPoint[Random.Range(0, 4)]));
+        II = Instantiate(prefab_BM, transform.GetChild(Bomb_SpawnPoint[Random.Range(0, 4)]));
 
         ttime = 0;
         Bomb_Spawn_Time = Random.Range(1, 2);
@@ -74,17 +81,69 @@ public class Spawner : MonoBehaviour
     {
         Debug.Log("출출이 오는중");
 
-        Invoke(nameof(FatMan_Spawn), 2);
+        Invoke(nameof(FatMan_Spawn), 2.5f);
+        FootShadow.SetActive(true);
+        StartCoroutine(FatMan_direc());
     }
 
     private void FatMan_Spawn()
     {
-        GameObject II = Instantiate(prefab_FM, transform.GetChild(2));
+        prefab_FM.SetActive(true);
         FM_Range.SetActive(true);
-        FM_Range.GetComponent<FatMan_Slide_Range>().FatMan_obs = II.transform;
+        //FM_Range.GetComponent<FatMan_Slide_Range>().FatMan_obs = II.transform;
         FatMan_Spawn_Time = 0;
         FatMan_is_Coming = Random.Range(10, 15);
         Invoke(nameof(Bomb_reSqawn), 6f);
+    }
+
+    private IEnumerator FatMan_direc()
+    {
+        Debug.Log("ss");
+        Color cc = FootShadow.GetComponent<SpriteRenderer>().color;  //
+        Color ccc = Millstone_obj.GetComponent<SpriteRenderer>().color;
+        while (true)
+        {
+            cc.a += 0.0005f;
+            ccc.r -= 0.0005f;
+            ccc.g -= 0.0005f;
+            ccc.b -= 0.0005f;
+
+            FootShadow.GetComponent<SpriteRenderer>().color = cc;
+            Millstone_obj.GetComponent<SpriteRenderer>().color = ccc;
+
+
+            if (prefab_FM.activeSelf == false)
+            {
+                FootShadow.transform.localScale = new Vector2(FootShadow.transform.localScale.x + 0.003f, FootShadow.transform.localScale.y + 0.003f);
+            }
+            else if (prefab_FM.activeSelf == true)
+            {
+                float k = Vector2.Distance(transform.GetChild(2).position, prefab_FM.transform.position);
+                Debug.Log(k);
+                FootShadow.transform.localScale = new Vector2(FootShadow.transform.localScale.x + (k * 0.003f), FootShadow.transform.localScale.y + (k * 0.0008f));
+            }
+            yield return null;
+        }
+    }
+
+    public void Fatman_reset()
+    {
+        StopAllCoroutines();
+        FootShadow.SetActive(false);
+        prefab_FM.transform.position = prefab_FM.transform.parent.position;
+
+        FootShadow.transform.localScale = new Vector2(2.5f, 0.5f);
+
+        Color cc = FootShadow.GetComponent<SpriteRenderer>().color;
+        cc.a = 0.3f;
+        FootShadow.GetComponent<SpriteRenderer>().color = cc;
+        //
+
+        Color ccc = Millstone_obj.GetComponent<SpriteRenderer>().color;
+        ccc.r =1;
+        ccc.g =1;
+        ccc.b =1;
+        Millstone_obj.GetComponent<SpriteRenderer>().color = ccc;
     }
 
     private void Bomb_reSqawn()

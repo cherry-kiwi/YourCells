@@ -19,6 +19,8 @@ public class Main_ScoreSystem : MonoBehaviour
     public int scoreInt = 0;
     public int comboInt = 0;
 
+    bool Stun = false;
+
     public event Action Com_bo;
 
     Vector2 Touch_start_pos;
@@ -42,7 +44,7 @@ public class Main_ScoreSystem : MonoBehaviour
 
                 if (toto.phase == TouchPhase.Began)
                 {
-                    if (clickCol != null && clickCol.tag == "Mill")
+                    if (clickCol != null && clickCol.tag == "Mill" && !Stun)
                     {
                         Combo_and_Score_Update();
                         textpUpdate();
@@ -103,6 +105,13 @@ public class Main_ScoreSystem : MonoBehaviour
 
         Com_bo();
         comboInt += 1;
+    }
+
+    public IEnumerator StunFunc()
+    {
+        Stun = true;
+        yield return new WaitForSeconds(2);
+        Stun= false;
     }
 
 }

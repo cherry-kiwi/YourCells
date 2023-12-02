@@ -26,7 +26,7 @@ public class Obstacle : MonoBehaviour
         Bomb
     }
 
-    void Start()
+    void OnEnable()
     {
         To_ = Mill_.transform.position; // 맷돌 위치 받아오기
         m_StartPosition = transform.position; //해당 장애물 시작위치 받아오기
@@ -52,7 +52,9 @@ public class Obstacle : MonoBehaviour
         TryGetComponent(out Rigidbody2D ri);
         Force_Bomb = Random.Range(1, 3);
         Speed_Bomb= Random.Range(0.7f, 1.5f);
-        
+
+        ri.AddTorque(Random.Range(-200,200));
+
         if ((transform.position.x - Mill_.transform.position.x) > 0) // 맵 기준 우측에서 생성
         {
             ri.AddForce(Vector2.left * Force_Bomb, ForceMode2D.Impulse);
@@ -65,17 +67,16 @@ public class Obstacle : MonoBehaviour
             ri.AddForce(Vector2.up * 4, ForceMode2D.Impulse);
             ri.gravityScale = Speed_Bomb;
         }
-
-        
         #endregion
     }
+
+
 
     private IEnumerator ImFatMan()
     {
         while (true)
         {
             transform.position = Vector2.MoveTowards(transform.position, To_, speed_FatMan * Time.deltaTime);
-            //transform.position = Vector2.Lerp(transform.position, To_, 0.001f);
             yield return null;
         }
     }
