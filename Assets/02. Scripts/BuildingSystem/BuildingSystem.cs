@@ -17,6 +17,7 @@ public class BuildingSystem : MonoBehaviour
     //public TileBase takenTile;
 
     public List<GameObject> myInstalledBuildings;
+    public List<Building> myFixedBuildings;
 
     [SerializeField] TileBase whiteTile;
     [SerializeField] TileBase greenTile;
@@ -25,8 +26,8 @@ public class BuildingSystem : MonoBehaviour
     private static Dictionary<TileType, TileBase> tileBases = new Dictionary<TileType, TileBase>();
 
     public Building temp;
-    private Vector3 prevPos;
-    private BoundsInt prevArea;
+    public Vector3 prevPos;
+    public BoundsInt prevArea;
 
     public bool isDrag = false;
 
@@ -43,8 +44,6 @@ public class BuildingSystem : MonoBehaviour
         tileBases.Add(TileType.White, whiteTile);
         tileBases.Add(TileType.Green, greenTile);
         tileBases.Add(TileType.Red, redTile);
-
-        prevPos = new Vector3(1, 1, 0);
     }
 
     private void Update()
@@ -125,7 +124,7 @@ public class BuildingSystem : MonoBehaviour
     /// <param name="area"></param>
     /// <param name="tilemap"></param>
     /// <returns></returns>
-    private static TileBase[] GetTilesBlock(BoundsInt area, Tilemap tilemap)
+    public static TileBase[] GetTilesBlock(BoundsInt area, Tilemap tilemap)
     {
         // 타일베이스 베열
         TileBase[] array = new TileBase[area.size.x * area.size.y * area.size.z];
@@ -151,7 +150,7 @@ public class BuildingSystem : MonoBehaviour
     /// <param name="area"></param>
     /// <param name="tileBase"></param>
     /// <param name="tilemap"></param>
-    private static void SetTilesBlock(BoundsInt area, TileType type, Tilemap tilemap)
+    public static void SetTilesBlock(BoundsInt area, TileType type, Tilemap tilemap)
     {
         TileBase[] tileArray = new TileBase[area.size.x * area.size.y * area.size.z];
         FillTiles(tileArray, type);
@@ -164,7 +163,7 @@ public class BuildingSystem : MonoBehaviour
     /// </summary>
     /// <param name="arr"></param>
     /// <param name="tileBase"></param>
-    private static void FillTiles(TileBase[] arr, TileType type)
+    public static void FillTiles(TileBase[] arr, TileType type)
     {
         for (int i = 0; i < arr.Length; i++)
         {
@@ -182,7 +181,15 @@ public class BuildingSystem : MonoBehaviour
     /// <param name="pos"></param>
     public void InitializeBuilding(GameObject building)
     {
-        temp = Instantiate(building, prevPos + offset, Quaternion.identity).GetComponent<Building>();
+        if(GameManager.instance.isfixing)
+        {
+            myFixedBuildings.Add(Instantiate(building, prevPos + offset, Quaternion.identity).GetComponent<Building>());
+            temp = myFixedBuildings[0];
+        }
+        else
+        {
+            temp = Instantiate(building, prevPos + offset, Quaternion.identity).GetComponent<Building>();
+        }
         FollowBuilding();
         myInstalledBuildings.Add(temp.gameObject);
 
@@ -194,7 +201,7 @@ public class BuildingSystem : MonoBehaviour
     /// </summary>
     /// <param name="area"></param>
     /// <param name="tilemap"></param>
-    private void ClearArea()
+    public void ClearArea()
     {
         TileBase[] toClear = new TileBase[prevArea.size.x * prevArea.size.y * prevArea.size.z];
         FillTiles(toClear, TileType.Empty);

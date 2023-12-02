@@ -5,6 +5,7 @@ using System.Text;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class GameManager : MonoBehaviour
     public List<GameObject> generalModeUI;
     public List<GameObject> BuyModeUI;
     public List<GameObject> editModeUI;
+    public List<GameObject> fixModeUI;
+    public List<GameObject> fixPanels;
     public List<GameObject> CaptureModeUI;
 
     public bool isEditing = false;
@@ -71,51 +74,123 @@ public class GameManager : MonoBehaviour
 
             RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
 
-            if (hit.collider != null)
+
+            if (!isfixing)
             {
-                Debug.Log(hit.collider.name);
-
-                if (hit.collider.gameObject.CompareTag("Building"))
+                if (hit.collider != null)
                 {
-                    if (isEditing || isBuying)
+                    Debug.Log(hit.collider.name);
+
+                    if (hit.collider.gameObject.CompareTag("Building"))
                     {
-                        return;
-                    }
-
-                    if (Input.GetTouch(0).phase == TouchPhase.Ended && isDrag == false)
-                    {
-                        BuildingDisplayPanel.SetActive(true);
-                        isDrag = false;
-                    }
-
-                    string[] SplitResult = hit.collider.name.Split("(Clone)");
-
-                    StringBuilder stringBuilder = new StringBuilder();
-
-                    for (int i = 0; i < SplitResult.Length; i++)
-                    {
-                        stringBuilder.Append(SplitResult[i]);
-                    }
-
-                    for (int i = 0; i < buildingDisplay.GetComponent<BuildingDataDisplay>().buildingSlot.Count; i++)
-                    {
-                        if (hit.collider.name == buildingDisplay.GetComponent<BuildingDataDisplay>().buildingSlot[i].name)
+                        if (isEditing || isBuying)
                         {
-                            buildingDisplay.GetComponent<BuildingDataDisplay>().buildingData = buildingDisplay.GetComponent<BuildingDataDisplay>().buildingSlot[i];
+                            return;
                         }
-                        else if (stringBuilder.ToString() == buildingDisplay.GetComponent<BuildingDataDisplay>().buildingSlot[i].name)
-                        {
-                            buildingDisplay.GetComponent<BuildingDataDisplay>().buildingData = buildingDisplay.GetComponent<BuildingDataDisplay>().buildingSlot[i];
-                        }
-                    }
 
-                    touchBuilding = hit.collider.gameObject.transform.position + new Vector3(0, -(0.2f + (hit.collider.gameObject.GetComponent<Building>().area.size.y / 2f)), 0);
+                        if (Input.GetTouch(0).phase == TouchPhase.Ended && isDrag == false)
+                        {
+                            BuildingDisplayPanel.SetActive(true);
+                            isDrag = false;
+                        }
+
+                        string[] SplitResult = hit.collider.name.Split("(Clone)");
+
+                        StringBuilder stringBuilder = new StringBuilder();
+
+                        for (int i = 0; i < SplitResult.Length; i++)
+                        {
+                            stringBuilder.Append(SplitResult[i]);
+                        }
+
+                        for (int i = 0; i < buildingDisplay.GetComponent<BuildingDataDisplay>().buildingSlot.Count; i++)
+                        {
+                            if (hit.collider.name == buildingDisplay.GetComponent<BuildingDataDisplay>().buildingSlot[i].name)
+                            {
+                                buildingDisplay.GetComponent<BuildingDataDisplay>().buildingData = buildingDisplay.GetComponent<BuildingDataDisplay>().buildingSlot[i];
+                            }
+                            else if (stringBuilder.ToString() == buildingDisplay.GetComponent<BuildingDataDisplay>().buildingSlot[i].name)
+                            {
+                                buildingDisplay.GetComponent<BuildingDataDisplay>().buildingData = buildingDisplay.GetComponent<BuildingDataDisplay>().buildingSlot[i];
+                            }
+                        }
+
+                        touchBuilding = hit.collider.gameObject.transform.position + new Vector3(0, -(0.2f + (hit.collider.gameObject.GetComponent<Building>().area.size.y / 2f)), 0);
+                    }
+                }
+                else
+                {
+                    BuildingDisplayPanel.SetActive(false);
                 }
             }
-            else
+            else //편집모드 시
             {
-                BuildingDisplayPanel.SetActive(false);
-            }    
+                if (BuildingSystem.instance.myFixedBuildings.Count <= 0)
+                {
+                    if (hit.collider != null)
+                    {
+                        Debug.Log(hit.collider.name);
+
+                        if (hit.collider.gameObject.CompareTag("Building"))
+                        {
+                            if (isEditing || isBuying)
+                            {
+                                return;
+                            }
+
+                            if (Input.GetTouch(0).phase == TouchPhase.Ended && isDrag == false)
+                            {
+                                isDrag = false;
+                            }
+
+                            string[] SplitResult = hit.collider.name.Split("(Clone)");
+
+                            StringBuilder stringBuilder = new StringBuilder();
+
+                            for (int i = 0; i < SplitResult.Length; i++)
+                            {
+                                stringBuilder.Append(SplitResult[i]);
+                            }
+
+                            for (int i = 0; i < ShopSystem.instance.itemList.Count; i++)
+                            {
+                                if (hit.collider.name == ShopSystem.instance.itemList[i].itemPrefab.name)
+                                {
+                                    BuildingSystem.instance.myInstalledBuildings.Remove(hit.collider.gameObject);
+                                    Destroy(hit.collider.gameObject);
+                                    BuildingSystem.instance.InitializeBuilding(ShopSystem.instance.itemList[i].itemPrefab);
+
+                                    hit.collider.gameObject.GetComponent<Building>().PlaceFalse();
+
+                                    for (int j = 0; j < fixPanels.Count; j++)
+                                    {
+                                        fixPanels[j].SetActive(true);
+                                    }
+                                }
+                                else if (stringBuilder.ToString() == ShopSystem.instance.itemList[i].itemPrefab.name)
+                                {
+                                    BuildingSystem.instance.myInstalledBuildings.Remove(hit.collider.gameObject);
+                                    Destroy(hit.collider.gameObject);
+                                    BuildingSystem.instance.InitializeBuilding(ShopSystem.instance.itemList[i].itemPrefab);
+
+                                    hit.collider.gameObject.GetComponent<Building>().PlaceFalse();
+
+                                    for (int j = 0; j < fixPanels.Count; j++)
+                                    {
+                                        fixPanels[j].SetActive(true);
+                                    }
+                                }
+                            }
+
+                            touchBuilding = hit.collider.gameObject.transform.position + new Vector3(0, -(0.2f + (hit.collider.gameObject.GetComponent<Building>().area.size.y / 2f)), 0);
+                        }
+                    }
+                    else
+                    {
+                        BuildingDisplayPanel.SetActive(false);
+                    }
+                }
+            }
         }
         else
         {
@@ -165,6 +240,18 @@ public class GameManager : MonoBehaviour
                 CaptureModeUI[i].SetActive(true);
             }
         }
+        else if(isfixing)
+        {
+            for (int i = 0; i < generalModeUI.Count; i++)
+            {
+                mainUI[i].SetActive(false);
+            }
+
+            for (int i = 0; i < fixModeUI.Count; i++)
+            {
+                fixModeUI[i].SetActive(true);
+            }
+        }
         else
         {
 
@@ -181,6 +268,11 @@ public class GameManager : MonoBehaviour
             for (int i = 0; i < BuyModeUI.Count; i++)
             {
                 BuyModeUI[i].SetActive(false);
+            }
+
+            for (int i = 0; i < fixModeUI.Count; i++)
+            {
+                fixModeUI[i].SetActive(false);
             }
 
             for (int i = 0; i < CaptureModeUI.Count; i++)
