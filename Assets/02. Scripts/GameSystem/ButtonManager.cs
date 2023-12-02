@@ -420,12 +420,15 @@ public class ButtonManager : MonoBehaviour
 
     public void TakeMoney()
     {
-        if (GameManager.instance.isEditing == false && GameManager.instance.isBuying == false)
+        if (GameManager.instance.isEditing == false && GameManager.instance.isBuying == false && GameManager.instance.isCapturing && GameManager.instance.isfixing)
         {
             Sounds.GetComponent<ButtonSounds>().PlayTakeSound();
 
             MoneySystem.instance.yumi += MoneySystem.instance.tempYumi;
             MoneySystem.instance.tempYumi = 0;
+            MoneySystem.instance.cellSnack1 += MoneySystem.instance.tempCellSnack1;
+            MoneySystem.instance.tempCellSnack1 = 0;
+
             MoneySystem.instance.Timer = 10f;
         }
     }
@@ -442,6 +445,70 @@ public class ButtonManager : MonoBehaviour
     public void CaptureOff()
     {
         GameManager.instance.isCapturing = false;
+    }
+
+    #endregion
+
+    #region Fix Button
+
+    public void FixOn()
+    {
+        GameManager.instance.isfixing = true;
+    }
+
+    public void FixOff()
+    {
+        GameManager.instance.isfixing = false;
+    }
+
+    public void Fixing_Storage()
+    {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
+        if (BuildingSystem.instance.myFixedBuildings.Count > 0)
+        {
+            BuildingSystem.instance.myFixedBuildings.Remove(BuildingSystem.instance.temp);
+            BuildingSystem.instance.cancleBuilding();
+            StorageSystem.instance.myBuildingsSprites.Add(ShopSystem.instance.itemList[nowIndex].image);
+            StorageSystem.instance.myBuildings.Add(ShopSystem.instance.itemList[nowIndex].itemPrefab);
+            BuildingSystem.instance.myInstalledBuildings.Remove(BuildingSystem.instance.temp.gameObject);
+
+            for (int j = 0; j < GameManager.instance.fixPanels.Count; j++)
+            {
+                GameManager.instance.fixPanels[j].SetActive(false);
+            }
+        }
+    }
+
+    public void Fixing_Cancel()
+    {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
+        if (BuildingSystem.instance.myFixedBuildings.Count <= 0)
+        {
+            GameManager.instance.isfixing = false;
+        }
+        else
+        {
+            AndroidToast.I.ShowToastMessage("설치 중입니다.");
+        }
+    }
+
+    public void Fixing_Confirm()
+    {
+        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+
+        if (BuildingSystem.instance.temp.CanBePlaced())
+        {
+            BuildingSystem.instance.myFixedBuildings.Remove(BuildingSystem.instance.temp);
+            BuildingSystem.instance.placeBuilding();
+            //BuildingSystem.instance.myInstalledBuildings.Add(BuildingSystem.instance.temp.gameObject);
+
+            for (int j = 0; j < GameManager.instance.fixPanels.Count; j++)
+            {
+                GameManager.instance.fixPanels[j].SetActive(false);
+            }
+        }
     }
 
     #endregion

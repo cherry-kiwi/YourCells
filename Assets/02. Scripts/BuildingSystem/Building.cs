@@ -8,19 +8,30 @@ using UnityEngine.UI;
 public class Building : MonoBehaviour
 {
     public bool Placed { get; private set; }
+    private Vector3 origin;
+
     public BoundsInt area;
 
     public BuildingData buildingData;
+    public string buildngAbiltyType;
     public int buildngAbiltyPower;
 
     #region Build Methods
 
     private void Start()
     {
+        buildngAbiltyType = buildingData.AbiltyType;
         buildngAbiltyPower = buildingData.AbiltyPower;
 
         //수급 파워
-        MoneySystem.instance.yumiPower += buildngAbiltyPower;
+        if (buildngAbiltyType == "yumi")
+        {
+            MoneySystem.instance.yumiPower += buildngAbiltyPower;
+        }
+        else if (buildngAbiltyType == "cellSnack1")
+        {
+            MoneySystem.instance.cellSnack1Power += buildngAbiltyPower;
+        }
     }
 
     private void Update()
@@ -68,6 +79,14 @@ public class Building : MonoBehaviour
         Placed = true;
         BuildingSystem.instance.TakeArea(areaTemp);
     }
+    public void PlaceFalse()
+    {
+        Vector3Int positionInt = BuildingSystem.instance.gridLayout.LocalToCell(transform.position);
+        BoundsInt areaTemp = area;
+        areaTemp.position = positionInt;
+        Placed = false;
+        BuildingSystem.SetTilesBlock(areaTemp, TileType.White, BuildingSystem.instance.mainTilemap);
+    }
 
-#endregion
+    #endregion
 }
