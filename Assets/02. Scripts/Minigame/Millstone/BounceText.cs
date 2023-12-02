@@ -9,7 +9,8 @@ public class BounceAnim : MonoBehaviour
     public float _size = 5;
     public float _upSizeTime = 0.2f;
 
-    [SerializeField] private Main_ScoreSystem ScoreSys; 
+    [SerializeField] private Main_ScoreSystem ScoreSys;
+    [SerializeField] private ParticleSystem ComboHit;
    
 
     // Start is called before the first frame update
@@ -26,6 +27,10 @@ public class BounceAnim : MonoBehaviour
     private IEnumerator BounceText()
     {
         time = 0;
+        if (ScoreSys.comboInt > 1)
+        {
+            ComboHit.Play();
+        }
         while (true)
         {
             if (time <= _upSizeTime)

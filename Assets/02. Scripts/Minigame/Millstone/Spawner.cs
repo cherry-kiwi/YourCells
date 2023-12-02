@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour
     public GameObject FM_Range;
     public GameObject Millstone_obj;
     [SerializeField] private GameObject FootShadow;
+    [SerializeField] private Background_Fatman back_moving;
 
     private float FatmanStart_x; 
     private float FatmanStart_y;
@@ -39,7 +40,7 @@ public class Spawner : MonoBehaviour
         All_SpawnPoint = transform.childCount;
         
         Bomb_Spawn_Time = FirstSpawn_Time;
-        FatMan_is_Coming = Random.Range(10, 15);
+        FatMan_is_Coming = Random.Range(6, 11);
 
         FatmanStart_x = FootShadow.transform.localScale.x;
         FatmanStart_y = FootShadow.transform.lossyScale.y;
@@ -81,8 +82,10 @@ public class Spawner : MonoBehaviour
     {
         Debug.Log("출출이 오는중");
 
-        Invoke(nameof(FatMan_Spawn), 2.5f);
-        FootShadow.SetActive(true);
+        back_moving.GimicStart();
+        Invoke(nameof(FatMan_Spawn), 5.5f);
+
+        
         StartCoroutine(FatMan_direc());
     }
 
@@ -90,7 +93,7 @@ public class Spawner : MonoBehaviour
     {
         prefab_FM.SetActive(true);
         FM_Range.SetActive(true);
-        //FM_Range.GetComponent<FatMan_Slide_Range>().FatMan_obs = II.transform;
+        FM_Range.GetComponent<FatMan_Slide_Range>().Swipe = 0;
         FatMan_Spawn_Time = 0;
         FatMan_is_Coming = Random.Range(10, 15);
         Invoke(nameof(Bomb_reSqawn), 6f);
@@ -99,6 +102,8 @@ public class Spawner : MonoBehaviour
     private IEnumerator FatMan_direc()
     {
         Debug.Log("ss");
+        yield return new WaitForSeconds(5);
+        FootShadow.SetActive(true);
         Color cc = FootShadow.GetComponent<SpriteRenderer>().color;  //
         Color ccc = Millstone_obj.GetComponent<SpriteRenderer>().color;
         while (true)
@@ -123,6 +128,8 @@ public class Spawner : MonoBehaviour
                 FootShadow.transform.localScale = new Vector2(FootShadow.transform.localScale.x + (k * 0.003f), FootShadow.transform.localScale.y + (k * 0.0008f));
             }
             yield return null;
+
+            Debug.Log("멈춰라 병신아");
         }
     }
 
@@ -144,6 +151,8 @@ public class Spawner : MonoBehaviour
         ccc.g =1;
         ccc.b =1;
         Millstone_obj.GetComponent<SpriteRenderer>().color = ccc;
+        //
+        back_moving.GimicEnd();
     }
 
     private void Bomb_reSqawn()

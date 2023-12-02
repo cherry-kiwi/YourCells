@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +7,19 @@ public class FatMan_Slide_Range : MonoBehaviour
 {
     public Transform FatMan_obs;
     private Obstacle obs_scr;
-    int Swipe = 0;
+    public int Swipe = 0;
+
+    [SerializeField] private ParticleSystem[] HitEft;
+
+ 
 
     public void Slide_Succes()
     {
+        int k = Random.Range(0, 4);
         obs_scr = FatMan_obs.GetComponent<Obstacle>();
         obs_scr.FatMan_obs_Click();
         Swipe++;
+        HitEft[k].Play();
 
         if (Swipe > 25)
         {

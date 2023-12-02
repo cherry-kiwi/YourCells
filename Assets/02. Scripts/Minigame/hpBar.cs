@@ -26,6 +26,8 @@ public class hpBar : MonoBehaviour
         _Timer.text = Mathf.Floor(Hp_To_Time / 60) + "m" + Mathf.Floor(Hp_To_Time % 60) + "s";
         StartCoroutine(Timer_Hp_decrease());
 
+        Debug.Log(Hp_Time_conver);
+
     }
 
 
@@ -50,11 +52,13 @@ public class hpBar : MonoBehaviour
         _Timer.text = "End";
     }
 
-    private void Time_Health_conver()
+    public void umm_didyouHit()
     {
-
+        float Tenpercent = 10 / Hp_Time_conver; //이 시간이 지나야 1퍼임
+        Debug.Log(Tenpercent);
+        HP_Bar.value -= 0.01f * Tenpercent;
+        Hp_To_Time -= 10;
     }
-
 
 
     //public void SetHp(float amount) //*Hp설정
