@@ -13,6 +13,7 @@ public class MillStone : MonoBehaviour
     [SerializeField] private Main_ScoreSystem ScoreSystem;
     [SerializeField] private GameObject fatMan_Slide;
     [SerializeField] private Transform _Cam;
+    [SerializeField] private hpBar HPbar;
 
     [SerializeField] private float ShakeAmount;
     float ShakeTime;
@@ -65,7 +66,7 @@ public class MillStone : MonoBehaviour
 
             }
 
-            ScoreSystem._Time -= 10;
+            HPbar.umm_didyouHit();
             ScoreSystem.comboInt= 0;
             ScoreSystem.textpUpdate();
         }

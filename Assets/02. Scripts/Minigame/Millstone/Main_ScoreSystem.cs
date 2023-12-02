@@ -20,10 +20,14 @@ public class Main_ScoreSystem : MonoBehaviour
     public int comboInt = 0;
 
     bool Stun = false;
+    [SerializeField] private GameObject stunEft;
+
 
     public event Action Com_bo;
 
     Vector2 Touch_start_pos;
+
+
 
     private void Update()
     {
@@ -71,7 +75,6 @@ public class Main_ScoreSystem : MonoBehaviour
                     {
                         if (Vector2.Distance(Touch_start_pos, toto.position) >= 500)
                         {
-
                             Touch_start_pos = toto.position;
                             ok_slide.Slide_Succes();
                         }
@@ -110,8 +113,11 @@ public class Main_ScoreSystem : MonoBehaviour
     public IEnumerator StunFunc()
     {
         Stun = true;
+        stunEft.SetActive(true);
         yield return new WaitForSeconds(2);
         Stun= false;
+        stunEft.SetActive(false);
+
     }
 
 }
