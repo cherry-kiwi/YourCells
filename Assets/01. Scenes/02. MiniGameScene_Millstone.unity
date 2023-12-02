@@ -562,7 +562,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Score: {fileID: 1670310086}
-  _Timer: {fileID: 15262270}
   _Combo_text: {fileID: 1264834262}
   _Time: 120
   scoreInt: 0
@@ -1297,6 +1296,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1627653142}
   - component: {fileID: 1627653143}
+  - component: {fileID: 1627653144}
   m_Layer: 5
   m_Name: HPBar
   m_TagString: Untagged
@@ -1376,6 +1376,20 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1627653144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627653141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb0f0c2a22e7414b8886a027b5471de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Timer: {fileID: 15262270}
+  maxHealth: 100
 --- !u!1 &1638912835
 GameObject:
   m_ObjectHideFlags: 0

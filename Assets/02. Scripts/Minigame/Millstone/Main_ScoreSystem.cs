@@ -12,7 +12,6 @@ using UnityEngine.UIElements;
 public class Main_ScoreSystem : MonoBehaviour
 {
     public TMP_Text _Score;
-    public TMP_Text _Timer;
     public TMP_Text _Combo_text;
 
     Touch toto;
@@ -26,13 +25,8 @@ public class Main_ScoreSystem : MonoBehaviour
 
     private void Update()
     {
-        if (_Time <= 0)
-        {
-            UnityEditor.EditorApplication.isPaused = true;
-        }
 
-        #region time update / Click info
-        _Timer.text = Mathf.Floor(_Time / 60) + "m" + Mathf.Floor(_Time % 60) + "s";
+        #region  Click info
 
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 clickPos = new Vector2(worldPos.x, worldPos.y);
@@ -41,7 +35,6 @@ public class Main_ScoreSystem : MonoBehaviour
 
         if (GameStart.GamePlaying)
         {
-            _Time -= Time.deltaTime;
 
             if (Input.touchCount > 0)
             {
