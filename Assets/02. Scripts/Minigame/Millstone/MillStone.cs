@@ -61,7 +61,6 @@ public class MillStone : MonoBehaviour
             else if (collision.name.StartsWith("Bomb"))
             {
 
-                Debug.Log("ds");
                 VibeTime(0.1f);
 
             }

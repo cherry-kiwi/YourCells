@@ -8,14 +8,15 @@ public class hpBar : MonoBehaviour
 {
     private Slider HP_Bar;
     public TMP_Text _Timer;
+    [SerializeField] private Main_ScoreSystem _ScoreSystem;
 
 
     protected float Hp_To_Time; //* 체력을 시간으로 환전 // 100hp 에 1분
     private float Hp_Time_conver; // Hp-to-time의 1% 값을 넣음
     public float maxHealth; //* 세포의 체력 / 나중에 체력 받아오는 시스템 필요
 
-
     float t = 0;
+
     private void Start()
     {
 
@@ -25,8 +26,6 @@ public class hpBar : MonoBehaviour
         Hp_Time_conver = Hp_To_Time / 100 * 1;
         _Timer.text = Mathf.Floor(Hp_To_Time / 60) + "m" + Mathf.Floor(Hp_To_Time % 60) + "s";
         StartCoroutine(Timer_Hp_decrease());
-
-        Debug.Log(Hp_Time_conver);
 
     }
 
@@ -50,14 +49,19 @@ public class hpBar : MonoBehaviour
             yield return null;
         }
         _Timer.text = "End";
+        Game_is_End();
     }
 
     public void umm_didyouHit()
     {
         float Tenpercent = 10 / Hp_Time_conver; //이 시간이 지나야 1퍼임
-        Debug.Log(Tenpercent);
         HP_Bar.value -= 0.01f * Tenpercent;
         Hp_To_Time -= 10;
+    }
+
+    public void Game_is_End()
+    {
+        _ScoreSystem.Result_Start();
     }
 
 
@@ -65,7 +69,7 @@ public class hpBar : MonoBehaviour
     //{
     //    maxHealth = amount;
     //    Hp_To_Time = maxHealth * 0.6f;
-    //} 나중에 사용할 부분
+    //} 나중에 사용할 부분 - 세포 체력 받아오기
 
 
 }

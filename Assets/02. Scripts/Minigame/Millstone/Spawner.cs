@@ -101,17 +101,17 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator FatMan_direc()
     {
-        Debug.Log("ss");
+        
         yield return new WaitForSeconds(5);
         FootShadow.SetActive(true);
         Color cc = FootShadow.GetComponent<SpriteRenderer>().color;  //
         Color ccc = Millstone_obj.GetComponent<SpriteRenderer>().color;
         while (true)
         {
-            cc.a += 0.0005f;
-            ccc.r -= 0.0005f;
-            ccc.g -= 0.0005f;
-            ccc.b -= 0.0005f;
+            cc.a += 0.038f * Time.deltaTime;
+            ccc.r -= 0.038f * Time.deltaTime;
+            ccc.g -= 0.038f * Time.deltaTime;
+            ccc.b -= 0.038f * Time.deltaTime;
 
             FootShadow.GetComponent<SpriteRenderer>().color = cc;
             Millstone_obj.GetComponent<SpriteRenderer>().color = ccc;
@@ -124,12 +124,11 @@ public class Spawner : MonoBehaviour
             else if (prefab_FM.activeSelf == true)
             {
                 float k = Vector2.Distance(transform.GetChild(2).position, prefab_FM.transform.position);
-                Debug.Log(k);
+                
                 FootShadow.transform.localScale = new Vector2(FootShadow.transform.localScale.x + (k * 0.003f), FootShadow.transform.localScale.y + (k * 0.0008f));
             }
             yield return null;
 
-            Debug.Log("멈춰라 병신아");
         }
     }
 
