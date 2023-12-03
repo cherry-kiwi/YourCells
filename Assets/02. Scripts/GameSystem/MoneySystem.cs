@@ -30,6 +30,12 @@ public class MoneySystem : MonoBehaviour
     public GameObject MaxRoutineS;
     public GameObject MaxRoutineS2;
 
+    [Header("건물 보유 여부")]
+    public bool CellFactory;
+
+    [Header("콘텐츠")]
+    public List<GameObject> CellFactoryContents;
+
     [Header("재화")]
     public int stamina;
     public int yumi;
@@ -52,6 +58,22 @@ public class MoneySystem : MonoBehaviour
 
     private void Update()
     {
+        //건물 보유 여부
+        if(CellFactory == true)
+        {
+            for(int i = 0; i < CellFactoryContents.Count; i++)
+            {
+                CellFactoryContents[i].SetActive(true);
+            }
+        }
+        else if (CellFactory == false)
+        {
+            for (int i = 0; i < CellFactoryContents.Count; i++)
+            {
+                CellFactoryContents[i].SetActive(false);
+            }
+        }
+
         //텍스트
         staminaText.text = stamina.ToString() + "/30";
         for (int i = 0; i < yumiText.Length; i++)
