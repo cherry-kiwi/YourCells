@@ -19,6 +19,7 @@ public class MillStone : MonoBehaviour
     float ShakeTime;
     Vector3 initPos;
 
+    [SerializeField] private ParticleSystem[] BombHit;
 
     private void Start()
     {
@@ -49,6 +50,7 @@ public class MillStone : MonoBehaviour
     {
         if (collision.tag == "Obs")
         {
+            
             collision.gameObject.SetActive(false);
             fatMan_Slide.SetActive(false);
 
@@ -60,8 +62,9 @@ public class MillStone : MonoBehaviour
             }
             else if (collision.name.StartsWith("Bomb"))
             {
-
-                Debug.Log("ds");
+                int i = Random.Range(0, 3);
+                BombHit[i].transform.position = collision.transform.position;
+                BombHit[i].Play();
                 VibeTime(0.1f);
 
             }

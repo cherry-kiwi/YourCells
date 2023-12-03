@@ -43,6 +43,7 @@ public class Obstacle : MonoBehaviour
         {
             Whatisthis = kindd.Bomb;
             ImBomb();
+            
         }
     }
 
