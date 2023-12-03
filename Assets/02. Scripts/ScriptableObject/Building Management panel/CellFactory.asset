@@ -15,7 +15,7 @@ MonoBehaviour:
   buildingName: "\uC138\uD3EC\uAE61 \uACF5\uC7A5"
   buildingLevel: 1
   type: "\uC0DD\uC0B0"
-  image: {fileID: 21300000, guid: 43dba89d756cd41268a93ed2f750dd16, type: 3}
+  image: {fileID: 683210661, guid: 3efacc4b5af3baf4a96467a12eb66a70, type: 3}
   cellSynergy: "\uC815\uCCB4\uBD88\uBA85\uC758 \uD6A8\uACFC"
   information: "\uC138\uD3EC\uB4E4\uC758 \uC8FC\uC2DD\uC778 \uC138\uD3EC\uAE61\uC744
     \uC0DD\uC0B0\uD558\uB294 \uACF5\uC7A5\uC785\uB2C8\uB2E4."

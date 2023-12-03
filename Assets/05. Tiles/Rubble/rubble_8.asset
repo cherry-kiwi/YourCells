@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: rubble_8
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: f0ca307cb09464cc2b042580c9008092, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9056604, g: 0.9056604, b: 0.9056604, a: 1}
   m_Transform:
     e00: 1
     e01: 0

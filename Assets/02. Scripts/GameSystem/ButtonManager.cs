@@ -422,8 +422,6 @@ public class ButtonManager : MonoBehaviour
     {
         if (GameManager.instance.isEditing == false && GameManager.instance.isBuying == false && GameManager.instance.isCapturing == false && GameManager.instance.isfixing == false)
         {
-            Sounds.GetComponent<ButtonSounds>().PlayTakeSound();
-
             MoneySystem.instance.yumi += MoneySystem.instance.tempYumi;
             MoneySystem.instance.tempYumi = 0;
             MoneySystem.instance.cellSnack1 += MoneySystem.instance.tempCellSnack1;

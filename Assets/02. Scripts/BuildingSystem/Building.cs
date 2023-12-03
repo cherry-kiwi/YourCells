@@ -18,6 +18,8 @@ public class Building : MonoBehaviour
 
     public Animator animator;
 
+    public float Timer;
+
     #region Build Methods
 
     private void Start()
@@ -40,6 +42,17 @@ public class Building : MonoBehaviour
 
     private void Update()
     {
+        if (Timer > 0)
+        {
+            Timer -= Time.deltaTime;
+        }
+        else
+        {
+            animator.SetBool("Click", false);
+
+            Timer = 1f;
+        }
+
         // Change Layer
         for (int i = 0; i < BuildingSystem.instance.myInstalledBuildings.Count; i++)
         {
@@ -56,11 +69,11 @@ public class Building : MonoBehaviour
         //Animation
         if (MoneySystem.instance.MaxRoutine < 180)
         {
-            animator.Play("BuildingMove");
+            animator.SetBool("BuildingMove", true);
         }
         else
         {
-            animator.Play("Idle");
+            animator.SetBool("BuildingMove", false);
         }
     }
 
