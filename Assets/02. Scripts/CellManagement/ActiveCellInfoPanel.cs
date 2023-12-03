@@ -26,7 +26,7 @@ public class ActiveCellInfoPanel : MonoBehaviour
 
         cellInfoPanel.transform.SetParent(CellListPopUp.transform);
         cellInfoPanel.transform.localScale = new Vector3(1, 1, 1);
-        cellInfoPanel.transform.position = Camera.main.WorldToScreenPoint(new Vector3(0,0,0) + Camera.main.transform.position);
+        cellInfoPanel.transform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0);
 
         for (int i = 0; i < CellManager.instance.myCells.Count; i++)
         {

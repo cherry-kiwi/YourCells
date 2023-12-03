@@ -115,6 +115,9 @@ public class GameManager : MonoBehaviour
                             }
                         }
 
+                        hit.collider.gameObject.GetComponent<Building>().Timer = 0.7f;
+                        hit.collider.gameObject.GetComponent<Animator>().SetBool("Click", true);
+
                         touchBuilding = hit.collider.gameObject.transform.position + new Vector3(0, -(0.2f + (hit.collider.gameObject.GetComponent<Building>().area.size.y / 2f)), 0);
                     }
                     else if (hit.collider.gameObject.CompareTag("Cell"))
@@ -204,7 +207,7 @@ public class GameManager : MonoBehaviour
             isDrag = false;
         }
 
-        BuildingDisplayPanel.transform.position = Camera.main.WorldToScreenPoint(touchBuilding);
+        BuildingDisplayPanel.transform.position = touchBuilding;
 
 
         //Mod Change

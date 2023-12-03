@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5251175724512753708}
   - component: {fileID: 1528549523792178244}
   - component: {fileID: 1941203568477538138}
+  - component: {fileID: 7022795483544901419}
+  - component: {fileID: 8071722456481848097}
   m_Layer: 0
   m_Name: MillStone
   m_TagString: Building
@@ -76,12 +78,12 @@ SpriteRenderer:
   m_SortingLayerID: 1727008333
   m_SortingLayer: -6
   m_SortingOrder: 1807
-  m_Sprite: {fileID: 21300000, guid: 899f0c65a9f884aa6a88cd96b95b891d, type: 3}
+  m_Sprite: {fileID: 1763558993, guid: 1beb57d47c0e1cb408743a0f6ccc6267, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.31, y: 2.53}
+  m_Size: {x: 2.5033333, y: 2.2666667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -105,6 +107,8 @@ MonoBehaviour:
   buildingData: {fileID: 11400000, guid: 918b73c0ce7f0ed48905c407a3eab021, type: 2}
   buildngAbiltyType: 
   buildngAbiltyPower: 0
+  animator: {fileID: 0}
+  Timer: 0
 --- !u!114 &1528549523792178244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,3 +182,69 @@ EdgeCollider2D:
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
   m_UseAdjacentEndPoint: 0
+--- !u!61 &7022795483544901419
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3942838080116180478}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.06336266, y: 0.19536841}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 7.511543, y: 6.7999997}
+    newSize: {x: 2.5033333, y: 2.2666667}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.8274647, y: 1.8759301}
+  m_EdgeRadius: 0
+--- !u!95 &8071722456481848097
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3942838080116180478}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 39b3c091cfd2d484db321347c3f87aa1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

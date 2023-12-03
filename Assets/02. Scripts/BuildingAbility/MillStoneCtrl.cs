@@ -17,7 +17,7 @@ public class MillStoneCtrl : MonoBehaviour
 
     void Update()
     {
-        takeButton.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 1.5f, 0));
+        takeButton.transform.position = transform.position + new Vector3(0, 1.5f, 0);
         if(MoneySystem.instance.tempYumi > 0f && MoneySystem.instance.tempYumi < 400f)
         {
             takeButton.SetActive(true);
