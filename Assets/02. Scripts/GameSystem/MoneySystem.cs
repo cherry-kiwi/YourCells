@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,7 +32,7 @@ public class MoneySystem : MonoBehaviour
     public GameObject MaxRoutineS2;
 
     [Header("건물 보유 여부")]
-    public bool CellFactory;
+    public bool isCellFactory;
 
     [Header("콘텐츠")]
     public List<GameObject> CellFactoryContents;
@@ -59,14 +60,27 @@ public class MoneySystem : MonoBehaviour
     private void Update()
     {
         //건물 보유 여부
-        if(CellFactory == true)
+        for (int o = 0; o < BuildingSystem.instance.myInstalledBuildings.Count; o++)
+        {
+            if (BuildingSystem.instance.myInstalledBuildings[o].name == "CellFactory(Clone)")
+            {
+                isCellFactory = true;
+            }
+            else
+            {
+                isCellFactory = false;
+            }
+        }
+
+
+        if(isCellFactory == true)
         {
             for(int i = 0; i < CellFactoryContents.Count; i++)
             {
                 CellFactoryContents[i].SetActive(true);
             }
         }
-        else if (CellFactory == false)
+        else if (isCellFactory == false)
         {
             for (int i = 0; i < CellFactoryContents.Count; i++)
             {
@@ -88,8 +102,8 @@ public class MoneySystem : MonoBehaviour
         MaxRoutineT2.text = MaxRoutine.ToString() + "분 / 180분";
         MaxRoutineS2.GetComponent<Slider>().value = (float)MaxRoutine / 180f;
 
-        yumiM.text = (yumiPower * 6).ToString();
-        cellSnack1M.text = (cellSnack1Power * 6).ToString();
+        yumiM.text = yumiPower.ToString();
+        cellSnack1M.text = cellSnack1Power.ToString();
 
         yumiN.text = tempYumi.ToString();
         cellSnack1N.text = tempCellSnack1.ToString();
