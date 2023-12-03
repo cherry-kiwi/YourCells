@@ -9,8 +9,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 
-public class Main_ScoreSystem : MonoBehaviour
+public class  Main_ScoreSystem : MonoBehaviour
 {
+    public CellData myCell;
+    public CellSkill skillInfo;
+
     public TMP_Text _Score;
     public TMP_Text _Combo_text;
     public TMP_Text _Goal;
@@ -22,6 +25,12 @@ public class Main_ScoreSystem : MonoBehaviour
     public UnityEngine.UI.Slider result_Slider;
     public TMP_Text result_Money;
     public GameObject result_money_main;
+    public UnityEngine.UI.Image result_cellImage;
+    public TMP_Text CellSkillInfo;
+
+    public TMP_Text Final_Score;
+
+    private MillStone Millstone_scr;
 
     Touch toto;
     public float _Time = 120;
@@ -32,6 +41,7 @@ public class Main_ScoreSystem : MonoBehaviour
     bool Stun = false;
     [SerializeField] private GameObject stunEft;
     [SerializeField] private Spawner spw_er;
+    [SerializeField] private ParticleSystem[] Bomb_counterParticle;
 
     public event Action Com_bo;
     Vector2 Touch_start_pos;
@@ -39,6 +49,11 @@ public class Main_ScoreSystem : MonoBehaviour
     private void Start()
     {
         _Goal.text = "Goal : " + goal;
+        result_cellImage.sprite = myCell.image;
+
+        CellSkillInfo = result_cellImage.GetComponentInChildren<TMP_Text>();
+        CellSkillInfo.text = skillInfo.E_sung_cell_sInfo();
+        
     }
 
 
@@ -65,14 +80,15 @@ public class Main_ScoreSystem : MonoBehaviour
                     {
                         Combo_and_Score_Update();
                         textpUpdate();
-                        clickCol.TryGetComponent(out MillStone mill__k);
-                        mill__k.BingBingDolaganeun();
+                        clickCol.TryGetComponent(out Millstone_scr);
+                        Millstone_scr.BingBingDolaganeun();
                     } //콤보,점수,텍스트 업데이트
                     else if (clickCol != null && clickCol.tag == "Obs")
                     {
                         if (clickCol.TryGetComponent(out Obstacle obs))
                         {
                             obs.Bomb_obs_Click();
+                            Bomb_Counter_Eft(clickCol.transform);
                         }
                     }
                     else if( clickCol != null && clickCol.name.StartsWith("Slide"))
@@ -99,7 +115,16 @@ public class Main_ScoreSystem : MonoBehaviour
         }
     }
 
-
+    private void Bomb_Counter_Eft(Transform point)
+    {
+        int i = 0;
+        if (Bomb_counterParticle[i].isPlaying == true)
+        {
+            i++;
+        }
+        Bomb_counterParticle[i].transform.position = point.position;
+        Bomb_counterParticle[i].Play();
+    }
 
     public void textpUpdate()
     {
@@ -137,6 +162,7 @@ public class Main_ScoreSystem : MonoBehaviour
     public void Result_Start()
     {
         GameStart.GamePlaying = false;
+        Millstone_scr.GetComponent<BoxCollider2D>().enabled= false;
         spw_er.gameObject.SetActive(false);
         Result_main.SetActive(true);
         result_ScoreSlide();
@@ -158,10 +184,10 @@ public class Main_ScoreSystem : MonoBehaviour
 
         while (true) 
         {
-            k += 0.05f;
-            result_Slider.value += 0.05f;
+            k += Time.deltaTime * 0.1f;
+            result_Slider.value += k;
             Debug.Log("update");
-            if (k >= HowOnePer)
+            if (k >= HowOnePer || result_Slider.value >= 100)
             {
                 break;
             }
@@ -181,8 +207,10 @@ public class Main_ScoreSystem : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         result_money_main.SetActive(true);
-        result_Money.text = "" + scoreInt;
+        result_Money.text = "" + skillInfo.E_sung_cell(scoreInt);
+
+
+        Final_Score.text = skillInfo.E_sung_cell(scoreInt) + " Score !";
 
     }
-
 }
