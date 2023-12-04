@@ -60,18 +60,14 @@ public class MoneySystem : MonoBehaviour
     private void Update()
     {
         //건물 보유 여부
-        for (int o = 0; o < BuildingSystem.instance.myInstalledBuildings.Count; o++)
+        if (cellSnack1Power > 0)
         {
-            if (BuildingSystem.instance.myInstalledBuildings[o].name == "CellFactory(Clone)")
-            {
-                isCellFactory = true;
-            }
-            else
-            {
-                isCellFactory = false;
-            }
+            isCellFactory = true;
         }
-
+        else
+        {
+            isCellFactory = false;
+        }
 
         if(isCellFactory == true)
         {

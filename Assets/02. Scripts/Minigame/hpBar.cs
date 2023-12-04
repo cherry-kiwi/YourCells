@@ -19,12 +19,14 @@ public class hpBar : MonoBehaviour
 
     private void Start()
     {
+        maxHealth = StageCtrl.instance.SelectCell.hP;
+
 
         HP_Bar = GetComponent<Slider>();
         Hp_To_Time = maxHealth * 0.6f; //체력 시간 전환 설정. 100이 1분
                                        // 슬라이더의 밸류값에 연결 필요
         Hp_Time_conver = Hp_To_Time / 100 * 1;
-        _Timer.text = Mathf.Floor(Hp_To_Time / 60) + "m" + Mathf.Floor(Hp_To_Time % 60) + "s";
+        _Timer.text = Mathf.Floor(Hp_To_Time / 60) + "분" + Mathf.Floor(Hp_To_Time % 60) + "초";
         StartCoroutine(Timer_Hp_decrease());
 
     }
@@ -38,7 +40,7 @@ public class hpBar : MonoBehaviour
             {
                 Hp_To_Time -= Time.deltaTime;
                 t += Time.deltaTime;
-                _Timer.text = Mathf.Floor(Hp_To_Time / 60) + "m" + Mathf.Floor(Hp_To_Time % 60) + "s";
+                _Timer.text = Mathf.Floor(Hp_To_Time / 60) + "분" + Mathf.Floor(Hp_To_Time % 60) + "초";
 
                 if(t >= Hp_Time_conver)
                 {
@@ -48,7 +50,7 @@ public class hpBar : MonoBehaviour
             }
             yield return null;
         }
-        _Timer.text = "End";
+        _Timer.text = "끝!";
         Game_is_End();
     }
 

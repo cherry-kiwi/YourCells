@@ -12,6 +12,6 @@ public class CellSkill : MonoBehaviour
     }
     public string E_sung_cell_sInfo()
     {
-        return "Bonus Point 6%";
+        return "이성세포의 버프 6%";
     }
 }
