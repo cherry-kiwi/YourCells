@@ -26,3 +26,4 @@ MonoBehaviour:
     \uC218\uAC70\uD558\uACE0 \uCD94\uAC00\uB85C \uC720\uBBF8\uB97C \uBD84\uB2F9 100\uC529
     \uC0DD\uC0B0\uD569\uB2C8\uB2E4."
   abiltyPower: 100
+  prefab: {fileID: 3942838080116180478, guid: 2a27f98814c3aee4d81c5523b88edb81, type: 3}

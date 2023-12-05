@@ -8,6 +8,7 @@ public class DontDestroy : MonoBehaviour
     public static DontDestroy instance;
 
     public GameObject all;
+    public GameObject mainCam;
 
     private void Awake()
     {
@@ -22,7 +23,16 @@ public class DontDestroy : MonoBehaviour
 
     private void Update()
     {
-        if(SceneManager.GetActiveScene().name == ("02. MainLobbyScene"))
+        if (SceneManager.GetActiveScene().name == ("02. MainLobbyScene") || SceneManager.GetActiveScene().name == ("01. TitleScene"))
+        {
+            mainCam.SetActive(true);
+        }
+        else
+        {
+            mainCam.SetActive(false);
+        }
+
+        if (SceneManager.GetActiveScene().name == ("02. MainLobbyScene"))
         {
             all.gameObject.SetActive(true);
         }

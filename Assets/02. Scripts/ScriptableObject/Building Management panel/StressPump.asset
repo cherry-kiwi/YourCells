@@ -24,3 +24,4 @@ MonoBehaviour:
   abiltyType: yumi
   abiltyInfor: "\uC720\uBBF8\uB97C \uBD84\uB2F9 100 \uC0DD\uC0B0\uD569\uB2C8\uB2E4."
   abiltyPower: 100
+  prefab: {fileID: 4430336780981663780, guid: 32369edefdf2eb041bf725907acafc17, type: 3}

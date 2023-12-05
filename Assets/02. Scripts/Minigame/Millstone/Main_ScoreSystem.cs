@@ -36,7 +36,7 @@ public class  Main_ScoreSystem : MonoBehaviour
     public float _Time = 120;
     public int scoreInt = 0;
     public int comboInt = 0;
-    public int goal = 15000;
+    public int goal = 0;
 
     bool Stun = false;
     [SerializeField] private GameObject stunEft;
@@ -48,7 +48,10 @@ public class  Main_ScoreSystem : MonoBehaviour
 
     private void Start()
     {
-        _Goal.text = "Goal : " + goal;
+        myCell = StageCtrl.instance.SelectCell;
+        goal = StageCtrl.instance.goalScore;
+
+        _Goal.text = "목표: " + goal;
         result_cellImage.sprite = myCell.image;
 
         CellSkillInfo = result_cellImage.GetComponentInChildren<TMP_Text>();
@@ -174,6 +177,7 @@ public class  Main_ScoreSystem : MonoBehaviour
         result_goal.text = ""+goal;
         result_Score.text = "" + scoreInt;
         StartCoroutine(result_SliderAmount_coin());
+        MoneySystem.instance.yumi += skillInfo.E_sung_cell(scoreInt / 100);
     }
 
     private IEnumerator result_SliderAmount_coin()
@@ -184,8 +188,8 @@ public class  Main_ScoreSystem : MonoBehaviour
 
         while (true) 
         {
-            k += Time.deltaTime * 0.1f;
-            result_Slider.value += k;
+            k += Time.deltaTime * 50f;
+            result_Slider.value = k;
             Debug.Log("update");
             if (k >= HowOnePer || result_Slider.value >= 100)
             {
@@ -198,19 +202,27 @@ public class  Main_ScoreSystem : MonoBehaviour
 
         if(HowOnePer >= 100)
         {
-            Clear_or_Failed.text = "Clear ! ";
+            Clear_or_Failed.text = "클리어 ! ";
         }else if(HowOnePer < 100) 
         {
-            Clear_or_Failed.text = "Failed... ";
+            Clear_or_Failed.text = "실패... ";
         }
 
         yield return new WaitForSeconds(1);
 
         result_money_main.SetActive(true);
-        result_Money.text = "" + skillInfo.E_sung_cell(scoreInt);
+        result_Money.text = skillInfo.E_sung_cell(scoreInt/100) + " 유미 획득!";
 
+        Final_Score.text = skillInfo.E_sung_cell(scoreInt) + " 점!";
 
-        Final_Score.text = skillInfo.E_sung_cell(scoreInt) + " Score !";
+    }
 
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
     }
 }

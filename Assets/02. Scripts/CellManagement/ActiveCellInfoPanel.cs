@@ -30,7 +30,7 @@ public class ActiveCellInfoPanel : MonoBehaviour
 
         for (int i = 0; i < CellManager.instance.myCells.Count; i++)
         {
-            if (gameObject.GetComponent<Image>().sprite == CellManager.instance.myCells[i].cellImage)
+            if (gameObject.GetComponent<Image>().sprite == CellManager.instance.myCells[i].cellData.image)
             {
                 CellName.text = CellManager.instance.myCells[i].cellData.name;
                 CellImage.sprite = CellManager.instance.myCells[i].cellData.image;
