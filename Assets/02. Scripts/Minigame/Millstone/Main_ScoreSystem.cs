@@ -55,8 +55,6 @@ public class  Main_ScoreSystem : MonoBehaviour
         result_cellImage.sprite = myCell.image;
 
         CellSkillInfo = result_cellImage.GetComponentInChildren<TMP_Text>();
-        CellSkillInfo.text = skillInfo.E_sung_cell_sInfo();
-        
     }
 
 
@@ -175,7 +173,8 @@ public class  Main_ScoreSystem : MonoBehaviour
     public void result_ScoreSlide()
     {
         result_goal.text = ""+goal;
-        result_Score.text = "" + scoreInt;
+        result_Score.text = "" + skillInfo.E_sung_cell(scoreInt);
+        CellSkillInfo.text = skillInfo.E_sung_cell_sInfo() + " " + scoreInt + " + " + (skillInfo.E_sung_cell(scoreInt) - scoreInt);
         StartCoroutine(result_SliderAmount_coin());
         MoneySystem.instance.yumi += skillInfo.E_sung_cell(scoreInt / 100);
     }
@@ -183,12 +182,12 @@ public class  Main_ScoreSystem : MonoBehaviour
     private IEnumerator result_SliderAmount_coin()
     {
         Debug.Log("start");
-        float HowOnePer = scoreInt * 100 / goal; // 내 점수가 몇퍼인지 산출 ) 목표가 200, 점수가 50 이면 25 출력
+        float HowOnePer = skillInfo.E_sung_cell(scoreInt) * 100 / goal; // 내 점수가 몇퍼인지 산출 ) 목표가 200, 점수가 50 이면 25 출력
         float k = 0;
 
         while (true) 
         {
-            k += Time.deltaTime * 50f;
+            k += Time.deltaTime * HowOnePer/2f;
             result_Slider.value = k;
             Debug.Log("update");
             if (k >= HowOnePer || result_Slider.value >= 100)
