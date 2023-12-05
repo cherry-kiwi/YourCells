@@ -61,6 +61,7 @@ public class hpBar : MonoBehaviour
 
     public void Game_is_End()
     {
+        if(_ScoreSystem!= null)
         _ScoreSystem.Result_Start();
     }
 

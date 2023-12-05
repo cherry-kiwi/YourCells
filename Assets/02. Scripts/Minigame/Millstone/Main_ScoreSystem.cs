@@ -30,7 +30,7 @@ public class  Main_ScoreSystem : MonoBehaviour
 
     public TMP_Text Final_Score;
 
-    private MillStone Millstone_scr;
+    [SerializeField] private MillStone Millstone_scr;
 
     Touch toto;
     public float _Time = 120;
@@ -61,7 +61,6 @@ public class  Main_ScoreSystem : MonoBehaviour
     {
 
         #region  Click info
-
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 clickPos = new Vector2(worldPos.x, worldPos.y);
         Collider2D clickCol = Physics2D.OverlapPoint(clickPos);
@@ -80,7 +79,6 @@ public class  Main_ScoreSystem : MonoBehaviour
                     {
                         Combo_and_Score_Update();
                         textpUpdate();
-                        clickCol.TryGetComponent(out Millstone_scr);
                         Millstone_scr.BingBingDolaganeun();
                     } //콤보,점수,텍스트 업데이트
                     else if (clickCol != null && clickCol.tag == "Obs")
