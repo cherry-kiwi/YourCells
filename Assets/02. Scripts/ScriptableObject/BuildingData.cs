@@ -49,4 +49,8 @@ public class BuildingData : ScriptableObject
     [SerializeField]
     private int abiltyPower;
     public int AbiltyPower { get { return abiltyPower; } }
+
+    [SerializeField]
+    private GameObject prefab;
+    public GameObject Prefab { get { return prefab; } }
 }

@@ -24,3 +24,4 @@ MonoBehaviour:
   abiltyType: cellSnack1
   abiltyInfor: "\uC138\uD3EC\uAE61\uC744 \uBD84\uB2F9 1\uAC1C \uC0DD\uC0B0\uD569\uB2C8\uB2E4."
   abiltyPower: 1
+  prefab: {fileID: 1074773176849428503, guid: f35d8f229e9514d438db9c432a477aee, type: 3}

@@ -166,7 +166,7 @@ public class ButtonManager : MonoBehaviour
         for (int i = 0; i < CellManager.instance.myCells.Count; i++)
         {
             myCellButtonList.Add(Instantiate(myCellButtonPrefab, myCellContents.transform.position, Quaternion.identity));
-            myCellButtonList[i].gameObject.GetComponent<Image>().sprite = CellManager.instance.myCells[i].cellImage;
+            myCellButtonList[i].gameObject.GetComponent<Image>().sprite = CellManager.instance.myCells[i].cellData.image;
             myCellButtonList[i].transform.SetParent(myCellContents.transform);
             myCellButtonList[i].transform.localScale = new Vector3(1, 1, 1);
         }
@@ -466,11 +466,11 @@ public class ButtonManager : MonoBehaviour
 
         if (BuildingSystem.instance.myFixedBuildings.Count > 0)
         {
+            StorageSystem.instance.myBuildingsSprites.Add(BuildingSystem.instance.temp.buildingData.Image);
+            StorageSystem.instance.myBuildings.Add(BuildingSystem.instance.temp.buildingData.Prefab);
+            BuildingSystem.instance.myInstalledBuildings.Remove(BuildingSystem.instance.temp.gameObject);
             BuildingSystem.instance.myFixedBuildings.Remove(BuildingSystem.instance.temp);
             BuildingSystem.instance.cancleBuilding();
-            StorageSystem.instance.myBuildingsSprites.Add(ShopSystem.instance.itemList[nowIndex].image);
-            StorageSystem.instance.myBuildings.Add(ShopSystem.instance.itemList[nowIndex].itemPrefab);
-            BuildingSystem.instance.myInstalledBuildings.Remove(BuildingSystem.instance.temp.gameObject);
 
             for (int j = 0; j < GameManager.instance.fixPanels.Count; j++)
             {
