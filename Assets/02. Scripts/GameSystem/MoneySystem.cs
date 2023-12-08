@@ -129,4 +129,9 @@ public class MoneySystem : MonoBehaviour
         cellSnack1 += 10;
         zem += 500;
     }
+
+    public void TutorialOver()
+    {
+        zem += 150;
+    }
 }

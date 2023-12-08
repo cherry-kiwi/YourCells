@@ -10,6 +10,8 @@ public class CellManager : MonoBehaviour
 
     public List<CellCard> myCells;
 
+    public List<GameObject> myCellObjects;
+
     private void Awake()
     {
         instance = this;
