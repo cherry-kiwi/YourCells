@@ -28,7 +28,7 @@ public class CellAi : MonoBehaviour
             Timer = Random.Range(3, 10);
         }
 
-        if (transform.position.x < 4f && transform.position.x > -4f && transform.position.y < 2.5f && transform.position.y > -2.5f)
+        if (transform.position.x < 4f && transform.position.x > -4f && transform.position.y < 2.5f && transform.position.y > -3f)
         {
             if (dir == 1)
             {
@@ -37,25 +37,25 @@ public class CellAi : MonoBehaviour
             else if (dir == 2)
             {
                 animator.Play("Run");
-                transform.localScale = new Vector3(-0.43f, 0.43f, 0.43f);
+                transform.localScale = new Vector3(-0.1f, 0.1f, 1);
                 transform.Translate(new Vector3(1, 1, 0) * Time.deltaTime / 10);
             }
             else if (dir == 3)
             {
                 animator.Play("Run");
-                transform.localScale = new Vector3(0.43f, 0.43f, 0.43f);
+                transform.localScale = new Vector3(0.1f, 0.1f, 1);
                 transform.Translate(new Vector3(-1, 1, 0) * Time.deltaTime / 10);
             }
             else if (dir == 4)
             {
                 animator.Play("Run");
-                transform.localScale = new Vector3(-0.43f, 0.43f, 0.43f);
+                transform.localScale = new Vector3(-0.1f, 0.1f, 1);
                 transform.Translate(new Vector3(1, -1, 0) * Time.deltaTime / 10);
             }
             else if (dir == 5)
             {
                 animator.Play("Run");
-                transform.localScale = new Vector3(0.43f, 0.43f, 0.43f);
+                transform.localScale = new Vector3(0.1f, 0.1f, 1);
                 transform.Translate(new Vector3(-1, -1, 0) * Time.deltaTime / 10);
             }
         }

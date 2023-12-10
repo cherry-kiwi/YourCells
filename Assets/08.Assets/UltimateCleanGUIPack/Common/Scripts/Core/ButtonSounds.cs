@@ -18,6 +18,10 @@ namespace UltimateClean
         public AudioClip takeSound;
         public AudioClip pressedSound;
         public AudioClip rolloverSound;
+        public AudioClip[] CellTouchSound;
+        public AudioClip MillStoneTouchSound;
+        public AudioClip CellFactoryTouchSound;
+        public AudioClip CountDown;
 
         private AudioSource audioSource;
         void Update()
@@ -65,6 +69,28 @@ namespace UltimateClean
         public void PlayRolloverSound()
         {
             audioSource.clip = rolloverSound;
+            audioSource.Play();
+        }
+        public void PlayCellTouchSound()
+        {
+            int R = Random.Range(0, 2);
+
+            audioSource.clip = CellTouchSound[R];
+            audioSource.Play();
+        }
+        public void PlayMillStoneTouchSound()
+        {
+            audioSource.clip = MillStoneTouchSound;
+            audioSource.Play();
+        }
+        public void PlayCellFactoryTouchSound()
+        {
+            audioSource.clip = CellFactoryTouchSound;
+            audioSource.Play();
+        }
+        public void PlayCountDownSound()
+        {
+            audioSource.clip = CountDown;
             audioSource.Play();
         }
     }

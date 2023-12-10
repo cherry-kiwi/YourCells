@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UltimateClean;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +8,11 @@ public class SceneLoadManager : MonoBehaviour
 {
     public void MoveToScene_MainLobbyScene()
     {
+        if (GameManager.instance.isTutorial)
+        {
+            TutorialManager.instance.index++;
+        }
+
         SceneManager.LoadScene("02. MainLobbyScene");
     }
 

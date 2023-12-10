@@ -15,6 +15,9 @@ public class GachaSystem : MonoBehaviour
     public Transform gachaResultPanel;
     public GameObject cellCardPrefab;
 
+    public GameObject CellP;
+    public GameObject[] Cells;
+
     private void Awake()
     {
         instance = this;
@@ -64,6 +67,17 @@ public class GachaSystem : MonoBehaviour
             for (int i = 0; i < ButtonManager.instance.myCost; i++)
             {
                 myResults.Add(RandomCard());
+
+                int R = Random.Range(0, 2);
+
+                if(R == 0)
+                {
+                    Instantiate(Cells[0], new Vector3(0, -2.3f, 0), Quaternion.identity, CellP.transform);
+                }   
+                else
+                {
+                    Instantiate(Cells[1], new Vector3(0, -2.3f, 0), Quaternion.identity, CellP.transform);
+                }
 
                 if (cellsName.Contains(myResults[i].cellName))
                 {

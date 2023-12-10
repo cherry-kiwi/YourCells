@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using UltimateClean;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,10 +14,13 @@ public class GameManager : MonoBehaviour
 
     public ParticleSystem touchEffect;
 
+    public GameObject Sound;
+
     public GameObject BuildingDisplayPanel;
 
     public GameObject buildingDisplay;
 
+    public List<GameObject> tutorialUI;
     public List<GameObject> mainUI;
     public List<GameObject> generalModeUI;
     public List<GameObject> BuyModeUI;
@@ -25,6 +29,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> fixPanels;
     public List<GameObject> CaptureModeUI;
 
+    public bool isTutorial = true;
     public bool isEditing = false;
     public bool isBuying = false;
     public bool isfixing = false;
@@ -108,10 +113,28 @@ public class GameManager : MonoBehaviour
                             if (hit.collider.name == buildingDisplay.GetComponent<BuildingDataDisplay>().buildingSlot[i].name)
                             {
                                 buildingDisplay.GetComponent<BuildingDataDisplay>().buildingData = buildingDisplay.GetComponent<BuildingDataDisplay>().buildingSlot[i];
+
+                                if (stringBuilder.ToString() == "MillStone")
+                                {
+                                    Sound.GetComponent<ButtonSounds>().PlayMillStoneTouchSound();
+                                }
+                                else
+                                {
+                                    Sound.GetComponent<ButtonSounds>().PlayCellFactoryTouchSound();
+                                }
                             }
                             else if (stringBuilder.ToString() == buildingDisplay.GetComponent<BuildingDataDisplay>().buildingSlot[i].name)
                             {
                                 buildingDisplay.GetComponent<BuildingDataDisplay>().buildingData = buildingDisplay.GetComponent<BuildingDataDisplay>().buildingSlot[i];
+
+                                if (stringBuilder.ToString() == "MillStone")
+                                {
+                                    Sound.GetComponent<ButtonSounds>().PlayMillStoneTouchSound();
+                                }
+                                else
+                                {
+                                    Sound.GetComponent<ButtonSounds>().PlayCellFactoryTouchSound();
+                                }
                             }
                         }
 
@@ -124,7 +147,8 @@ public class GameManager : MonoBehaviour
                     {
                         hit.collider.gameObject.GetComponent<CellAi>().dir = 6;
                         hit.collider.gameObject.GetComponent<CellAi>().Timer = 0.7f;
-                        hit.collider.gameObject.GetComponent<Animator>().Play("Game_Clear");
+                        hit.collider.gameObject.GetComponent<Animator>().Play("HandShake");
+                        Sound.GetComponent<ButtonSounds>().PlayCellTouchSound();
                     }
                 }
                 else
@@ -211,7 +235,47 @@ public class GameManager : MonoBehaviour
 
 
         //Mod Change
-        if (isEditing)
+        if(isTutorial && !isBuying)
+        {
+            for (int i = 0; i < tutorialUI.Count; i++)
+            {
+                tutorialUI[i].SetActive(true);
+            }
+
+            for (int i = 0; i < editModeUI.Count; i++)
+            {
+                editModeUI[i].SetActive(false);
+            }
+
+            for (int i = 0; i < BuyModeUI.Count; i++)
+            {
+                BuyModeUI[i].SetActive(false);
+            }
+
+            for (int i = 0; i < fixModeUI.Count; i++)
+            {
+                fixModeUI[i].SetActive(false);
+            }
+
+            for (int i = 0; i < CaptureModeUI.Count; i++)
+            {
+                CaptureModeUI[i].SetActive(false);
+            }
+        }
+        else if (isTutorial && isBuying)
+        {
+            for (int i = 0; i < generalModeUI.Count; i++)
+            {
+                mainUI[i].SetActive(false);
+                generalModeUI[i].SetActive(false);
+            }
+
+            for (int i = 0; i < BuyModeUI.Count; i++)
+            {
+                BuyModeUI[i].SetActive(true);
+            }
+        }
+        else if (isEditing)
         {
             for (int i = 0; i < generalModeUI.Count; i++)
             {
@@ -269,6 +333,11 @@ public class GameManager : MonoBehaviour
                 mainUI[i].SetActive(true);
             }
 
+            for (int i = 0; i < tutorialUI.Count; i++)
+            {
+                tutorialUI[i].SetActive(false);
+            }
+
             for (int i = 0; i < editModeUI.Count; i++)
             {
                 editModeUI[i].SetActive(false);
@@ -318,5 +387,13 @@ public class GameManager : MonoBehaviour
         .RaycastAll(eventDataCurrentPosition, results);
 
         return results.Count > 0;
+    }
+
+    public void MainOn()
+    {
+        for (int i = 0; i < mainUI.Count; i++)
+        {
+            mainUI[i].SetActive(true);
+        }
     }
 }

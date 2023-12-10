@@ -337,13 +337,20 @@ public class ButtonManager : MonoBehaviour
 
     public void Editing_Storage()
     {
-        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+        if (GameManager.instance.isTutorial == false)
+        {
+            Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
 
-        GameManager.instance.isBuying = false;
-        BuildingSystem.instance.cancleBuilding();
-        StorageSystem.instance.myBuildingsSprites.Add(ShopSystem.instance.itemList[nowIndex].image);
-        StorageSystem.instance.myBuildings.Add(ShopSystem.instance.itemList[nowIndex].itemPrefab);
-        BuildingSystem.instance.myInstalledBuildings.Remove(BuildingSystem.instance.temp.gameObject);
+            GameManager.instance.isBuying = false;
+            BuildingSystem.instance.cancleBuilding();
+            StorageSystem.instance.myBuildingsSprites.Add(ShopSystem.instance.itemList[nowIndex].image);
+            StorageSystem.instance.myBuildings.Add(ShopSystem.instance.itemList[nowIndex].itemPrefab);
+            BuildingSystem.instance.myInstalledBuildings.Remove(BuildingSystem.instance.temp.gameObject);
+        }
+        else
+        {
+            AndroidToast.I.ShowToastMessage("지금은 보관이 불가능합니다.");
+        }
     }
 
     public void Editing_Cancel()
@@ -358,14 +365,21 @@ public class ButtonManager : MonoBehaviour
 
     public void Editing_Cancel2()
     {
-        Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
+        if (GameManager.instance.isTutorial == false)
+        {
+            Sounds.GetComponent<ButtonSounds>().PlayPressedSound();
 
-        MoneySystem.instance.yumi += structureInforDisplay.GetComponent<StructureInformationDisplay>().structureSlots[nowIndex].price;
-        
-        GameManager.instance.isEditing = false;
-        GameManager.instance.isBuying = false;
-        BuildingSystem.instance.cancleBuilding();
-        BuildingSystem.instance.myInstalledBuildings.Remove(BuildingSystem.instance.temp.gameObject);
+            MoneySystem.instance.yumi += structureInforDisplay.GetComponent<StructureInformationDisplay>().structureSlots[nowIndex].price;
+
+            GameManager.instance.isEditing = false;
+            GameManager.instance.isBuying = false;
+            BuildingSystem.instance.cancleBuilding();
+            BuildingSystem.instance.myInstalledBuildings.Remove(BuildingSystem.instance.temp.gameObject);
+        }
+        else
+        {
+            AndroidToast.I.ShowToastMessage("지금은 취소가 불가능합니다.");
+        }
     }
 
     public void Editing_Confirm()
@@ -378,6 +392,14 @@ public class ButtonManager : MonoBehaviour
             GameManager.instance.isBuying = false;
             BuildingSystem.instance.placeBuilding();
             //BuildingSystem.instance.myInstalledBuildings.Add(BuildingSystem.instance.temp.gameObject);
+
+            if (GameManager.instance.isTutorial)
+            {
+                TutorialManager.instance.ActiveNextIndex();
+                TutorialManager.instance.items[15].SetActive(false);
+                TutorialManager.instance.TouchGuard.SetActive(true);
+                GameManager.instance.MainOn();
+            }
         }
     }
 

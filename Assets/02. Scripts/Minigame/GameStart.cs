@@ -1,16 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UltimateClean;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameStart : MonoBehaviour
 {
+    public GameObject St;
     public TextMeshProUGUI count;
     private float Timer = 3f;
 
     public static bool GamePlaying = false;
+
+    private void Start()
+    {
+        St.GetComponent<ButtonSounds>().PlayCountDownSound();
+    }
 
     private void Update()
     {
