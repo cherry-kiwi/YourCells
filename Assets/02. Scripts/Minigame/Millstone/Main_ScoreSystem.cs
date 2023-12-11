@@ -49,9 +49,9 @@ public class  Main_ScoreSystem : MonoBehaviour
     private void Start()
     {
         myCell = StageCtrl.instance.SelectCell;
-        goal = StageCtrl.instance.goalScore;
+        //goal = StageCtrl.instance.goalScore;
 
-        _Goal.text = "목표: " + goal;
+        //_Goal.text = "목표: " + goal;
         result_cellImage.sprite = myCell.image;
 
         CellSkillInfo = result_cellImage.GetComponentInChildren<TMP_Text>();
@@ -62,7 +62,6 @@ public class  Main_ScoreSystem : MonoBehaviour
     {
 
         #region  Click info
-
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 clickPos = new Vector2(worldPos.x, worldPos.y);
         Collider2D clickCol = Physics2D.OverlapPoint(clickPos);
@@ -70,7 +69,6 @@ public class  Main_ScoreSystem : MonoBehaviour
 
         if (GameStart.GamePlaying)
         {
-
             if (Input.touchCount > 0)
             {
                 toto = Input.GetTouch(0);
