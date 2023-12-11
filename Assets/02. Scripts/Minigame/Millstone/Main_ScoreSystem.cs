@@ -49,9 +49,9 @@ public class  Main_ScoreSystem : MonoBehaviour
     private void Start()
     {
         myCell = StageCtrl.instance.SelectCell;
-        //goal = StageCtrl.instance.goalScore;
+        goal = StageCtrl.instance.goalScore;
 
-        //_Goal.text = "목표: " + goal;
+        _Goal.text = "목표: " + goal;
         result_cellImage.sprite = myCell.image;
 
         CellSkillInfo = result_cellImage.GetComponentInChildren<TMP_Text>();

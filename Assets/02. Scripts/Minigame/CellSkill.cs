@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CellSkill : MonoBehaviour
 {
-    [SerializeField] private Main_ScoreSystem scoreSystem;
+    //[SerializeField] private Main_ScoreSystem scoreSystem;
 
     public int E_sung_cell(int k)
     {
