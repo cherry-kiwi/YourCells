@@ -10,6 +10,8 @@ public class MillStoneCtrl : MonoBehaviour
     public GameObject takeButton;
     public List<GameObject> UIimages;
 
+    public GameObject Tut;
+
     private void Awake()
     {
         instance = this;
@@ -18,132 +20,140 @@ public class MillStoneCtrl : MonoBehaviour
     void Update()
     {
         takeButton.transform.position = transform.position + new Vector3(0, 1.5f, 0);
-        if(MoneySystem.instance.tempYumi > 0f && MoneySystem.instance.tempYumi < 400f)
-        {
-            takeButton.SetActive(true);
 
-            for(int i = 0; i <UIimages.Count;i++)
+        if (Tut.activeSelf == false)
+        {
+            if (MoneySystem.instance.tempYumi >= 0f && MoneySystem.instance.tempYumi < 400f)
             {
-                if (i == 0)
+                takeButton.SetActive(true);
+
+                for (int i = 0; i < UIimages.Count; i++)
                 {
-                    UIimages[i].SetActive(true);
-                }
-                else
-                {
-                    UIimages[i].SetActive(false);
+                    if (i == 0)
+                    {
+                        UIimages[i].SetActive(true);
+                    }
+                    else
+                    {
+                        UIimages[i].SetActive(false);
+                    }
                 }
             }
-        }
-        else if(MoneySystem.instance.tempYumi >= 400f && MoneySystem.instance.tempYumi < 600f)
-        {
-            takeButton.SetActive(true);
-
-            for (int i = 0; i < UIimages.Count; i++)
+            else if (MoneySystem.instance.tempYumi >= 400f && MoneySystem.instance.tempYumi < 600f)
             {
-                if (i == 1)
+                takeButton.SetActive(true);
+
+                for (int i = 0; i < UIimages.Count; i++)
                 {
-                    UIimages[i].SetActive(true);
-                }
-                else
-                {
-                    UIimages[i].SetActive(false);
+                    if (i == 1)
+                    {
+                        UIimages[i].SetActive(true);
+                    }
+                    else
+                    {
+                        UIimages[i].SetActive(false);
+                    }
                 }
             }
-        }
-        else if (MoneySystem.instance.tempYumi >= 600f && MoneySystem.instance.tempYumi < 800f)
-        {
-            takeButton.SetActive(true);
-
-            for (int i = 0; i < UIimages.Count; i++)
+            else if (MoneySystem.instance.tempYumi >= 600f && MoneySystem.instance.tempYumi < 800f)
             {
-                if (i == 2)
+                takeButton.SetActive(true);
+
+                for (int i = 0; i < UIimages.Count; i++)
                 {
-                    UIimages[i].SetActive(true);
-                }
-                else
-                {
-                    UIimages[i].SetActive(false);
+                    if (i == 2)
+                    {
+                        UIimages[i].SetActive(true);
+                    }
+                    else
+                    {
+                        UIimages[i].SetActive(false);
+                    }
                 }
             }
-        }
-        else if (MoneySystem.instance.tempYumi >= 800f && MoneySystem.instance.tempYumi < 1000f)
-        {
-            takeButton.SetActive(true);
-
-            for (int i = 0; i < UIimages.Count; i++)
+            else if (MoneySystem.instance.tempYumi >= 800f && MoneySystem.instance.tempYumi < 1000f)
             {
-                if (i == 3)
+                takeButton.SetActive(true);
+
+                for (int i = 0; i < UIimages.Count; i++)
                 {
-                    UIimages[i].SetActive(true);
-                }
-                else
-                {
-                    UIimages[i].SetActive(false);
+                    if (i == 3)
+                    {
+                        UIimages[i].SetActive(true);
+                    }
+                    else
+                    {
+                        UIimages[i].SetActive(false);
+                    }
                 }
             }
-        }
-        else if (MoneySystem.instance.tempYumi >= 1000f && MoneySystem.instance.tempYumi < 1600f)
-        {
-            takeButton.SetActive(true);
-
-            for (int i = 0; i < UIimages.Count; i++)
+            else if (MoneySystem.instance.tempYumi >= 1000f && MoneySystem.instance.tempYumi < 1600f)
             {
-                if (i == 4)
+                takeButton.SetActive(true);
+
+                for (int i = 0; i < UIimages.Count; i++)
                 {
-                    UIimages[i].SetActive(true);
-                }
-                else
-                {
-                    UIimages[i].SetActive(false);
+                    if (i == 4)
+                    {
+                        UIimages[i].SetActive(true);
+                    }
+                    else
+                    {
+                        UIimages[i].SetActive(false);
+                    }
                 }
             }
-        }
-        else if (MoneySystem.instance.tempYumi >= 1600f && MoneySystem.instance.tempYumi < 3000f)
-        {
-            takeButton.SetActive(true);
-
-            for (int i = 0; i < UIimages.Count; i++)
+            else if (MoneySystem.instance.tempYumi >= 1600f && MoneySystem.instance.tempYumi < 3000f)
             {
-                if (i == 5)
+                takeButton.SetActive(true);
+
+                for (int i = 0; i < UIimages.Count; i++)
                 {
-                    UIimages[i].SetActive(true);
-                }
-                else
-                {
-                    UIimages[i].SetActive(false);
+                    if (i == 5)
+                    {
+                        UIimages[i].SetActive(true);
+                    }
+                    else
+                    {
+                        UIimages[i].SetActive(false);
+                    }
                 }
             }
-        }
-        else if (MoneySystem.instance.tempYumi >= 3000f && MoneySystem.instance.tempYumi < 5000f)
-        {
-            takeButton.SetActive(true);
-
-            for (int i = 0; i < UIimages.Count; i++)
+            else if (MoneySystem.instance.tempYumi >= 3000f && MoneySystem.instance.tempYumi < 5000f)
             {
-                if (i == 6)
+                takeButton.SetActive(true);
+
+                for (int i = 0; i < UIimages.Count; i++)
                 {
-                    UIimages[i].SetActive(true);
-                }
-                else
-                {
-                    UIimages[i].SetActive(false);
+                    if (i == 6)
+                    {
+                        UIimages[i].SetActive(true);
+                    }
+                    else
+                    {
+                        UIimages[i].SetActive(false);
+                    }
                 }
             }
-        }
-        else if (MoneySystem.instance.tempYumi >= 5000f)
-        {
-            takeButton.SetActive(true);
-
-            for (int i = 0; i < UIimages.Count; i++)
+            else if (MoneySystem.instance.tempYumi >= 5000f)
             {
-                if (i == 7)
+                takeButton.SetActive(true);
+
+                for (int i = 0; i < UIimages.Count; i++)
                 {
-                    UIimages[i].SetActive(true);
+                    if (i == 7)
+                    {
+                        UIimages[i].SetActive(true);
+                    }
+                    else
+                    {
+                        UIimages[i].SetActive(false);
+                    }
                 }
-                else
-                {
-                    UIimages[i].SetActive(false);
-                }
+            }
+            else
+            {
+                takeButton.SetActive(false);
             }
         }
         else

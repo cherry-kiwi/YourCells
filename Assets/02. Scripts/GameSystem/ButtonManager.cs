@@ -33,6 +33,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject informationPanel;
     public GameObject BuildingDisplayPanel;
     public GameObject storyModePanel;
+    public GameObject ResultPanel;
 
     #endregion
 
@@ -451,6 +452,14 @@ public class ButtonManager : MonoBehaviour
 
             MoneySystem.instance.Timer = 60f;
             MoneySystem.instance.MaxRoutine = 0;
+        }
+    }
+
+    public void ReseltPanelTrue()
+    {
+        if (MoneySystem.instance.MaxRoutine > 0)
+        {
+            ResultPanel.SetActive(true);
         }
     }
 

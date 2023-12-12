@@ -107,6 +107,7 @@ MonoBehaviour:
   buildngAbiltyType: 
   buildngAbiltyPower: 0
   animator: {fileID: 0}
+  Timer: 0
 --- !u!68 &5752536823057106950
 EdgeCollider2D:
   m_ObjectHideFlags: 0
