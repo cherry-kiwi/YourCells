@@ -11,6 +11,7 @@ public class MainPanel : MonoBehaviour
 
     [SerializeField] private Transform[] Row;
 
+    [SerializeField]
     private List<Transform> _Spuare = new List<Transform>();
 
     [SerializeField] private List<Transform> _Able = new List<Transform>();
@@ -84,12 +85,11 @@ public class MainPanel : MonoBehaviour
 
             if(toto.phase == TouchPhase.Ended && clickCol != null) 
             {
-                if(clickCol.tag == "EndPoint")
+                if(Fail_Reset.Count == _Spuare.Count)
                 {
                     Debug.Log("Clear");
                 }else
                 {
-                    Debug.Log("Fail");
                     StartCoroutine( _Reset());
                 }
             }
@@ -100,15 +100,7 @@ public class MainPanel : MonoBehaviour
     public IEnumerator _Reset()
     {
         GameObject _mesh;
-        //foreach(Transform sq in _Spuare)
-        //{
-        //    sq.gameObject.GetComponent<SpriteRenderer>().material.color = Color.white;
 
-        //    if(sq.TryGetComponent<Collider2D>(out Collider2D col))
-        //    {
-        //        col.enabled = true;
-        //    }
-        //}clickCol.gameObject.GetComponent<SpriteRenderer>().material.color = Color.red;
         while (Fail_Reset.Count > 0)
         {
             _Able.Clear();
