@@ -198,13 +198,21 @@ public class TutorialManager : MonoBehaviour
             {
                 items[21].SetActive(true);
             }
-            else if (index == 24)
+            else if (index == 24)   //미니게임 스타트
             {
                 items[22].SetActive(true);
             }
             else if (index == 25)
             {
+                items[22].SetActive(false);
                 items[23].SetActive(true);
+
+                yield return new WaitForSeconds(1);
+
+                if (index < 26)
+                {
+                    index = 26;
+                }
             }
             else if (index == 26)
             {
@@ -216,10 +224,49 @@ public class TutorialManager : MonoBehaviour
             }
             else if (index == 28)
             {
-                items[25].SetActive(false);
                 items[26].SetActive(true);
             }
             else if (index == 29)
+            {
+                items[27].SetActive(false);
+                if (items[29].activeSelf == false)
+                {
+                    items[28].SetActive(true);
+                }
+
+                yield return new WaitForSeconds(5);
+
+                items[28].SetActive(false);
+                if (items[30].activeSelf == false)
+                {
+                    items[29].SetActive(true);
+                }
+
+                yield return new WaitForSeconds(1);
+
+                if (index < 30)
+                {
+                    index = 30;
+                }
+            }
+            else if (index == 30)
+            {
+                items[30].SetActive(true);
+            }
+            else if (index == 31)
+            {
+                items[31].SetActive(true);
+            }
+            else if (index == 32)
+            {
+                items[32].SetActive(true);
+            }
+            else if (index == 33)
+            {
+                items[32].SetActive(false);
+                items[33].SetActive(true);
+            }
+            else if (index == 34)
             {
                 GameManager.instance.isTutorial = false;
                 StopCoroutine(TutorialCutScene());
