@@ -4,31 +4,27 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    public List<string> FoodList = new List<string>( new string[] { "쌀", "딸기", "떡꼬치" });
+    public List<string> FoodList = new List<string>( new string[] { "딸기", "떡꼬치" });
     public List<Sprite> FoodSprites = new List<Sprite>();
     public string Tag;
 
     private void Start()
     {
-        Tag = FoodList[Random.Range(0, 3)];
+        Tag = FoodList[Random.Range(0, 2)];
 
-        if (Tag == "쌀")
+        if (Tag == "딸기")
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = FoodSprites[0];
         }
-        else if (Tag == "딸기")
-        {
-            gameObject.GetComponent<SpriteRenderer>().sprite = FoodSprites[1];
-        }
         else if (Tag == "떡꼬치")
         {
-            gameObject.GetComponent<SpriteRenderer>().sprite = FoodSprites[2];
+            gameObject.GetComponent<SpriteRenderer>().sprite = FoodSprites[1];
         }
     }
 
     private void Update()
     {
-        if(transform.position.x > 5 || transform.position.x < -5 || transform.position.y < -6)
+        if(transform.position.x > 5 || transform.position.x < -5)
         {
             Destroy(gameObject);
         }
