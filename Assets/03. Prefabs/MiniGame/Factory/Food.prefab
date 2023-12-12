@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6423602008300526141}
   - component: {fileID: 5994620250437302820}
-  - component: {fileID: 3370923191691700191}
+  - component: {fileID: 8699494710185481092}
   - component: {fileID: 3988345159138312863}
   - component: {fileID: 1524080867022623773}
   m_Layer: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1337894381
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &3370923191691700191
+--- !u!50 &8699494710185481092
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -102,7 +102,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -111,9 +111,9 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!61 &3988345159138312863
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -172,11 +172,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FoodList:
-  - "\uC300"
   - "\uB538\uAE30"
   - "\uB5A1\uAF2C\uCE58"
   FoodSprites:
-  - {fileID: 21300000, guid: f108dfa114352f64091cfa003be6ecf5, type: 3}
   - {fileID: 21300000, guid: 0ce9cddecbe168b408c34906a79d18e4, type: 3}
   - {fileID: 21300000, guid: 66ea98c37412cf74781218436ae2e827, type: 3}
   Tag: 

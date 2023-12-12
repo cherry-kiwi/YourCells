@@ -3,11 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class FoodGenerater : MonoBehaviour
 {
     public GameObject Food;
-    public List<GameObject> Foods;
+    public List<GameObject> Foods = new List<GameObject>();
+    public List<Transform> FoodPoint = new List<Transform>();
+
+    public Button[] btn;
 
     float Timer = 0.0f;
     float GenerateCool = 0.3f;
@@ -48,25 +53,25 @@ public class FoodGenerater : MonoBehaviour
         result_cellImage.sprite = myCell.image;
 
         CellSkillInfo = result_cellImage.GetComponentInChildren<TMP_Text>();
+
     }
 
     private void Update()
     {
-
         if (GameStart.GamePlaying == true)
         {
             Timer += Time.deltaTime;
 
-            if (Foods.Count < 10)
+            if (Foods.Count < 5)
             {
                 if (Timer > GenerateCool)
                 {
                     Generate();
+                    StartCoroutine(ConveyorOn(Foods.Count));
 
                     Timer = 0;
                 }
             }
-
             ChageLayer();
         }
     }
@@ -78,10 +83,10 @@ public class FoodGenerater : MonoBehaviour
 
     void ChageLayer()
     {
-        for (int i = 0; i < Foods.Count; i++)
-        {
-            Foods[i].transform.GetComponent<SpriteRenderer>().sortingOrder = -i;
-        }
+        //for (int i = 0; i < Foods.Count; i++)
+        //{
+        //    Foods[i].transform.GetComponent<SpriteRenderer>().sortingOrder = -i;
+        //}
     }
 
     public void LeftBtn()
@@ -91,32 +96,13 @@ public class FoodGenerater : MonoBehaviour
             Foods[0].GetComponent<BoxCollider2D>().enabled = false;
             Foods[0].GetComponent<Rigidbody2D>().AddForce(Vector2.left * 1000);
             Foods.Remove(Foods[0]);
+            
 
             Score += 1;
             Com_bo();
             comboInt += 1;
             textpUpdate();
-        }
-        else
-        {
-            ha_bar.umm_didyouHit();
-            comboInt = 0;
-            textpUpdate();
-        }
-    }
 
-    public void DownBtn()
-    {
-        if (Foods[0].GetComponent<Food>().Tag == "쌀")
-        {
-            Foods[0].GetComponent<BoxCollider2D>().enabled = false;
-            Foods[0].GetComponent<Rigidbody2D>().AddForce(Vector2.down * 1000);
-            Foods.Remove(Foods[0]);
-
-            Score += 1;
-            Com_bo();
-            comboInt += 1;
-            textpUpdate();
         }
         else
         {
@@ -148,6 +134,50 @@ public class FoodGenerater : MonoBehaviour
         }
     }
 
+
+    private IEnumerator ConveyorOn(int Count)
+    {
+        btn[0].interactable = false;
+        btn[1].interactable = false;
+        for (int k = 0; k < Count; k++)
+        {
+            while (Vector2.Distance(Foods[k].transform.position, FoodPoint[k].transform.position) >= 0.1f)
+            {
+                Foods[k].transform.position = Vector2.MoveTowards(Foods[k].transform.position, FoodPoint[k].transform.position, 0.15f);
+                yield return null;
+            }
+
+            switch (k)
+            {
+                case 0:
+                    Foods[k].transform.localScale = new Vector2(2, 2);
+                    break;
+
+                    case 1:
+                    Foods[k].transform.localScale = new Vector2(1.5f , 1.5f);
+                    break;
+
+                    case 2:
+                    Foods[k].transform.localScale = new Vector2(1.2f , 1.2f);
+                    break;
+
+                    case 3:
+                    Foods[k].transform.localScale = new Vector2(0.8f , 0.8f);
+                    break;
+
+                    case 4:
+                    Foods[k].transform.localScale = new Vector2(0.6f , 0.6f);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+        btn[0].interactable = true;
+        btn[1].interactable = true;
+    }
+
+
     public void textpUpdate()
     {
 
@@ -163,6 +193,7 @@ public class FoodGenerater : MonoBehaviour
         }
     }
 
+    #region 결과창
 
     public void Result_Start()
     {
@@ -221,9 +252,7 @@ public class FoodGenerater : MonoBehaviour
 
     }
 
-
-
-
+    #endregion
 
 
     public void PauseGame()
