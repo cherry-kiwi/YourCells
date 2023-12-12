@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class FoodGenerater : MonoBehaviour
 {
+    
+
     public GameObject Food;
     public List<GameObject> Foods = new List<GameObject>();
     public List<Transform> FoodPoint = new List<Transform>();
@@ -44,6 +46,11 @@ public class FoodGenerater : MonoBehaviour
     public TMP_Text CellSkillInfo;
     public TMP_Text Final_Score;
 
+    [SerializeField] private float ShakeAmount;
+    float ShakeTime;
+    Vector3 initPos;
+    [SerializeField] private Transform _Cam;
+
     private void Start()
     {
         myCell = StageCtrl.instance.SelectCell;
@@ -54,7 +61,10 @@ public class FoodGenerater : MonoBehaviour
 
         CellSkillInfo = result_cellImage.GetComponentInChildren<TMP_Text>();
 
+        initPos = _Cam.transform.position;
     }
+
+
 
     private void Update()
     {
@@ -68,12 +78,30 @@ public class FoodGenerater : MonoBehaviour
                 {
                     Generate();
                     StartCoroutine(ConveyorOn(Foods.Count));
+                    
 
                     Timer = 0;
                 }
             }
             ChageLayer();
         }
+
+        if (ShakeTime > 0)
+        {
+            _Cam.position = UnityEngine.Random.insideUnitSphere * ShakeAmount + initPos;
+            ShakeTime -= Time.deltaTime;
+        }
+        else
+        {
+            ShakeTime = 0;
+            _Cam.position = initPos;
+        }
+
+    }
+
+    public void VibeTime(float _time)
+    {
+        ShakeTime = _time;
     }
 
     void Generate()
@@ -109,6 +137,7 @@ public class FoodGenerater : MonoBehaviour
             ha_bar.umm_didyouHit();
             comboInt = 0;
             textpUpdate();
+            VibeTime(0.1f);
         }
     }
 
@@ -130,7 +159,7 @@ public class FoodGenerater : MonoBehaviour
             ha_bar.umm_didyouHit();
             comboInt = 0;
             textpUpdate();
-
+            VibeTime(0.1f);
         }
     }
 
@@ -139,11 +168,12 @@ public class FoodGenerater : MonoBehaviour
     {
         btn[0].interactable = false;
         btn[1].interactable = false;
+
         for (int k = 0; k < Count; k++)
         {
             while (Vector2.Distance(Foods[k].transform.position, FoodPoint[k].transform.position) >= 0.1f)
             {
-                Foods[k].transform.position = Vector2.MoveTowards(Foods[k].transform.position, FoodPoint[k].transform.position, 0.15f);
+                Foods[k].transform.position = Vector2.MoveTowards(Foods[k].transform.position, FoodPoint[k].transform.position, 0.3f);
                 yield return null;
             }
 
@@ -153,20 +183,20 @@ public class FoodGenerater : MonoBehaviour
                     Foods[k].transform.localScale = new Vector2(2, 2);
                     break;
 
-                    case 1:
-                    Foods[k].transform.localScale = new Vector2(1.5f , 1.5f);
+                case 1:
+                    Foods[k].transform.localScale = new Vector2(1.5f, 1.5f);
                     break;
 
-                    case 2:
-                    Foods[k].transform.localScale = new Vector2(1.2f , 1.2f);
+                case 2:
+                    Foods[k].transform.localScale = new Vector2(1.2f, 1.2f);
                     break;
 
-                    case 3:
-                    Foods[k].transform.localScale = new Vector2(0.8f , 0.8f);
+                case 3:
+                    Foods[k].transform.localScale = new Vector2(0.8f, 0.8f);
                     break;
 
-                    case 4:
-                    Foods[k].transform.localScale = new Vector2(0.6f , 0.6f);
+                case 4:
+                    Foods[k].transform.localScale = new Vector2(0.6f, 0.6f);
                     break;
 
                 default:
@@ -175,6 +205,7 @@ public class FoodGenerater : MonoBehaviour
         }
         btn[0].interactable = true;
         btn[1].interactable = true;
+
     }
 
 

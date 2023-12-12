@@ -1105,6 +1105,8 @@ MonoBehaviour:
   result_cellImage: {fileID: 473561641}
   CellSkillInfo: {fileID: 339201425}
   Final_Score: {fileID: 1769567311}
+  ShakeAmount: 0.3
+  _Cam: {fileID: 544104834}
 --- !u!4 &339791624
 Transform:
   m_ObjectHideFlags: 0
