@@ -86,6 +86,12 @@ public class MillStone : MonoBehaviour
         sptNum++;
     }
 
+    public void FailToFatman()
+    {
+        //collision.transform.root.GetComponent<Spawner>().Fatman_reset();
+        VibeTime(0.5f);
+        ScoreSystem.StartCoroutine(ScoreSystem.StunFunc());
+    }
 
 
 

@@ -50,6 +50,7 @@ public class FoodGenerater : MonoBehaviour
     float ShakeTime;
     Vector3 initPos;
     [SerializeField] private Transform _Cam;
+    [SerializeField] private AudioSource ButtonSound;
 
     private void Start()
     {
@@ -119,6 +120,7 @@ public class FoodGenerater : MonoBehaviour
 
     public void LeftBtn()
     {
+        ButtonSound.Play();
         if(Foods[0].GetComponent<Food>().Tag == "딸기")
         {
             Foods[0].GetComponent<BoxCollider2D>().enabled = false;
@@ -143,6 +145,8 @@ public class FoodGenerater : MonoBehaviour
 
     public void RightBtn()
     {
+        ButtonSound.Play();
+
         if (Foods[0].GetComponent<Food>().Tag == "떡꼬치")
         {
             Foods[0].GetComponent<BoxCollider2D>().enabled = false;
@@ -173,7 +177,7 @@ public class FoodGenerater : MonoBehaviour
         {
             while (Vector2.Distance(Foods[k].transform.position, FoodPoint[k].transform.position) >= 0.1f)
             {
-                Foods[k].transform.position = Vector2.MoveTowards(Foods[k].transform.position, FoodPoint[k].transform.position, 0.3f);
+                Foods[k].transform.position = Vector2.MoveTowards(Foods[k].transform.position, FoodPoint[k].transform.position, 0.5f);
                 yield return null;
             }
 

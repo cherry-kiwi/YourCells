@@ -14,6 +14,7 @@ public class Spawner : MonoBehaviour
     private float FatmanStart_x; 
     private float FatmanStart_y;
 
+    private BoxCollider2D millstone_Collider;
 
     public float spd_Fatman;
     public float spd_Bomb;
@@ -35,6 +36,7 @@ public class Spawner : MonoBehaviour
     int[] Bomb_SpawnPoint = {0,1,3,4};
 
 
+
     void Start()
     { 
         All_SpawnPoint = transform.childCount;
@@ -44,6 +46,8 @@ public class Spawner : MonoBehaviour
 
         FatmanStart_x = FootShadow.transform.localScale.x;
         FatmanStart_y = FootShadow.transform.lossyScale.y;
+
+        millstone_Collider= Millstone_obj.GetComponent<BoxCollider2D>();
     }
 
     private void Update()
@@ -93,6 +97,7 @@ public class Spawner : MonoBehaviour
     {
         prefab_FM.SetActive(true);
         FM_Range.SetActive(true);
+        millstone_Collider.enabled = false;
         FM_Range.GetComponent<FatMan_Slide_Range>().Swipe = 0;
         FatMan_Spawn_Time = 0;
         FatMan_is_Coming = Random.Range(10, 15);

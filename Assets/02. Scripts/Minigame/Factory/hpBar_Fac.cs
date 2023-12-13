@@ -21,12 +21,13 @@ public class hpBar_Fac : MonoBehaviour
     {
         maxHealth = StageCtrl.instance.SelectCell.hP;
 
-
         HP_Bar = GetComponent<Slider>();
         Hp_To_Time = maxHealth * 0.6f; //체력 시간 전환 설정. 100이 1분
                                        // 슬라이더의 밸류값에 연결 필요
         Hp_Time_conver = Hp_To_Time / 100 * 1;
         _Timer.text = Mathf.Floor(Hp_To_Time / 60) + "분" + Mathf.Floor(Hp_To_Time % 60) + "초";
+        
+
         StartCoroutine(Timer_Hp_decrease());
 
     }
