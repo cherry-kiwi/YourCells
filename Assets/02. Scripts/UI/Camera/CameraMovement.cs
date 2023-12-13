@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float Speed = 1.0f; // 카메라 이동 속도
+    public float Speed; // 카메라 이동 속도
     private Vector2 nowPos, prePos;
     private Vector3 movePos;
 
@@ -25,29 +25,62 @@ public class CameraMovement : MonoBehaviour
 
     void Update()
     {
-        if (Input.touchCount == 1) // 손가락 1개가 눌렸을 때
+        Speed = 0.2f - ((10 - Camera.main.orthographicSize) / 50);
+
+        if (GameManager.instance.isEditing == false && GameManager.instance.isBuying == false && GameManager.instance.isfixing == false)
         {
-            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) || EventSystem.current.IsPointerOverGameObject(0))
+            if (Input.touchCount == 1) // 손가락 1개가 눌렸을 때
             {
-                return;
-            }
+                if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) || EventSystem.current.IsPointerOverGameObject(0))
+                {
+                    return;
+                }
 
-            if (GameManager.instance.IsPointerOverUIObject(Input.mousePosition) || GameManager.instance.IsPointerOverUIObject(Input.GetTouch(0).position))
-            {
-                return;
-            }
+                if (GameManager.instance.IsPointerOverUIObject(Input.mousePosition) || GameManager.instance.IsPointerOverUIObject(Input.GetTouch(0).position))
+                {
+                    return;
+                }
 
-            Touch touch = Input.GetTouch(0); // 첫번째 손가락 터치를 저장
-            if (touch.phase == TouchPhase.Began) // 손가락이 화면에 터치됐을 때
-            {
-                prePos = touch.position - touch.deltaPosition; // 이전 위치 저장
+                Touch touch = Input.GetTouch(0); // 첫번째 손가락 터치를 저장
+                if (touch.phase == TouchPhase.Began) // 손가락이 화면에 터치됐을 때
+                {
+                    prePos = touch.position - touch.deltaPosition; // 이전 위치 저장
+                }
+                else if (touch.phase == TouchPhase.Moved) // 터치된 상태에서 움직였을 때
+                {
+                    nowPos = touch.position - touch.deltaPosition;
+                    movePos = (Vector3)(prePos - nowPos) * Time.deltaTime * Speed;
+                    Camera.main.transform.Translate(movePos);
+                    prePos = touch.position - touch.deltaPosition;
+                }
             }
-            else if (touch.phase == TouchPhase.Moved) // 터치된 상태에서 움직였을 때
+        }
+        else
+        {
+            if (Input.touchCount > 1) // 손가락 1개가 눌렸을 때
             {
-                nowPos = touch.position - touch.deltaPosition;
-                movePos = (Vector3)(prePos - nowPos) * Time.deltaTime * Speed;
-                Camera.main.transform.Translate(movePos);
-                prePos = touch.position - touch.deltaPosition;
+                if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) || EventSystem.current.IsPointerOverGameObject(0))
+                {
+                    return;
+                }
+
+                if (GameManager.instance.IsPointerOverUIObject(Input.mousePosition) || GameManager.instance.IsPointerOverUIObject(Input.GetTouch(0).position))
+                {
+                    return;
+                }
+
+                Touch touch = Input.GetTouch(0); // 첫번째 손가락 터치를 저장
+                if (touch.phase == TouchPhase.Began) // 손가락이 화면에 터치됐을 때
+                {
+                    prePos = touch.position - touch.deltaPosition; // 이전 위치 저장
+                }
+                else if (touch.phase == TouchPhase.Moved) // 터치된 상태에서 움직였을 때
+                {
+                    nowPos = touch.position - touch.deltaPosition;
+                    movePos = (Vector3)(prePos - nowPos) * Time.deltaTime * Speed;
+                    Camera.main.transform.Translate(movePos);
+                    prePos = touch.position - touch.deltaPosition;
+                }
             }
         }
     }
