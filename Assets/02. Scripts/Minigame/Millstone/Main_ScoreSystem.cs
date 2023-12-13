@@ -66,45 +66,43 @@ public class  Main_ScoreSystem : MonoBehaviour
     private void Update()
     {
 
-        #region  Click info
-        Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 clickPos = new Vector2(worldPos.x, worldPos.y);
-        Collider2D clickCol = Physics2D.OverlapPoint(clickPos);
-        #endregion
 
-        if (Input.touchCount > 0 && Input.touchCount <= 5)
-        {
-            for (int i = 0; i < Input.touchCount; i++)
-            {
-                toto[i] = Input.GetTouch(i);
-            }
-        }
 
         if (GameStart.GamePlaying)
         {
             if (FatManPattern == false)
             {
-                if (toto[i].phase == TouchPhase.Began)
+                if (Input.touchCount > 0 && Input.touchCount <= 5)
                 {
-                    if (clickCol != null && clickCol.tag == "Mill" && !Stun)
+                    for (int i = 0; i < Input.touchCount; i++)
                     {
-                        Combo_and_Score_Update();
-                        textpUpdate();
-                        clickCol.TryGetComponent(out Millstone_scr);
-                        Millstone_scr.BingBingDolaganeun();
-                    } //콤보,점수,텍스트 업데이트
-                    else if (clickCol != null && clickCol.tag == "Obs")
-                    {
-                        if (clickCol.TryGetComponent(out Obstacle obs))
+                        #region  Click info
+                        Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        Vector2 clickPos = new Vector2(worldPos.x, worldPos.y);
+                        Collider2D clickCol = Physics2D.OverlapPoint(clickPos);
+                        #endregion
+                        toto[i] = Input.GetTouch(i);
+
+                        if (toto[i].phase == TouchPhase.Began)
                         {
-                            obs.Bomb_obs_Click();
-                            Bomb_Counter_Eft(clickCol.transform);
+                            if (clickCol != null && clickCol.tag == "Mill" && !Stun)
+                            {
+                                Combo_and_Score_Update();
+                                textpUpdate();
+                                clickCol.TryGetComponent(out Millstone_scr);
+                                Millstone_scr.BingBingDolaganeun();
+                            } //콤보,점수,텍스트 업데이트
+                            else if (clickCol != null && clickCol.tag == "Obs")
+                            {
+                                if (clickCol.TryGetComponent(out Obstacle obs))
+                                {
+                                    obs.Bomb_obs_Click();
+                                    Bomb_Counter_Eft(clickCol.transform);
+                                }
+                            }
                         }
                     }
-
                 }
-                    
-                
             }
 
             else if (FatManPattern == true)
@@ -112,6 +110,11 @@ public class  Main_ScoreSystem : MonoBehaviour
                 if (Input.touchCount > 0)
                 {
                     tot = Input.GetTouch(0);
+                    #region  Click info
+                    Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    Vector2 clickPos = new Vector2(worldPos.x, worldPos.y);
+                    Collider2D clickCol = Physics2D.OverlapPoint(clickPos);
+                    #endregion
 
                     if (tot.phase == TouchPhase.Began && clickCol != null && clickCol.name.StartsWith("Slide"))
                     {
