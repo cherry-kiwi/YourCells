@@ -34,6 +34,7 @@ public class ButtonManager : MonoBehaviour
     public GameObject BuildingDisplayPanel;
     public GameObject storyModePanel;
     public GameObject ResultPanel;
+    public GameObject ClickB;
 
     #endregion
 
@@ -56,6 +57,14 @@ public class ButtonManager : MonoBehaviour
     public int nowIndex = 0;
     public int myCost;
     public int StorageIndex = 0;
+
+    private void Update()
+    {
+        if(BuildingDisplayPanel.activeSelf == true)
+        {
+            ClickB.SetActive(false);
+        }
+    }
 
     #region User Profile PopUp Panel
     public void Active_UserProfilePopUpPanel()

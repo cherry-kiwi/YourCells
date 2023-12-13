@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraZoomInOut : MonoBehaviour
 {
-    public float speed = 0.5f;      //줌인,줌아웃할때 속도 
+    public float speed;      //줌인,줌아웃할때 속도 
 
     void Update()
     {

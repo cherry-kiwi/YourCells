@@ -61,11 +61,11 @@ public class BuildingSystem : MonoBehaviour
         if (Input.touchCount > 0)
         {
 
-            if (Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(0).phase == TouchPhase.Stationary)
-            {
-                Invoke("OnDrag", 0.15f);
-                return;
-            }
+            //if (Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(0).phase == TouchPhase.Stationary)
+            //{
+            //    Invoke("OnDrag", 0.15f);
+            //    return;
+            //}
 
             if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId) || EventSystem.current.IsPointerOverGameObject(0))
             {
@@ -77,9 +77,11 @@ public class BuildingSystem : MonoBehaviour
                 return;
             }
 
-            if (Input.GetTouch(0).phase == TouchPhase.Ended && isDrag == false)
+            if (Input.GetTouch(0).phase == TouchPhase.Moved || Input.GetTouch(0).phase == TouchPhase.Stationary)
             {
-                isDrag = false;
+                Invoke("OnDrag", 0.15f);
+
+                //isDrag = false;
                 if (!temp.Placed)
                 {
                     Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

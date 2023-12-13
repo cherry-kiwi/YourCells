@@ -70,15 +70,6 @@ public class GachaSystem : MonoBehaviour
 
                 int R = Random.Range(0, 2);
 
-                if(R == 0)
-                {
-                    Instantiate(Cells[0], new Vector3(0, -2.3f, 0), Quaternion.identity, CellP.transform);
-                }   
-                else
-                {
-                    Instantiate(Cells[1], new Vector3(0, -2.3f, 0), Quaternion.identity, CellP.transform);
-                }
-
                 if (cellsName.Contains(myResults[i].cellName))
                 {
                     CellCardUI cellCardUI = Instantiate(cellCardPrefab, gachaResultPanel).GetComponent<CellCardUI>();
@@ -100,6 +91,18 @@ public class GachaSystem : MonoBehaviour
                     CellCardUI cellCardUI = Instantiate(cellCardPrefab, gachaResultPanel).GetComponent<CellCardUI>();
                     cellCardUI.CardSetting(myResults[i]);
                     Debug.Log("세포 뽑기 결과: " + myResults[i].cellName);
+
+                    if (CellManager.instance.myCellObjects.Count < 20)
+                    {
+                        if (R == 0)
+                        {
+                            CellManager.instance.myCellObjects.Add(Instantiate(Cells[0], new Vector3(0, -2.3f, 0), Quaternion.identity, CellP.transform));
+                        }
+                        else
+                        {
+                            CellManager.instance.myCellObjects.Add(Instantiate(Cells[1], new Vector3(0, -2.3f, 0), Quaternion.identity, CellP.transform));
+                        }
+                    }
                 }
             }
 
