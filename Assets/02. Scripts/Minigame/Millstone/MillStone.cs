@@ -59,6 +59,7 @@ public class MillStone : MonoBehaviour
                 collision.transform.root.GetComponent<Spawner>().Fatman_reset();
                 VibeTime(0.5f);
                 ScoreSystem.StartCoroutine(ScoreSystem.StunFunc());
+                ScoreSystem.FatManPattern = false;
             }
             else if (collision.name.StartsWith("Bomb"))
             {

@@ -10,6 +10,7 @@ public class Spawner : MonoBehaviour
     public GameObject Millstone_obj;
     [SerializeField] private GameObject FootShadow;
     [SerializeField] private Background_Fatman back_moving;
+    [SerializeField] private Main_ScoreSystem _ScoreSystem;
 
     private float FatmanStart_x; 
     private float FatmanStart_y;
@@ -97,7 +98,8 @@ public class Spawner : MonoBehaviour
     {
         prefab_FM.SetActive(true);
         FM_Range.SetActive(true);
-        millstone_Collider.enabled = false;
+        _ScoreSystem.FatManPattern = true;
+        //millstone_Collider.enabled = false;
         FM_Range.GetComponent<FatMan_Slide_Range>().Swipe = 0;
         FatMan_Spawn_Time = 0;
         FatMan_is_Coming = Random.Range(10, 15);
