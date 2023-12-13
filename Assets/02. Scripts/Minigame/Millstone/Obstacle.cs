@@ -91,14 +91,5 @@ public class Obstacle : MonoBehaviour
     {
         transform.Translate(new Vector2(0,0.2f));  
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.name == "background_land" && Whatisthis == kindd.FatMan)
-        {
-            Spawn_.Fatman_reset();
-            Mill_.GetComponent<MillStone>().FailToFatman();
-        }
-    }
 }
 

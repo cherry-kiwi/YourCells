@@ -33,6 +33,8 @@ public class  Main_ScoreSystem : MonoBehaviour
     private MillStone Millstone_scr;
 
     Touch[] toto = new Touch[5];
+    Touch tot;
+
     public float _Time = 120;
     public int scoreInt = 0;
     public int comboInt = 0;
@@ -45,7 +47,8 @@ public class  Main_ScoreSystem : MonoBehaviour
 
     public event Action Com_bo;
     Vector2 Touch_start_pos;
-    
+
+    public bool FatManPattern = false;
 
     private void Start()
     {
@@ -56,6 +59,7 @@ public class  Main_ScoreSystem : MonoBehaviour
         result_cellImage.sprite = myCell.image;
 
         CellSkillInfo = result_cellImage.GetComponentInChildren<TMP_Text>();
+        Input.multiTouchEnabled = true;
     }
 
 
@@ -68,53 +72,66 @@ public class  Main_ScoreSystem : MonoBehaviour
         Collider2D clickCol = Physics2D.OverlapPoint(clickPos);
         #endregion
 
+        if (Input.touchCount > 0 && Input.touchCount <= 5)
+        {
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                toto[i] = Input.GetTouch(i);
+            }
+        }
+
         if (GameStart.GamePlaying)
         {
-            if (Input.touchCount > 0 && Input.touchCount <= 5)
+            if (FatManPattern == false)
             {
-                for (int i = 0; i < Input.touchCount; i++)
+                if (toto[i].phase == TouchPhase.Began)
                 {
-                    toto[i] = Input.GetTouch(i);
-
-
-                    if (toto[i].phase == TouchPhase.Began)
+                    if (clickCol != null && clickCol.tag == "Mill" && !Stun)
                     {
-                        if (clickCol != null && clickCol.tag == "Mill" && !Stun)
+                        Combo_and_Score_Update();
+                        textpUpdate();
+                        clickCol.TryGetComponent(out Millstone_scr);
+                        Millstone_scr.BingBingDolaganeun();
+                    } //콤보,점수,텍스트 업데이트
+                    else if (clickCol != null && clickCol.tag == "Obs")
+                    {
+                        if (clickCol.TryGetComponent(out Obstacle obs))
                         {
-                            Combo_and_Score_Update();
-                            textpUpdate();
-                            clickCol.TryGetComponent(out Millstone_scr);
-                            Millstone_scr.BingBingDolaganeun();
-                        } //콤보,점수,텍스트 업데이트
-                        else if (clickCol != null && clickCol.tag == "Obs")
-                        {
-                            if (clickCol.TryGetComponent(out Obstacle obs))
-                            {
-                                obs.Bomb_obs_Click();
-                                Bomb_Counter_Eft(clickCol.transform);
-                            }
+                            obs.Bomb_obs_Click();
+                            Bomb_Counter_Eft(clickCol.transform);
                         }
-                        else if (clickCol != null && clickCol.name.StartsWith("Slide"))
-                        {
-                            Touch_start_pos = toto[i].position;
-                        }
-
                     }
 
-                    if (clickCol != null && toto[i].phase == TouchPhase.Moved)
+                }
+                    
+                
+            }
+
+            else if (FatManPattern == true)
+            {
+                if (Input.touchCount > 0)
+                {
+                    tot = Input.GetTouch(0);
+
+                    if (tot.phase == TouchPhase.Began && clickCol != null && clickCol.name.StartsWith("Slide"))
+                    {
+                        Touch_start_pos = tot.position;
+                    }
+                    if (clickCol != null && tot.phase == TouchPhase.Moved)
                     {
                         if (clickCol.TryGetComponent(out FatMan_Slide_Range ok_slide))
                         {
-                            if (Vector2.Distance(Touch_start_pos, toto[i].position) >= 500)
+                            if (Vector2.Distance(Touch_start_pos, tot.position) >= 500)
                             {
-                                Touch_start_pos = toto[i].position;
+                                Touch_start_pos = tot.position;
                                 ok_slide.Slide_Succes();
                             }
                         }
+
+
                     }
                 }
             }
-
             
         }
     }
