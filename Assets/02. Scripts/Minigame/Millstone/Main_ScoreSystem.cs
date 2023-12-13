@@ -32,7 +32,8 @@ public class  Main_ScoreSystem : MonoBehaviour
 
     private MillStone Millstone_scr;
 
-    Touch toto;
+    
+    Touch[] toto;
     public float _Time = 120;
     public int scoreInt = 0;
     public int comboInt = 0;
@@ -71,40 +72,44 @@ public class  Main_ScoreSystem : MonoBehaviour
         {
             if (Input.touchCount > 0)
             {
-                toto = Input.GetTouch(0);
-
-                if (toto.phase == TouchPhase.Began)
+                for (int i = 0; i < Input.touchCount; i++)
                 {
-                    if (clickCol != null && clickCol.tag == "Mill" && !Stun)
+                    toto[i] = Input.GetTouch(i);
+
+
+                    if (toto[i].phase == TouchPhase.Began)
                     {
-                        Combo_and_Score_Update();
-                        textpUpdate();
-                        clickCol.TryGetComponent(out Millstone_scr);
-                        Millstone_scr.BingBingDolaganeun();
-                    } //콤보,점수,텍스트 업데이트
-                    else if (clickCol != null && clickCol.tag == "Obs")
-                    {
-                        if (clickCol.TryGetComponent(out Obstacle obs))
+                        if (clickCol != null && clickCol.tag == "Mill" && !Stun)
                         {
-                            obs.Bomb_obs_Click();
-                            Bomb_Counter_Eft(clickCol.transform);
+                            Combo_and_Score_Update();
+                            textpUpdate();
+                            clickCol.TryGetComponent(out Millstone_scr);
+                            Millstone_scr.BingBingDolaganeun();
+                        } //콤보,점수,텍스트 업데이트
+                        else if (clickCol != null && clickCol.tag == "Obs")
+                        {
+                            if (clickCol.TryGetComponent(out Obstacle obs))
+                            {
+                                obs.Bomb_obs_Click();
+                                Bomb_Counter_Eft(clickCol.transform);
+                            }
                         }
-                    }
-                    else if( clickCol != null && clickCol.name.StartsWith("Slide"))
-                    {
-                        Touch_start_pos = toto.position;
-                    }
-
-                }
-
-                if (clickCol != null && toto.phase == TouchPhase.Moved)
-                {
-                    if (clickCol.TryGetComponent(out FatMan_Slide_Range ok_slide))
-                    {
-                        if (Vector2.Distance(Touch_start_pos, toto.position) >= 500)
+                        else if (clickCol != null && clickCol.name.StartsWith("Slide"))
                         {
-                            Touch_start_pos = toto.position;
-                            ok_slide.Slide_Succes();
+                            Touch_start_pos = toto[i].position;
+                        }
+
+                    }
+
+                    if (clickCol != null && toto[i].phase == TouchPhase.Moved)
+                    {
+                        if (clickCol.TryGetComponent(out FatMan_Slide_Range ok_slide))
+                        {
+                            if (Vector2.Distance(Touch_start_pos, toto[i].position) >= 500)
+                            {
+                                Touch_start_pos = toto[i].position;
+                                ok_slide.Slide_Succes();
+                            }
                         }
                     }
                 }
