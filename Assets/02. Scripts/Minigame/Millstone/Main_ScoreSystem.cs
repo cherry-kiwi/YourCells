@@ -76,12 +76,14 @@ public class  Main_ScoreSystem : MonoBehaviour
                 {
                     for (int i = 0; i < Input.touchCount; i++)
                     {
+                        
+                        toto[i] = Input.GetTouch(i);
+
                         #region  Click info
-                        Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                        Vector3 worldPos = Camera.main.ScreenToWorldPoint(toto[i].position);
                         Vector2 clickPos = new Vector2(worldPos.x, worldPos.y);
                         Collider2D clickCol = Physics2D.OverlapPoint(clickPos);
                         #endregion
-                        toto[i] = Input.GetTouch(i);
 
                         if (toto[i].phase == TouchPhase.Began)
                         {
