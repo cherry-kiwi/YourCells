@@ -32,8 +32,7 @@ public class  Main_ScoreSystem : MonoBehaviour
 
     private MillStone Millstone_scr;
 
-    
-    Touch[] toto;
+    Touch[] toto = new Touch[5];
     public float _Time = 120;
     public int scoreInt = 0;
     public int comboInt = 0;
@@ -46,6 +45,7 @@ public class  Main_ScoreSystem : MonoBehaviour
 
     public event Action Com_bo;
     Vector2 Touch_start_pos;
+    
 
     private void Start()
     {
@@ -70,7 +70,7 @@ public class  Main_ScoreSystem : MonoBehaviour
 
         if (GameStart.GamePlaying)
         {
-            if (Input.touchCount > 0)
+            if (Input.touchCount > 0 && Input.touchCount <= 5)
             {
                 for (int i = 0; i < Input.touchCount; i++)
                 {
@@ -113,9 +113,9 @@ public class  Main_ScoreSystem : MonoBehaviour
                         }
                     }
                 }
-
-
             }
+
+            
         }
     }
 

@@ -9,6 +9,7 @@ public class FatMan_Slide_Range : MonoBehaviour
     private Obstacle obs_scr;
     public int Swipe = 0;
 
+    [SerializeField] private BoxCollider2D Mill_Collider;
     [SerializeField] private ParticleSystem[] HitEft;
 
  
@@ -24,6 +25,7 @@ public class FatMan_Slide_Range : MonoBehaviour
         if (Swipe > 25)
         {
             gameObject.SetActive(false);
+            Mill_Collider.enabled = true;
             FatMan_obs.gameObject.SetActive(false);
             FatMan_obs.root.GetComponent<Spawner>().Fatman_reset();
             Swipe= 0;
